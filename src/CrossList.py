@@ -11,6 +11,7 @@ class node:
         self.nedge = None
         self.x = 0
         self.y = 0
+        self.attr={}
 
     def distance(self, other):
         c = sin(self.lat * pi / 180) * sin(other.lat * pi /180)+ cos(self.lat * pi / 180) * cos(other.lat * pi / 180) * cos((self.lon - other.lon) * pi / 180)
@@ -37,7 +38,7 @@ class crosslist:
         self.origin = node('0', 10000, 10000)
         self.farthest_node = node('1', 0, 0)
 
-    def addnode(self, nid, lat, lon):
+    def add_node(self, nid, lat, lon):
         new_node = node(nid, lat, lon)
         self.nodes[nid] = new_node
         if lat < self.origin.lat:
@@ -53,7 +54,7 @@ class crosslist:
         for n in self.nodes.values():
             n.cartesian_coorinate()
 
-    def addedge(self, id1, id2):
+    def add_edge(self, id1, id2):
         node1 = self.nodes[id1]
         node2 = self.nodes[id2]
         new_edge = edge(node1, node2)
@@ -69,3 +70,20 @@ class crosslist:
             new_edge.ilink = temp
         else:
             node2.nedge = new_edge
+
+    def get_node(self, id):
+        return self.nodes[id]
+
+    def get_edge(self, node1, node2):
+        result = node1.nedge
+        while True:
+            if result == None:
+                return None
+            elif (result.ivex == node1 and result.jvex == node2) or (result.ivex == node2 and result.jvex == node1):
+                return result
+            elif result.ivex == node1:
+                result = result.ilink
+            elif result.jvex == node1:
+                result = result.jlink
+            else:
+                raise Exception("Points and edges have Errors!")
