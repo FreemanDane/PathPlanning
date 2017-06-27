@@ -52,11 +52,9 @@ class crosslist:
 
     def cartesian_coordinate(self):
         for n in self.nodes.values():
-            n.cartesian_coorinate()
+            n.cartesian_coorinate(self.origin)
 
-    def add_edge(self, id1, id2):
-        node1 = self.nodes[id1]
-        node2 = self.nodes[id2]
+    def add_edge(self, node1, node2):
         new_edge = edge(node1, node2)
         if node1.nedge:
             temp = node1.nedge
