@@ -3,19 +3,22 @@ from bs4 import BeautifulSoup
 from src.CrossList import *
 
 class way:
+    '''
+    定义地图数据中的way
+    '''
     def __init__(self, wid):
-        self.point = []
-        self.attr = {}
-        self.id = wid
+        self.point = [] #way中包含的节点
+        self.attr = {} #way的特殊属性
+        self.id = wid #way的id
 
 class map:
     """
-    todo:ectract infomation from xml file
+    从xml中提取数据
     """
     def __init__(self, filename):
-        self.keynode = []
-        self.ways = []
-        self.cross_list = crosslist()
+        self.keynode = [] #关键节点，即有特殊属性的节点
+        self.ways = [] #way的列表
+        self.cross_list = crosslist() #十字链表
         with open(filename,'r',encoding="utf8") as f:
             soup = BeautifulSoup(f.read(),"html.parser")
             for n in soup.find_all('node'):
