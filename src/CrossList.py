@@ -45,6 +45,7 @@ class crosslist:
         self.nodes = {} #图中所有节点，为节点id到节点对象的字典
         self.origin = node('0', 10000, 10000) #定义一个假的节点为当前最左上点（原点）
         self.farthest_node = node('1', 0, 0) #定义一个假节点为当前最右下点（最远点）
+        self.edges = []
 
     def add_node(self, nid, lat, lon):
         #添加一个节点，传入节点id，精度，维度
@@ -79,6 +80,7 @@ class crosslist:
             new_edge.ilink = temp
         else:
             node2.nedge = new_edge
+            self.edges.append(new_edge)
 
     def get_node(self, id):
         #通过节点id获得一个节点对象
