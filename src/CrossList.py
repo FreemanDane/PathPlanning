@@ -84,17 +84,29 @@ class crosslist:
         #通过节点id获得一个节点对象
         return self.nodes[id]
 
-    def get_edge(self, node1, node2):
+    def get_edge(self, node1, node2 = None):
         #寻找传入的两节点对象node1，node2的一条边，若无边返回None
-        result = node1.nedge
-        while True:
-            if result == None:
-                return None
-            elif (result.ivex == node1 and result.jvex == node2) or (result.ivex == node2 and result.jvex == node1):
-                return result
-            elif result.ivex == node1:
-                result = result.ilink
-            elif result.jvex == node1:
-                result = result.jlink
-            else:
-                raise Exception("Points and edges have Errors!")
+        if node2:
+            result = node1.nedge
+            while True:
+                if result == None:
+                    return None
+                elif (result.ivex == node1 and result.jvex == node2) or (result.ivex == node2 and result.jvex == node1):
+                    return result
+                elif result.ivex == node1:
+                    result = result.ilink
+                elif result.jvex == node1:
+                    result = result.jlink
+                else:
+                    raise Exception("Points and edges have Errors!")
+        #若未传入node2参数，返回一个列表，元素为所有与node1关联的边
+        else:
+            result = []
+            e = node1.nedge
+            while e != None:
+                result.append(e)
+                if e.ivex == node1:
+                    result = result.ilink
+                elif e.jvex == node1:
+                    result = result.jlink
+            return result
