@@ -1,7 +1,7 @@
 from src import DataAnalysis
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon
-from PyQt5.QtCore import QPoint
+from PyQt5.QtCore import QPoint,QRect, Qt
 import sys
 
 class MapDisplay(QWidget):
@@ -24,6 +24,21 @@ class MapDisplay(QWidget):
         print("render map")
         max_x = self.map.cross_list.farthest_node.x
         max_y = self.map.cross_list.farthest_node.y
+        self.painter.setPen(Qt.NoPen)
+        for wy in self.map.ways:
+            attrs = wy.attr
+            try:
+                x = attrs['amenity']
+            except KeyError:
+                continue
+            if x == 'parking':
+                self.painter.setBrush(QColor(254, 194, 146))
+            polygon = QPolygon()
+            length = len(wy.point) - 1
+            for i in range(length):
+                new_pt = self.map.cross_list.get_node(wy.point[i]['ref'])
+                polygon.append(QPoint(new_pt.x * 680 / max_x, 830 - new_pt.y * 830 / max_y))
+            self.painter.drawPolygon(polygon)
         for wy in self.map.ways:
             attrs = wy.attr
             try:
@@ -32,17 +47,55 @@ class MapDisplay(QWidget):
                     continue
             except KeyError:
                 continue
-            brush = QBrush()
-            if x == 'paving_stones' or x == 'paved' or x == 'concrete:plates' or x == 'asphalt':
-                brush.setColor(QColor(157, 145, 170))
-            elif x == 'earth':
-                brush.setColor((QColor(231, 179, 22)))
+            if x == 'paving_stones' or x == 'paved' or x == 'concrete:plates' or x == 'asphalt' or x == 'cobblestone':
+                self.painter.setBrush(QColor(220, 220, 220))
+            elif x == 'earth' or x == 'sand':
+                self.painter.setBrush((QColor(231, 179, 22)))
+            elif x == 'grass':
+                self.painter.setBrush(QColor(55, 232, 30))
+            else:
+                print('{} is not showed in surface'.format(x))
             polygon = QPolygon()
             length = len(wy.point) - 1
             for i in range(length):
                 new_pt = self.map.cross_list.get_node(wy.point[i]['ref'])
-                polygon.append(QPoint(new_pt.x * 680 / max_x, new_pt.y * 830 / max_y))
-            self.painter.setBrush(brush)
+                polygon.append(QPoint(new_pt.x * 680 / max_x, 830 - new_pt.y * 830 / max_y))
+            self.painter.drawPolygon(polygon)
+        for wy in self.map.ways:
+            attrs = wy.attr
+            try:
+                x = attrs['leisure']
+            except KeyError:
+                continue
+            if x == 'swimming_pool':
+                self.painter.setBrush(QColor(150, 182, 218))
+            elif x == 'park' or x == 'playground':
+                self.painter.setBrush(QColor(150, 218, 179))
+            polygon = QPolygon()
+            length = len(wy.point) - 1
+            for i in range(length):
+                new_pt = self.map.cross_list.get_node(wy.point[i]['ref'])
+                polygon.append(QPoint(new_pt.x * 680 / max_x, 830 - new_pt.y * 830 / max_y))
+            self.painter.drawPolygon(polygon)
+        for wy in self.map.ways:
+            attrs = wy.attr
+            try:
+                x = attrs['natural']
+            except KeyError:
+                continue
+            if x == 'water':
+                self.painter.setBrush(QColor(146,160,209))
+            elif x == 'grassland':
+                self.painter.setBrush(QColor(55, 232, 30))
+            elif x == 'wood':
+                self.painter.setBrush(QColor(75, 189, 72))
+            else:
+                print('{} is not showed in natural'.format(x))
+            polygon = QPolygon()
+            length = len(wy.point) - 1
+            for i in range(length):
+                new_pt = self.map.cross_list.get_node(wy.point[i]['ref'])
+                polygon.append(QPoint(new_pt.x * 680 / max_x, 830 - new_pt.y * 830 / max_y))
             self.painter.drawPolygon(polygon)
         for wy in self.map.ways:
             attrs = wy.attr
@@ -52,19 +105,19 @@ class MapDisplay(QWidget):
                     continue
             except KeyError:
                 continue
-            brush = QBrush()
             if x == 'grass' or x == 'meadow':
-                brush.setColor(QColor(55, 232, 30))
+                self.painter.setBrush(QColor(55, 232, 30))
             elif x == 'forest':
-                brush.setColor(QColor(75, 189, 72))
+                self.painter.setBrush(QColor(75, 189, 72))
             elif x == 'commercial' or x == 'retail' or x == 'construction' or x == 'park' or x == 'residential':
-                brush.setColor((QColor(134, 139, 122)))
+                self.painter.setBrush((QColor(220, 220, 220)))
+            else:
+                print('{} is not showed in landuse'.format(x))
             polygon = QPolygon()
             length = len(wy.point) - 1
             for i in range(length):
                 new_pt = self.map.cross_list.get_node(wy.point[i]['ref'])
-                polygon.append(QPoint(new_pt.x * 680 / max_x, new_pt.y * 830 / max_y))
-            self.painter.setBrush(brush)
+                polygon.append(QPoint(new_pt.x * 680 / max_x, 830 - new_pt.y * 830 / max_y))
             self.painter.drawPolygon(polygon)
         for wy in self.map.ways:
             attrs = wy.attr
@@ -74,16 +127,30 @@ class MapDisplay(QWidget):
                     continue
             except KeyError:
                 continue
-            brush = QBrush()
-            brush.setColor(QColor(65, 62, 200))
+            self.painter.setBrush(QColor(213, 191, 223))
             polygon = QPolygon()
             length = len(wy.point) - 1
             for i in range(length):
                 new_pt = self.map.cross_list.get_node(wy.point[i]['ref'])
-                polygon.append(QPoint(new_pt.x * 680 / max_x, new_pt.y * 830 / max_y))
-            self.painter.setBrush(brush)
+                polygon.append(QPoint(new_pt.x * 680 / max_x, 830 - new_pt.y * 830 / max_y))
             self.painter.drawPolygon(polygon)
-
+        for wy in self.map.ways:
+            attrs = wy.attr
+            try:
+                x = attrs['waterway']
+            except KeyError:
+                continue
+            pen = QPen()
+            pen.setColor(QColor(146, 160, 209))
+            pen.setWidth(2)
+            self.painter.setPen(pen)
+            points = []
+            length = len(wy.point) - 1
+            for i in range(length):
+                start = self.map.cross_list.get_node(wy.point[i]['ref'])
+                end = self.map.cross_list.get_node(wy.point[i + 1]['ref'])
+                self.painter.drawLine(start.x * 680 / max_x, 830 - start.y * 830 / max_y,
+                                      end.x * 680 / max_x, 830 - end.y * 830 / max_y)
         for wy in self.map.ways:
             attrs = wy.attr
             try:
@@ -93,7 +160,7 @@ class MapDisplay(QWidget):
             except KeyError:
                 continue
             pen = QPen()
-            pen.setColor(QColor(68, 193, 181))
+            pen.setColor(QColor(202, 200, 153))
             pen.setWidth(2)
             self.painter.setPen(pen)
             points = []
@@ -101,16 +168,14 @@ class MapDisplay(QWidget):
             for i in range(length):
                 start = self.map.cross_list.get_node(wy.point[i]['ref'])
                 end = self.map.cross_list.get_node(wy.point[i + 1]['ref'])
-                self.painter.drawLine(start.x * 680 / max_x, start.y * 830 / max_y,
-                                      end.x * 680 / max_x, end.y * 830 / max_y)
+                self.painter.drawLine(start.x * 680 / max_x, 830 - start.y * 830 / max_y,
+                                      end.x * 680 / max_x, 830 - end.y * 830 / max_y)
 
     def paintEvent(self, e):
         print('paint')
-        brush = QBrush()
-        brush.setColor(QColor(227, 174, 222))
-        self.painter.setBackground(brush)
         self.painter.begin(self)
-        #self.painter.setBrush(brush)
+        rect = QRect(0,0,1000,1000)
+        self.painter.fillRect(rect, QColor(244, 241, 219))
         self.map_render()
         self.painter.end()
 
