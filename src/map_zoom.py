@@ -15,7 +15,10 @@ class thu_map(QGraphicsPixmapItem, QObject):
         self.mouse_true = QPointF(0, 0) #发生点击事件时鼠标在图片上的位置（相对图片左上角）
         self.top_left = QPointF(0, 0)   #图片左上角坐标
         self.is_zoom = 0                #缩放事件标记
-        self.is_drag = 0                #鼠标拖拽事件标记
+        self.is_press = 0               #鼠标按下事件标记
+        self.before_drag = QPointF(0, 0)
+        self.setAcceptHoverEvents(True)
+        self.setFlag(QGraphicsItem.ItemIsSelectable)
     def boundingRect(self):
         return QRectF(self.top_left.x(), self.top_left.y(), self.size_x * pow(1.2, 0.5 * self.zoom[1]), self.size_y * pow(1.2, 0.5 * self.zoom[1]))
     def paint(self, painter, option, widget):
@@ -35,11 +38,28 @@ class thu_map(QGraphicsPixmapItem, QObject):
                 y = ((pow(1.2, 0.5 * self.zoom[1]) - 1) * pow(1.2, 0.5 * self.zoom[0])) / ((pow(1.2, 0.5 * self.zoom[0]) - 1) * pow(1.2, 0.5 * self.zoom[1])) * self.top_left.y()
 
             self.top_left = QPointF(x, y)
+        elif self.is_press == 1:
+            #计算左上角x
+            x = pow(1.2, -0.5 * self.zoom[1]) * self.mouse.x() - self.before_drag.x()
+            if x > 0:
+                x = 0
+            elif x < pow(1.2, -0.5 * self.zoom[1]) * self.size_x - self.size_x:
+                x = pow(1.2, -0.5 * self.zoom[1]) * self.size_x - self.size_x
+
+            #计算左上角y
+            y = pow(1.2, -0.5 * self.zoom[1]) * self.mouse.y() - self.before_drag.y()
+            if y > 0:
+                y = 0
+            elif y < pow(1.2, -0.5 * self.zoom[1]) * self.size_y - self.size_y:
+                y = pow(1.2, -0.5 * self.zoom[1]) * self.size_y - self.size_y
+
+            self.top_left = QPointF(x, y)
         pixmap = self.pixmap()
         target = QRectF(self.top_left.x(), self.top_left.y(), self.size_x, self.size_y)
         source = QRectF(0, 0, self.size_x, self.size_y)
         painter.drawPixmap(target, pixmap, source)
         self.is_zoom = 0
+    #鼠标滚轮事件
     def wheelEvent(self, event):
         self.is_zoom = 1
         factor = 1.0
@@ -60,14 +80,29 @@ class thu_map(QGraphicsPixmapItem, QObject):
         self.setTransform(QTransform.fromScale(factor, factor), True)
         self.update()
         super(thu_map, self).wheelEvent(event)
+    #鼠标拖拽事件
     def mousePressEvent(self, event):
+        self.is_press = 1
         x = event.pos().x() * pow(1.2, 0.5 * self.zoom[1])
         y = event.pos().y() * pow(1.2, 0.5 * self.zoom[1])
         self.mouse = QPointF(x, y)
-        true_x = x / pow(1.2, self.zoom[1]) - self.top_left.x()
-        true_y = y / pow(1.2, self.zoom[1]) - self.top_left.y()
-        self.mouse_true = QPointF(true_x, true_y)
+        self.before_drag = self.convertScreenToImage(self.mouse)
         super(thu_map, self).mousePressEvent(event)
+    def mouseReleaseEvent(self, event):
+        self.is_press = 0
+        super(thu_map, self).mouseReleaseEvent(event)
+    def mouseMoveEvent(self, event):
+        if self.is_press == 1:
+            x = event.pos().x() * pow(1.2, 0.5 * self.zoom[1])
+            y = event.pos().y() * pow(1.2, 0.5 * self.zoom[1])
+            self.mouse = QPointF(x, y)
+        self.update()
+        super(thu_map, self).mouseMoveEvent(event)
+    #坐标变换函数
+    def convertScreenToImage(self, point):
+        image_x = point.x() / pow(1.2, 0.5 * self.zoom[1]) - self.top_left.x()
+        image_y = point.y() / pow(1.2, 0.5 * self.zoom[1]) - self.top_left.y()
+        return QPointF(image_x, image_y)
 class MainWindow(QGraphicsView):
     def __init__(self):
         super(MainWindow, self).__init__()
