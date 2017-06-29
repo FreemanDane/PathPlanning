@@ -1,7 +1,7 @@
 from src import DataAnalysis
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon
-from PyQt5.QtCore import QRect
+from PyQt5.QtCore import QPoint
 import sys
 
 class MapDisplay(QWidget):
@@ -37,14 +37,13 @@ class MapDisplay(QWidget):
                 brush.setColor(QColor(157, 145, 170))
             elif x == 'earth':
                 brush.setColor((QColor(231, 179, 22)))
-            points = []
+            polygon = QPolygon()
             length = len(wy.point) - 1
             for i in range(length):
                 new_pt = self.map.cross_list.get_node(wy.point[i]['ref'])
-                points.append((new_pt.x * 680 / max_x, new_pt.y * 830 / max_y))
+                polygon.append(QPoint(new_pt.x * 680 / max_x, new_pt.y * 830 / max_y))
             self.painter.setBrush(brush)
-            self.painter.drawPolygon(QPolygon(points), length)
-            print("draw surface")
+            self.painter.drawPolygon(polygon)
         for wy in self.map.ways:
             attrs = wy.attr
             try:
@@ -60,14 +59,13 @@ class MapDisplay(QWidget):
                 brush.setColor(QColor(75, 189, 72))
             elif x == 'commercial' or x == 'retail' or x == 'construction' or x == 'park' or x == 'residential':
                 brush.setColor((QColor(134, 139, 122)))
-            points = []
+            polygon = QPolygon()
             length = len(wy.point) - 1
             for i in range(length):
                 new_pt = self.map.cross_list.get_node(wy.point[i]['ref'])
-                points.append((new_pt.x * 680 / max_x, new_pt.y * 830 / max_y))
+                polygon.append(QPoint(new_pt.x * 680 / max_x, new_pt.y * 830 / max_y))
             self.painter.setBrush(brush)
-            self.painter.drawPolygon(QPolygon(points), length)
-            print("draw landuse")
+            self.painter.drawPolygon(polygon)
         for wy in self.map.ways:
             attrs = wy.attr
             try:
@@ -78,14 +76,13 @@ class MapDisplay(QWidget):
                 continue
             brush = QBrush()
             brush.setColor(QColor(65, 62, 200))
-            points = []
+            polygon = QPolygon()
             length = len(wy.point) - 1
             for i in range(length):
                 new_pt = self.map.cross_list.get_node(wy.point[i]['ref'])
-                points.append((new_pt.x * 680 / max_x, new_pt.y * 830 / max_y))
+                polygon.append(QPoint(new_pt.x * 680 / max_x, new_pt.y * 830 / max_y))
             self.painter.setBrush(brush)
-            self.painter.drawPolygon(QPolygon(points), length)
-            print("draw building")
+            self.painter.drawPolygon(polygon)
 
         for wy in self.map.ways:
             attrs = wy.attr
@@ -104,9 +101,8 @@ class MapDisplay(QWidget):
             for i in range(length):
                 start = self.map.cross_list.get_node(wy.point[i]['ref'])
                 end = self.map.cross_list.get_node(wy.point[i + 1]['ref'])
-                self.painter.drawLine((start.x * 680 / max_x, start.y * 680 / max_y),
-                                      (end.x * 680 / max_x, end.y * 680 / max_y))
-            print("draw highway")
+                self.painter.drawLine(start.x * 680 / max_x, start.y * 830 / max_y,
+                                      end.x * 680 / max_x, end.y * 830 / max_y)
 
     def paintEvent(self, e):
         print('paint')
