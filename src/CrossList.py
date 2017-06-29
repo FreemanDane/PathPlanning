@@ -11,7 +11,7 @@ class node:
         self.id = nid #节点的id
         self.lat = lat #节点的纬度
         self.lon = lon #节点的经度
-        self.nedge = None #与节点相连的第一条边
+        self.edges = [] #与节点相连的第一条边
         self.x = 0
         self.y = 0
         self.attr={} #节点的额外属性
@@ -34,9 +34,7 @@ class edge:
     '''
     def __init__(self, node1, node2):
         self.ivex = node1 #边的第一个节点
-        self.ilink = None #边的第一个节点的下一条边
         self.jvex = node2 #边的第二个节点
-        self.jlink = None #边的第二个节点的下一条边
         self.length = node1.distance(node2) #边长
 
 
@@ -68,19 +66,9 @@ class crosslist:
     def add_edge(self, node1, node2):
         #为节点node1和node2添加一条边
         new_edge = edge(node1, node2)
-        if node1.nedge:
-            temp = node1.nedge
-            node1.nedge = new_edge
-            new_edge.ilink = temp
-        else:
-            node1.nedge = new_edge
-        if node2.nedge:
-            temp = node2.nedge
-            node2.nedge = new_edge
-            new_edge.ilink = temp
-        else:
-            node2.nedge = new_edge
-            self.edges.append(new_edge)
+        node1.edges.append(new_edge)
+        node2.edges.append(new_edge)
+        self.edges.append(new_edge)
 
     def get_node(self, id):
         #通过节点id获得一个节点对象
@@ -89,26 +77,12 @@ class crosslist:
     def get_edge(self, node1, node2 = None):
         #寻找传入的两节点对象node1，node2的一条边，若无边返回None
         if node2:
-            result = node1.nedge
-            while True:
-                if result == None:
-                    return None
-                elif (result.ivex == node1 and result.jvex == node2) or (result.ivex == node2 and result.jvex == node1):
-                    return result
-                elif result.ivex == node1:
-                    result = result.ilink
-                elif result.jvex == node1:
-                    result = result.jlink
-                else:
-                    raise Exception("Points and edges have Errors!")
+            result = None
+            for e in node1.edges:
+                if (e.node1 == node1 and e.node2 == node2) or (e.node1 == node2 and e.node2 == node1):
+                    result = e
+                    break
+            return result
         #若未传入node2参数，返回一个列表，元素为所有与node1关联的边
         else:
-            result = []
-            e = node1.nedge
-            while e != None:
-                result.append(e)
-                if e.ivex == node1:
-                    result = result.ilink
-                elif e.jvex == node1:
-                    result = result.jlink
-            return result
+            return node1.edges
