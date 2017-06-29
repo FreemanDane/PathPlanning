@@ -43,6 +43,8 @@ class crosslist:
         self.nodes = {} #图中所有节点，为节点id到节点对象的字典
         self.origin = node('0', 10000, 10000) #定义一个假的节点为当前最左上点（原点）
         self.farthest_node = node('1', 0, 0) #定义一个假节点为当前最右下点（最远点）
+        self.nodes['1'] = self.farthest_node
+        self.nodes['0'] = self.origin
         self.edges = []
 
     def add_node(self, nid, lat, lon):
@@ -61,7 +63,7 @@ class crosslist:
     def cartesian_coordinate(self):
         #计算当前图内所有点的直角坐标
         for n in self.nodes.values():
-            n.cartesian_coorinate(self.origin)
+            n.cartesian_coordinate(self.origin)
 
     def add_edge(self, node1, node2):
         #为节点node1和node2添加一条边

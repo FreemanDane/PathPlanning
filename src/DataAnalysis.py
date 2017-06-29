@@ -33,8 +33,8 @@ class map:
                     self.keynode.append(n)
             for e in soup.find_all('way'):
                 new_way = way(e['id'])
-                nds = n.find_all('nd')
-                tags = n.find_all('tag')
+                nds = e.find_all('nd')
+                tags = e.find_all('tag')
                 for nd in nds:
                     new_way.point.append(nd)
                 for tag in tags:
@@ -42,4 +42,4 @@ class map:
                 self.ways.append(new_way)
                 length = len(new_way.point)
                 for i in range(length - 1):
-                    self.cross_list.add_edge(new_way.point[i], new_way.point[i + 1])
+                    self.cross_list.add_edge(self.cross_list.get_node(new_way.point[i]['ref']),self.cross_list.get_node( new_way.point[i + 1]['ref']))
