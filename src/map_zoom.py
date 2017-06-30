@@ -24,40 +24,6 @@ class thuMap(QGraphicsPixmapItem, QObject):
     def boundingRect(self):
         return QRectF(self.top_left.x(), self.top_left.y(), self.size_x * pow(1.2, 0.5 * self.zoom[1]), self.size_y * pow(1.2, 0.5 * self.zoom[1]))
     def paint(self, painter, option, widget):
-        if self.is_zoom == 1:
-            zoom_change = self.zoom[1] - self.zoom[0]
-
-            #计算左上角x
-            if zoom_change >= 0:
-                x = self.top_left.x() - (pow(1.2, -0.5 * self.zoom[0]) - pow(1.2, -0.5 * self.zoom[1])) * self.mouse.x()
-            else:
-                x = ((pow(1.2, 0.5 * self.zoom[1]) - 1) * pow(1.2, 0.5 * self.zoom[0])) / ((pow(1.2, 0.5 * self.zoom[0]) - 1) * pow(1.2, 0.5 * self.zoom[1])) * self.top_left.x()
-
-            #计算左上角y
-            if zoom_change >= 0:
-                y = self.top_left.y() - (pow(1.2, -0.5 * self.zoom[0]) - pow(1.2, -0.5 * self.zoom[1])) * self.mouse.y()
-            else:
-                y = ((pow(1.2, 0.5 * self.zoom[1]) - 1) * pow(1.2, 0.5 * self.zoom[0])) / ((pow(1.2, 0.5 * self.zoom[0]) - 1) * pow(1.2, 0.5 * self.zoom[1])) * self.top_left.y()
-
-            self.top_left = QPointF(x, y)
-            self.is_zoom = 0
-
-        elif self.is_press == 1:
-            #计算左上角x
-            x = pow(1.2, -0.5 * self.zoom[1]) * self.mouse.x() - self.before_drag.x()
-            if x > 0:
-                x = 0
-            elif x < pow(1.2, -0.5 * self.zoom[1]) * self.size_x - self.size_x:
-                x = pow(1.2, -0.5 * self.zoom[1]) * self.size_x - self.size_x
-
-            #计算左上角y
-            y = pow(1.2, -0.5 * self.zoom[1]) * self.mouse.y() - self.before_drag.y()
-            if y > 0:
-                y = 0
-            elif y < pow(1.2, -0.5 * self.zoom[1]) * self.size_y - self.size_y:
-                y = pow(1.2, -0.5 * self.zoom[1]) * self.size_y - self.size_y
-
-            self.top_left = QPointF(x, y)
         pixmap = self.pixmap()
         target = QRectF(self.top_left.x(), self.top_left.y(), self.size_x, self.size_y)
         source = QRectF(0, 0, self.size_x, self.size_y)
@@ -65,9 +31,7 @@ class thuMap(QGraphicsPixmapItem, QObject):
         self.is_zoom = 0
     #鼠标滚轮事件
     def wheelEvent(self, event):
-        self.is_zoom = 1
         factor = 1.0
-
         x = event.pos().x() * pow(1.2, 0.5 * self.zoom[1])
         y = event.pos().y() * pow(1.2, 0.5 * self.zoom[1])
         self.zoom[0] = self.zoom[1]
@@ -82,6 +46,22 @@ class thuMap(QGraphicsPixmapItem, QObject):
             factor = pow(1.2, -self.zoom[1] / 2)
             self.zoom[1] = 0
         self.setTransform(QTransform.fromScale(factor, factor), True)
+        
+        zoom_change = self.zoom[1] - self.zoom[0]
+
+        #计算左上角x
+        if zoom_change >= 0:
+            x = self.top_left.x() - (pow(1.2, -0.5 * self.zoom[0]) - pow(1.2, -0.5 * self.zoom[1])) * self.mouse.x()
+        else:
+            x = ((pow(1.2, 0.5 * self.zoom[1]) - 1) * pow(1.2, 0.5 * self.zoom[0])) / ((pow(1.2, 0.5 * self.zoom[0]) - 1) * pow(1.2, 0.5 * self.zoom[1])) * self.top_left.x()
+
+        #计算左上角y
+        if zoom_change >= 0:
+            y = self.top_left.y() - (pow(1.2, -0.5 * self.zoom[0]) - pow(1.2, -0.5 * self.zoom[1])) * self.mouse.y()
+        else:
+            y = ((pow(1.2, 0.5 * self.zoom[1]) - 1) * pow(1.2, 0.5 * self.zoom[0])) / ((pow(1.2, 0.5 * self.zoom[0]) - 1) * pow(1.2, 0.5 * self.zoom[1])) * self.top_left.y()
+
+        self.top_left = QPointF(x, y)
         self.update()
         super(thuMap, self).wheelEvent(event)
     #鼠标拖拽事件
@@ -100,6 +80,22 @@ class thuMap(QGraphicsPixmapItem, QObject):
             x = event.pos().x() * pow(1.2, 0.5 * self.zoom[1])
             y = event.pos().y() * pow(1.2, 0.5 * self.zoom[1])
             self.mouse = QPointF(x, y)
+            
+            #计算左上角x
+            x = pow(1.2, -0.5 * self.zoom[1]) * self.mouse.x() - self.before_drag.x()
+            if x > 0:
+                x = 0
+            elif x < pow(1.2, -0.5 * self.zoom[1]) * self.size_x - self.size_x:
+                x = pow(1.2, -0.5 * self.zoom[1]) * self.size_x - self.size_x
+
+            #计算左上角y
+            y = pow(1.2, -0.5 * self.zoom[1]) * self.mouse.y() - self.before_drag.y()
+            if y > 0:
+                y = 0
+            elif y < pow(1.2, -0.5 * self.zoom[1]) * self.size_y - self.size_y:
+                y = pow(1.2, -0.5 * self.zoom[1]) * self.size_y - self.size_y
+
+            self.top_left = QPointF(x, y)
         self.update()
         super(thuMap, self).mouseMoveEvent(event)
     #坐标变换函数
@@ -118,6 +114,10 @@ class thuMap(QGraphicsPixmapItem, QObject):
             self.zoom[1] = self.zoom[1] + 1
             factor = pow(1.2, 0.5)
             self.setTransform(QTransform.fromScale(factor, factor), True)
+
+            x = self.top_left.x() - (pow(1.2, -0.5 * self.zoom[0]) - pow(1.2, -0.5 * self.zoom[1])) * self.mouse.x()
+            y = self.top_left.y() - (pow(1.2, -0.5 * self.zoom[0]) - pow(1.2, -0.5 * self.zoom[1])) * self.mouse.y()
+            self.top_left = QPointF(x, y)
             self.update()
     #缩小函数
     def zoomOut(self):
@@ -127,8 +127,25 @@ class thuMap(QGraphicsPixmapItem, QObject):
             self.zoom[1] = self.zoom[1] - 1
             factor = pow(1.2, -0.5)
             self.setTransform(QTransform.fromScale(factor, factor), True)
+            x = ((pow(1.2, 0.5 * self.zoom[1]) - 1) * pow(1.2, 0.5 * self.zoom[0])) / (
+                (pow(1.2, 0.5 * self.zoom[0]) - 1) * pow(1.2, 0.5 * self.zoom[1])) * self.top_left.x()
+            y = ((pow(1.2, 0.5 * self.zoom[1]) - 1) * pow(1.2, 0.5 * self.zoom[0])) / (
+                (pow(1.2, 0.5 * self.zoom[0]) - 1) * pow(1.2, 0.5 * self.zoom[1])) * self.top_left.y()
+            self.top_left = QPointF(x, y)
             self.update()
-
+    #显示区域左上角在原图中坐标
+    def displayTopLeft(self):
+        x = -self.top_left.x()
+        y = -self.top_left.y()
+        return QPointF(x, y)
+    #显示区域右下角坐标
+    def displayBottomRight(self):
+        x = self.size_x / pow(1.2, 0.5 * self.zoom[1]) - self.top_left.x()
+        y = self.size_y / pow(1.2, 0.5 * self.zoom[1]) - self.top_left.y()
+        return QPointF(x. y)
+    #缩放比例
+    def zoomRatio(self):
+        return pow(1.2, 0.5 * self.zoom[1])
 class graphicView(QGraphicsView):
     def __init__(self, CentralWidget):
         super(graphicView, self).__init__(CentralWidget)
