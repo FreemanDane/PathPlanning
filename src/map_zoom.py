@@ -2,9 +2,11 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-class thu_map(QGraphicsPixmapItem, QObject):
+max_zoom = 10
+
+class thuMap(QGraphicsPixmapItem, QObject):
     def __init__(self):
-        super(thu_map, self).__init__()
+        super(thuMap, self).__init__()
         self.setPixmap(QPixmap("../data/map.png"))
         self.show()
         self.setTransformationMode(Qt.SmoothTransformation)
@@ -38,6 +40,8 @@ class thu_map(QGraphicsPixmapItem, QObject):
                 y = ((pow(1.2, 0.5 * self.zoom[1]) - 1) * pow(1.2, 0.5 * self.zoom[0])) / ((pow(1.2, 0.5 * self.zoom[0]) - 1) * pow(1.2, 0.5 * self.zoom[1])) * self.top_left.y()
 
             self.top_left = QPointF(x, y)
+            self.is_zoom = 0
+
         elif self.is_press == 1:
             #计算左上角x
             x = pow(1.2, -0.5 * self.zoom[1]) * self.mouse.x() - self.before_drag.x()
@@ -63,7 +67,7 @@ class thu_map(QGraphicsPixmapItem, QObject):
     def wheelEvent(self, event):
         self.is_zoom = 1
         factor = 1.0
-        max_zoom = 10
+
         x = event.pos().x() * pow(1.2, 0.5 * self.zoom[1])
         y = event.pos().y() * pow(1.2, 0.5 * self.zoom[1])
         self.zoom[0] = self.zoom[1]
@@ -79,7 +83,7 @@ class thu_map(QGraphicsPixmapItem, QObject):
             self.zoom[1] = 0
         self.setTransform(QTransform.fromScale(factor, factor), True)
         self.update()
-        super(thu_map, self).wheelEvent(event)
+        super(thuMap, self).wheelEvent(event)
     #鼠标拖拽事件
     def mousePressEvent(self, event):
         self.is_press = 1
@@ -87,38 +91,89 @@ class thu_map(QGraphicsPixmapItem, QObject):
         y = event.pos().y() * pow(1.2, 0.5 * self.zoom[1])
         self.mouse = QPointF(x, y)
         self.before_drag = self.convertScreenToImage(self.mouse)
-        super(thu_map, self).mousePressEvent(event)
+        super(thuMap, self).mousePressEvent(event)
     def mouseReleaseEvent(self, event):
         self.is_press = 0
-        super(thu_map, self).mouseReleaseEvent(event)
+        super(thuMap, self).mouseReleaseEvent(event)
     def mouseMoveEvent(self, event):
         if self.is_press == 1:
             x = event.pos().x() * pow(1.2, 0.5 * self.zoom[1])
             y = event.pos().y() * pow(1.2, 0.5 * self.zoom[1])
             self.mouse = QPointF(x, y)
         self.update()
-        super(thu_map, self).mouseMoveEvent(event)
+        super(thuMap, self).mouseMoveEvent(event)
     #坐标变换函数
     def convertScreenToImage(self, point):
         image_x = point.x() / pow(1.2, 0.5 * self.zoom[1]) - self.top_left.x()
         image_y = point.y() / pow(1.2, 0.5 * self.zoom[1]) - self.top_left.y()
         return QPointF(image_x, image_y)
-class MainWindow(QGraphicsView):
-    def __init__(self):
-        super(MainWindow, self).__init__()
+    #放大函数
+    def zoomIn(self):
+        x = self.size_x / 2
+        y = self.size_y / 2
+        self.mouse = QPointF(x, y)
+        self.is_zoom = 1
+        self.zoom[0] = self.zoom[1]
+        if self.zoom < max_zoom:
+            self.zoom[1] = self.zoom[1] + 1
+            factor = pow(1.2, 0.5)
+            self.setTransform(QTransform.fromScale(factor, factor), True)
+            self.update()
+    #缩小函数
+    def zoomOut(self):
+        self.is_zoom = 1
+        self.zoom[0] = self.zoom[1]
+        if self.zoom > 0:
+            self.zoom[1] = self.zoom[1] - 1
+            factor = pow(1.2, -0.5)
+            self.setTransform(QTransform.fromScale(factor, factor), True)
+            self.update()
+
+class graphicView(QGraphicsView):
+    def __init__(self, CentralWidget):
+        super(graphicView, self).__init__(CentralWidget)
         scene = QGraphicsScene(self)
-        self.map = thu_map()
+        self.map = thuMap()
         scene.addItem(self.map)
-        scene.setSceneRect(0, 0, 685, 831)
+        scene.setSceneRect(0, 0, 687, 833)
         self.setScene(scene)
         self.setCacheMode(QGraphicsView.CacheBackground)
-        self.setWindowTitle("THU MAP")
-        self.setFixedSize(687, 833)
 
+
+class Ui_MainWindow(object):
+    def setupUI(self, MainWindow):
+        MainWindow.setWindowTitle("THU MAP")
+        MainWindow.setFixedSize(687, 833)
+        MainWindow.setWindowIcon(QIcon("../data/icons/icon.ico"))
+        MainWindow.setObjectName("MainWindow")
+
+        self.centralWidget = QWidget(MainWindow)
+        self.centralWidget.setObjectName("centralwidget")
+        MainWindow.setCentralWidget(self.centralWidget)
+        self.graphicsView = graphicView(self.centralWidget)
+        self.graphicsView.setGeometry(QRect(0, 0, 689, 835))
+        self.graphicsView.show()
+        #缩放按钮和指示条
+        self.plus_button = QPushButton(self.centralWidget)
+        self.plus_button.setGeometry(QRect(620, 600, 32, 32))
+        self.plus_button.setStyleSheet(\
+            "QPushButton{border: 0px;background-image:url(../data/icons/add/Add_Normal.png);}"\
+            "QPushButton:hover{border: 0px;background-image:url(../data/icons/add/Add_Hover.png);}" \
+            "QPushButton:pressed{border: 0px;background-image:url(../data/icons/add/Add_Pressed.png);}")
+        self.plus_button.show()
+        self.minus_button = QPushButton(self.centralWidget)
+        self.minus_button.setGeometry(QRect(620, 750, 32, 32))
+        self.minus_button.setStyleSheet(\
+            "QPushButton{border: 0px;background-image:url(../data/icons/minus/Minus_Normal.png);}" \
+            "QPushButton:hover{border: 0px;background-image:url(../data/icons/minus/Minus_Hover.png);}" \
+            "QPushButton:pressed{border: 0px;background-image:url(../data/icons/minus/Minus_Pressed.png);}")
+        self.minus_button.show()
 if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
-    mainWindow = MainWindow()
-    mainWindow.show()
+    MainWindow = QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUI(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())
 
