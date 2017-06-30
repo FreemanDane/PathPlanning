@@ -114,7 +114,7 @@ class thuMap(QGraphicsPixmapItem, QObject):
         self.mouse = QPointF(x, y)
         self.is_zoom = 1
         self.zoom[0] = self.zoom[1]
-        if self.zoom < max_zoom:
+        if self.zoom[1] < max_zoom:
             self.zoom[1] = self.zoom[1] + 1
             factor = pow(1.2, 0.5)
             self.setTransform(QTransform.fromScale(factor, factor), True)
@@ -123,7 +123,7 @@ class thuMap(QGraphicsPixmapItem, QObject):
     def zoomOut(self):
         self.is_zoom = 1
         self.zoom[0] = self.zoom[1]
-        if self.zoom > 0:
+        if self.zoom[1] > 0:
             self.zoom[1] = self.zoom[1] - 1
             factor = pow(1.2, -0.5)
             self.setTransform(QTransform.fromScale(factor, factor), True)
@@ -161,6 +161,8 @@ class Ui_MainWindow(object):
             "QPushButton:hover{border: 0px;background-image:url(../data/icons/add/Add_Hover.png);}" \
             "QPushButton:pressed{border: 0px;background-image:url(../data/icons/add/Add_Pressed.png);}")
         self.plus_button.show()
+        self.plus_button.clicked.connect(self.zoomIn)
+
         self.minus_button = QPushButton(self.centralWidget)
         self.minus_button.setGeometry(QRect(620, 750, 32, 32))
         self.minus_button.setStyleSheet(\
@@ -168,6 +170,12 @@ class Ui_MainWindow(object):
             "QPushButton:hover{border: 0px;background-image:url(../data/icons/minus/Minus_Hover.png);}" \
             "QPushButton:pressed{border: 0px;background-image:url(../data/icons/minus/Minus_Pressed.png);}")
         self.minus_button.show()
+        self.minus_button.clicked.connect(self.zoomOut)
+
+    def zoomIn(self):
+        self.graphicsView.map.zoomIn()
+    def zoomOut(self):
+        self.graphicsView.map.zoomOut()
 if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
