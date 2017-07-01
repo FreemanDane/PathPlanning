@@ -9663,6 +9663,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
  </way>
  <way id="22799953" visible="true" version="17" changeset="44215196" timestamp="2016-12-06T17:34:09Z" user="ff5722" uid="3450290">
   <nd ref="930076860"/>
@@ -10851,6 +10852,7 @@
   <nd ref="380745924"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="大礼堂"/>
+  <tag k="introduction" v="清华标志性建筑之一，许许多多精彩的学生节都在这里举办哟"/>
   <tag k="name:en" v="Auditorium"/>
  </way>
  <way id="33457978" visible="true" version="6" changeset="16638129" timestamp="2013-06-21T02:17:59Z" user="Jonathan ZHAO" uid="837425">
@@ -10888,6 +10890,7 @@
   <nd ref="380771913"/>
   <tag k="landuse" v="retail"/>
   <tag k="name" v="照澜院"/>
+  <tag k="introduction" v="这里的食堂味道不错嘿嘿"/>
   <tag k="name:en" v="Zhao Lan Yuan"/>
  </way>
  <way id="40724022" visible="true" version="1" changeset="2465310" timestamp="2009-09-13T07:30:51Z" user="Lackness Franc" uid="53125">
@@ -10995,6 +10998,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="学堂路"/>
+  <tag k="introduction" v="早高峰，晚高峰..."/>
   <tag k="name:en" v="Xuetang Road"/>
  </way>
  <way id="42415984" visible="true" version="1" changeset="2827800" timestamp="2009-10-12T17:31:13Z" user="Esperanza36" uid="83557">
@@ -11116,6 +11120,7 @@
   <nd ref="930076136"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓9号楼"/>
+  <tag k="introduction" v="学生公寓啦～软院女生在这里！"/>
  </way>
  <way id="79696956" visible="true" version="1" changeset="5911430" timestamp="2010-09-29T12:48:23Z" user="thu-mapper" uid="352829">
   <nd ref="930076145"/>
@@ -11125,6 +11130,7 @@
   <nd ref="930076145"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓10号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696957" visible="true" version="2" changeset="21398511" timestamp="2014-03-30T11:13:49Z" user="gray2" uid="2008872">
   <nd ref="930076150"/>
@@ -11137,6 +11143,7 @@
   <nd ref="930076150"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓11号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696958" visible="true" version="1" changeset="5911430" timestamp="2010-09-29T12:48:24Z" user="thu-mapper" uid="352829">
   <nd ref="930076161"/>
@@ -11146,6 +11153,7 @@
   <nd ref="930076161"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓12号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696959" visible="true" version="1" changeset="5911430" timestamp="2010-09-29T12:48:25Z" user="thu-mapper" uid="352829">
   <nd ref="930076171"/>
@@ -11155,6 +11163,7 @@
   <nd ref="930076171"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓13号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696964" visible="true" version="1" changeset="5911430" timestamp="2010-09-29T12:48:45Z" user="thu-mapper" uid="352829">
   <nd ref="930076531"/>
@@ -11166,6 +11175,7 @@
   <nd ref="930076531"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓4号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696965" visible="true" version="1" changeset="5911430" timestamp="2010-09-29T12:48:46Z" user="thu-mapper" uid="352829">
   <nd ref="930076546"/>
@@ -11177,6 +11187,7 @@
   <nd ref="930076546"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓5号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696966" visible="true" version="1" changeset="5911430" timestamp="2010-09-29T12:48:47Z" user="thu-mapper" uid="352829">
   <nd ref="930076568"/>
@@ -11188,6 +11199,7 @@
   <nd ref="930076568"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓6号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696968" visible="true" version="1" changeset="5911430" timestamp="2010-09-29T12:48:48Z" user="thu-mapper" uid="352829">
   <nd ref="930076600"/>
@@ -11197,6 +11209,7 @@
   <nd ref="930076600"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓7号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696969" visible="true" version="2" changeset="21398511" timestamp="2014-03-30T11:13:49Z" user="gray2" uid="2008872">
   <nd ref="930076618"/>
@@ -11207,6 +11220,7 @@
   <nd ref="930076618"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓8号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696970" visible="true" version="2" changeset="6327538" timestamp="2010-11-09T12:17:39Z" user="thu-mapper" uid="352829">
   <nd ref="930076673"/>
@@ -11256,6 +11270,7 @@
   <nd ref="930076720"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓1号楼"/>
+  <tag k="introduction" v="学生公寓啦～软院男生根据地！"/>
  </way>
  <way id="79696973" visible="true" version="1" changeset="5911430" timestamp="2010-09-29T12:48:54Z" user="thu-mapper" uid="352829">
   <nd ref="930076730"/>
@@ -11267,6 +11282,7 @@
   <nd ref="930076730"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓2号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696974" visible="true" version="1" changeset="5911430" timestamp="2010-09-29T12:48:54Z" user="thu-mapper" uid="352829">
   <nd ref="930076751"/>
@@ -11276,6 +11292,7 @@
   <nd ref="930076751"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓3号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="79696975" visible="true" version="2" changeset="5916783" timestamp="2010-09-30T03:05:46Z" user="thu-mapper" uid="352829">
   <nd ref="931404156"/>
@@ -11368,6 +11385,7 @@
   <nd ref="930083198"/>
   <tag k="building" v="commercial"/>
   <tag k="name" v="学生服务中心"/>
+  <tag k="introduction" v="这就是清华人熟知的C楼"/>
   <tag k="name:en" v="Student Services Center"/>
  </way>
  <way id="79697524" visible="true" version="19" changeset="44215196" timestamp="2016-12-06T17:34:36Z" user="ff5722" uid="3450290">
@@ -11394,6 +11412,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="新民路"/>
+  <tag k="introduction" v="清华主干道之一，有很大一个坡..."/>
   <tag k="name:en" v="Xinmin Road"/>
  </way>
  <way id="79698948" visible="true" version="3" changeset="20006430" timestamp="2014-01-15T03:56:04Z" user="OS_001" uid="1884566">
@@ -11405,6 +11424,7 @@
   <tag k="building" v="dormitory"/>
   <tag k="building:levels" v="11"/>
   <tag k="name" v="紫荆学生公寓19号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Apartment Building 19"/>
  </way>
  <way id="79698950" visible="true" version="3" changeset="43398008" timestamp="2016-11-04T10:14:54Z" user="jamjpan" uid="4814367">
@@ -11416,6 +11436,7 @@
   <tag k="building" v="dormitory"/>
   <tag k="building:levels" v="11"/>
   <tag k="name" v="紫荆学生公寓20号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Dormitory No. 20"/>
  </way>
  <way id="79698952" visible="true" version="3" changeset="43398008" timestamp="2016-11-04T10:14:54Z" user="jamjpan" uid="4814367">
@@ -11427,6 +11448,7 @@
   <tag k="building" v="dormitory"/>
   <tag k="building:levels" v="11"/>
   <tag k="name" v="紫荆学生公寓21号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Dormitory No. 21"/>
  </way>
  <way id="79698956" visible="true" version="3" changeset="43398008" timestamp="2016-11-04T10:14:54Z" user="jamjpan" uid="4814367">
@@ -11438,6 +11460,7 @@
   <tag k="building" v="dormitory"/>
   <tag k="building:levels" v="11"/>
   <tag k="name" v="紫荆学生公寓22号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Dormitory No. 22"/>
  </way>
  <way id="79698958" visible="true" version="3" changeset="43398008" timestamp="2016-11-04T10:14:54Z" user="jamjpan" uid="4814367">
@@ -11449,6 +11472,7 @@
   <tag k="building" v="dormitory"/>
   <tag k="building:levels" v="11"/>
   <tag k="name" v="紫荆学生公寓23号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Dormitory No. 23"/>
  </way>
  <way id="79698971" visible="true" version="3" changeset="43398008" timestamp="2016-11-04T10:14:53Z" user="jamjpan" uid="4814367">
@@ -11467,6 +11491,7 @@
   <nd ref="930107236"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓15号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Dormitory No. 15"/>
  </way>
  <way id="79698988" visible="true" version="2" changeset="43398008" timestamp="2016-11-04T10:14:54Z" user="jamjpan" uid="4814367">
@@ -11477,6 +11502,7 @@
   <nd ref="930107351"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓18号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Dormitory No. 18"/>
  </way>
  <way id="79699799" visible="true" version="2" changeset="6287239" timestamp="2010-11-04T10:44:27Z" user="thu-mapper" uid="352829">
@@ -11505,6 +11531,7 @@
   <tag k="building" v="yes"/>
   <tag k="leisure" v="swimming_pool"/>
   <tag k="name" v="游泳馆"/>
+  <tag k="introduction" v="游泳健将的必备"/>
   <tag k="name:en" v="The Natatorium"/>
   <tag k="sport" v="swimming"/>
  </way>
@@ -11523,6 +11550,7 @@
   <nd ref="930118890"/>
   <tag k="building" v="school"/>
   <tag k="name" v="工物馆"/>
+  <tag k="introduction" v="工程物理系系馆"/>
   <tag k="name:en" v="Engineering Physics Bldg"/>
   <tag k="operator" v="工程物理系;化学工程系"/>
  </way>
@@ -11542,6 +11570,7 @@
   <nd ref="930121758"/>
   <tag k="building" v="school"/>
   <tag k="name" v="中央主楼"/>
+  <tag k="introduction" v="清华正校门正对的一栋最恢宏的建筑，可谓清华的门面"/>
   <tag k="name:en" v="Main Bldg"/>
  </way>
  <way id="79699846" visible="true" version="7" changeset="46669845" timestamp="2017-03-08T04:09:17Z" user="James Millar" uid="5317567">
@@ -11563,6 +11592,7 @@
   <nd ref="937453401"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="西主楼"/>
+  <tag k="introduction" v="主楼侧翼楼"/>
   <tag k="name:en" v="West Main Bldg"/>
  </way>
  <way id="79699857" visible="true" version="2" changeset="6267278" timestamp="2010-11-02T12:31:02Z" user="thu-mapper" uid="352829">
@@ -11611,6 +11641,7 @@
   <tag k="alt_name" v="黄松益楼"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="文南楼"/>
+  <tag k="introduction" v="外文系系馆"/>
   <tag k="name:en" v="Wennan Bldg"/>
   <tag k="operator" v="外国语言文学系"/>
  </way>
@@ -11626,6 +11657,7 @@
   <nd ref="930130269"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="第四教学楼"/>
+  <tag k="introduction" v="四教！现磨咖啡好评"/>
   <tag k="name:en" v="No. 4 Teaching Bldg"/>
  </way>
  <way id="79701097" visible="true" version="2" changeset="43399977" timestamp="2016-11-04T12:22:09Z" user="jamjpan" uid="4814367">
@@ -11636,6 +11668,7 @@
   <nd ref="930134378"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="第三教学楼三段"/>
+  <tag k="introduction" v="三教三段，可以补卡"/>
   <tag k="name:en" v="No. 3 Teaching Bldg Sector 1"/>
  </way>
  <way id="79701105" visible="true" version="4" changeset="43399977" timestamp="2016-11-04T12:22:09Z" user="jamjpan" uid="4814367">
@@ -11669,6 +11702,7 @@
   <nd ref="930134412"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="第五教学楼"/>
+  <tag k="introduction" v="阶梯教室居多的教学楼"/>
   <tag k="name:en" v="No. 5 Teaching Bldg"/>
  </way>
  <way id="79701106" visible="true" version="3" changeset="43399977" timestamp="2016-11-04T12:22:10Z" user="jamjpan" uid="4814367">
@@ -11683,6 +11717,7 @@
   <nd ref="930134470"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="第六教学楼A区"/>
+  <tag k="introduction" v="很多课都在这里上哦"/>
   <tag k="name:en" v="No. 6 Teaching Bldg Sector A"/>
  </way>
  <way id="79701107" visible="true" version="3" changeset="43399977" timestamp="2016-11-04T12:22:10Z" user="jamjpan" uid="4814367">
@@ -11699,6 +11734,7 @@
   <nd ref="930134497"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="第六教学楼C区"/>
+  <tag k="introduction" v="很大的阶梯教室"/>
   <tag k="name:en" v="No. 6 Teaching Bldg Sector C"/>
  </way>
  <way id="79701125" visible="true" version="2" changeset="43399977" timestamp="2016-11-04T12:22:09Z" user="jamjpan" uid="4814367">
@@ -11713,6 +11749,7 @@
   <nd ref="930134689"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="第三教学楼一、二段"/>
+  <tag k="introduction" v="没啥特别的"/>
   <tag k="name:en" v="No. 3 Teaching Bldg Sectors 2, 3"/>
  </way>
  <way id="79701306" visible="true" version="2" changeset="43399977" timestamp="2016-11-04T12:22:09Z" user="jamjpan" uid="4814367">
@@ -11723,6 +11760,7 @@
   <nd ref="930137222"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="第一教学楼"/>
+  <tag k="introduction" v="感觉自带高逼格的教学楼"/>
   <tag k="name:en" v="No. 1 Teaching Bldg"/>
  </way>
  <way id="79701309" visible="true" version="2" changeset="43399977" timestamp="2016-11-04T12:22:09Z" user="jamjpan" uid="4814367">
@@ -11735,6 +11773,7 @@
   <nd ref="930137243"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="第二教学楼"/>
+  <tag k="introduction" v="外观真的很美"/>
   <tag k="name:en" v="No. 2 Teaching Bldg"/>
  </way>
  <way id="79701310" visible="true" version="3" changeset="43399977" timestamp="2016-11-04T12:22:11Z" user="jamjpan" uid="4814367">
@@ -11870,6 +11909,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="至善路"/>
+  <tag k="introduction" v="沿路有很多食堂：听涛，清芬等等"/>
  </way>
  <way id="80318967" visible="true" version="1" changeset="5950445" timestamp="2010-10-04T05:40:33Z" user="thu-mapper" uid="352829">
   <nd ref="937443579"/>
@@ -12141,6 +12181,7 @@
   <tag k="building" v="school"/>
   <tag k="building:levels" v="5"/>
   <tag k="name" v="9003大楼"/>
+  <tag k="introduction" v="精密仪器与机械学系系馆"/>
   <tag k="name:en" v="Department of Precision Instruments (9003 Bldg)"/>
   <tag k="operator" v="精密仪器与机械学系"/>
  </way>
@@ -12159,6 +12200,7 @@
   <tag k="building" v="yes"/>
   <tag k="layer" v="1"/>
   <tag k="name" v="美术学院"/>
+  <tag k="introduction" v="建筑美人更美。你懂的"/>
   <tag k="name:en" v="Academy of Arts and Design"/>
   <tag k="name:ja" v="美術学院"/>
   <tag k="name:ko" v="미술학원"/>
@@ -12245,6 +12287,7 @@
   <tag k="building" v="yes"/>
   <tag k="layer" v="1"/>
   <tag k="name" v="理科楼"/>
+  <tag k="introduction" v="理科楼有数学系和物理系，很美"/>
   <tag k="name:en" v="Sciences Bldg"/>
   <tag k="operator" v="理学院"/>
  </way>
@@ -12262,6 +12305,7 @@
   <nd ref="937629479"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="泥沙实验室"/>
+  <tag k="introduction" v="大概是浓浓泥沙的吧..."/>
   <tag k="name:en" v="Sedimentation Bldg"/>
  </way>
  <way id="80341905" visible="true" version="5" changeset="35902106" timestamp="2015-12-12T04:49:58Z" user="gap496" uid="3450624">
@@ -12282,6 +12326,7 @@
   <nd ref="937629876"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="15号楼"/>
+  <tag k="introduction" v="学生宿舍啦～"/>
  </way>
  <way id="80341967" visible="true" version="2" changeset="35902106" timestamp="2015-12-12T04:49:55Z" user="gap496" uid="3450624">
   <nd ref="930121781"/>
@@ -12314,6 +12359,7 @@
   <nd ref="937631103"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="明理楼 （法学院）"/>
+  <tag k="introduction" v="法学院系馆"/>
   <tag k="name:en" v="School of Law"/>
   <tag k="operator" v="法学院"/>
  </way>
@@ -12352,6 +12398,7 @@
   <tag k="building" v="yes"/>
   <tag k="building:levels" v="5"/>
   <tag k="name" v="建筑馆"/>
+  <tag k="introduction" v="建筑学院系馆"/>
   <tag k="name:en" v="Architecture Hall"/>
   <tag k="operator" v="建筑学院"/>
  </way>
@@ -12572,6 +12619,7 @@
   <tag k="layer" v="-1"/>
   <tag k="leisure" v="sports_centre"/>
   <tag k="name" v="射击馆"/>
+  <tag k="introduction" v="射击打枪走起！"/>
   <tag k="name:en" v="Shooting Hall"/>
   <tag k="sport" v="shooting"/>
  </way>
@@ -12583,6 +12631,7 @@
   <nd ref="941369223"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="12号楼"/>
+  <tag k="introduction" v="学生宿舍啦～"/>
  </way>
  <way id="80716321" visible="true" version="2" changeset="6266769" timestamp="2010-11-02T11:01:15Z" user="thu-mapper" uid="352829">
   <nd ref="941370094"/>
@@ -12625,6 +12674,7 @@
   <nd ref="941370124"/>
   <tag k="leisure" v="park"/>
   <tag k="name" v="情人坡"/>
+  <tag k="introduction" v="嘿嘿嘿，单身狗就别去了"/>
  </way>
  <way id="80716519" visible="true" version="2" changeset="43399977" timestamp="2016-11-04T12:22:14Z" user="jamjpan" uid="4814367">
   <nd ref="941372634"/>
@@ -12651,6 +12701,7 @@
   <tag k="amenity" v="hospital"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="清华大学医院"/>
+  <tag k="introduction" v="1块钱看病！"/>
   <tag k="name:en" v="Tsinghua University Hospital"/>
  </way>
  <way id="80716523" visible="true" version="2" changeset="6334026" timestamp="2010-11-10T08:38:02Z" user="thu-mapper" uid="352829">
@@ -12680,6 +12731,7 @@
   <tag k="alt_name" v="高田芳行馆"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="西阶梯教室"/>
+  <tag k="introduction" v="西阶梯教室墙上的爬山虎，一定要去看一看"/>
  </way>
  <way id="80716744" visible="true" version="1" changeset="5985021" timestamp="2010-10-08T11:19:49Z" user="thu-mapper" uid="352829">
   <nd ref="941373508"/>
@@ -12893,6 +12945,7 @@
   <nd ref="943379846"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="档案馆"/>
+  <tag k="introduction" v="这可真是个难找的位置"/>
   <tag k="name:en" v="Archives"/>
  </way>
  <way id="80917088" visible="true" version="1" changeset="6000078" timestamp="2010-10-10T09:41:00Z" user="thu-mapper" uid="352829">
@@ -13039,6 +13092,7 @@
   <nd ref="945575359"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="7号楼"/>
+  <tag k="introduction" v="学生宿舍啦～"/>
  </way>
  <way id="81140535" visible="true" version="6" changeset="10051546" timestamp="2011-12-06T17:05:50Z" user="thu-mapper" uid="352829">
   <nd ref="945576307"/>
@@ -13119,6 +13173,7 @@
   <tag k="area" v="yes"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
  </way>
  <way id="81813449" visible="true" version="5" changeset="6273862" timestamp="2010-11-03T07:55:57Z" user="thu-mapper" uid="352829">
   <nd ref="529544191"/>
@@ -13126,6 +13181,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
  </way>
  <way id="82607864" visible="true" version="2" changeset="6287501" timestamp="2010-11-04T11:02:30Z" user="thu-mapper" uid="352829">
   <nd ref="961414147"/>
@@ -13142,6 +13198,7 @@
   <tag k="alt_name" v="11号楼"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="11号楼"/>
+  <tag k="introduction" v="学生宿舍啦～"/>
   <tag k="operator" v="汽车工程系"/>
  </way>
  <way id="82714383" visible="true" version="1" changeset="6154537" timestamp="2010-10-24T09:26:40Z" user="liangent" uid="160971">
@@ -13154,6 +13211,7 @@
   <nd ref="963053108"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="30号楼"/>
+  <tag k="introduction" v="学生宿舍啦～"/>
  </way>
  <way id="82714734" visible="true" version="2" changeset="43398008" timestamp="2016-11-04T10:14:51Z" user="jamjpan" uid="4814367">
   <nd ref="963059569"/>
@@ -13166,6 +13224,7 @@
   <nd ref="963059569"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="苏世民书院"/>
+  <tag k="introduction" v="新开的一个书院，画风很美"/>
   <tag k="name:en" v="Schwartman College"/>
  </way>
  <way id="82714858" visible="true" version="3" changeset="6154537" timestamp="2010-10-24T09:49:02Z" user="liangent" uid="160971">
@@ -13183,6 +13242,7 @@
   <tag k="building" v="yes"/>
   <tag k="leisure" v="sports_centre"/>
   <tag k="name" v="保龄球练习馆"/>
+  <tag k="introduction" v="不知你认不认识软件学院的闻立杰老师（手动滑稽"/>
   <tag k="sport" v="10pin"/>
  </way>
  <way id="83687716" visible="true" version="3" changeset="6334026" timestamp="2010-11-10T08:37:40Z" user="thu-mapper" uid="352829">
@@ -13399,6 +13459,7 @@
   <tag k="bridge" v="yes"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
   <tag k="name:en" v="Tsinghua Road"/>
  </way>
  <way id="83689275" visible="true" version="7" changeset="16635789" timestamp="2013-06-20T20:46:49Z" user="Jonathan ZHAO" uid="837425">
@@ -13416,6 +13477,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="至善路"/>
+  <tag k="introduction" v="沿路有很多食堂：听涛，清芬等等"/>
  </way>
  <way id="83689276" visible="true" version="7" changeset="44215196" timestamp="2016-12-06T17:34:37Z" user="ff5722" uid="3450290">
   <nd ref="937454340"/>
@@ -13430,6 +13492,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="明德路"/>
+  <tag k="introduction" v="较为偏远的一条路，人比较少"/>
   <tag k="name:en" v="Mingede Road"/>
  </way>
  <way id="83689302" visible="true" version="2" changeset="16635925" timestamp="2013-06-20T20:56:27Z" user="Jonathan ZHAO" uid="837425">
@@ -13545,6 +13608,7 @@
   <nd ref="974525947"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="第六教学楼B区"/>
+  <tag k="introduction" v="6B区在A区旁边，是主要的上课地点"/>
   <tag k="name:en" v="No. 6 Teaching Bldg Sector B"/>
  </way>
  <way id="83690608" visible="true" version="1" changeset="6267344" timestamp="2010-11-02T12:40:05Z" user="thu-mapper" uid="352829">
@@ -13625,6 +13689,7 @@
   <nd ref="975557688"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="能科楼"/>
+  <tag k="introduction" v="能科楼"/>
   <tag k="name:en" v="Energy Sciences Bldg"/>
  </way>
  <way id="83787060" visible="true" version="1" changeset="6273141" timestamp="2010-11-03T04:13:04Z" user="thu-mapper" uid="352829">
@@ -13743,6 +13808,7 @@
   <tag k="alt_name" v="土木馆"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="何善衡馆 （土木系馆）"/>
+  <tag k="introduction" v="土木工程系系馆"/>
  </way>
  <way id="83799756" visible="true" version="3" changeset="43399977" timestamp="2016-11-04T12:22:12Z" user="jamjpan" uid="4814367">
   <nd ref="975647238"/>
@@ -13755,6 +13821,7 @@
   <tag k="building" v="yes"/>
   <tag k="leisure" v="stadium"/>
   <tag k="name" v="综合体育馆"/>
+  <tag k="introduction" v="清华最顶尖的体育馆哦！"/>
   <tag k="name:en" v="Sports Center"/>
   <tag k="sport" v="multi"/>
  </way>
@@ -13775,6 +13842,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
  </way>
  <way id="83800911" visible="true" version="18" changeset="44215196" timestamp="2016-12-06T17:34:37Z" user="ff5722" uid="3450290">
   <nd ref="371156933"/>
@@ -13809,6 +13877,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="学堂路"/>
+  <tag k="introduction" v="早高峰，晚高峰..."/>
   <tag k="name:en" v="Xuetang Road"/>
  </way>
  <way id="83800912" visible="true" version="1" changeset="6273862" timestamp="2010-11-03T07:55:55Z" user="thu-mapper" uid="352829">
@@ -13817,6 +13886,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="学堂路"/>
+  <tag k="introduction" v="早高峰，晚高峰..."/>
  </way>
  <way id="83800913" visible="true" version="4" changeset="38463591" timestamp="2016-04-11T01:06:43Z" user="Plair" uid="2986987">
   <nd ref="2354058500"/>
@@ -13834,6 +13904,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
  </way>
  <way id="83800915" visible="true" version="1" changeset="6273862" timestamp="2010-11-03T07:55:56Z" user="thu-mapper" uid="352829">
   <nd ref="371156179"/>
@@ -13881,6 +13952,8 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="至善路"/>
+  <tag k="introduction" v="沿路有很多食堂：听涛，清芬等等"/>
+  <tag k="introduction" v=""/>
   <tag k="name:en" v="Zhishan Road"/>
  </way>
  <way id="83800922" visible="true" version="4" changeset="44215196" timestamp="2016-12-06T17:34:38Z" user="ff5722" uid="3450290">
@@ -13892,6 +13965,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
   <tag k="name:en" v="Tsinghua Road"/>
  </way>
  <way id="83801034" visible="true" version="3" changeset="43399977" timestamp="2016-11-04T12:22:04Z" user="jamjpan" uid="4814367">
@@ -13904,6 +13978,7 @@
   <nd ref="975657241"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="化学馆"/>
+  <tag k="introduction" v="化学系系馆"/>
   <tag k="name:en" v="Chemistry Bldg"/>
   <tag k="operator" v="化学系"/>
  </way>
@@ -13948,6 +14023,7 @@
   <nd ref="975701215"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="8号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="83805171" visible="true" version="3" changeset="35902106" timestamp="2015-12-12T04:49:58Z" user="gap496" uid="3450624">
   <nd ref="975701223"/>
@@ -13957,6 +14033,7 @@
   <nd ref="975701223"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="9号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="83805172" visible="true" version="3" changeset="35902106" timestamp="2015-12-12T04:49:58Z" user="gap496" uid="3450624">
   <nd ref="975701227"/>
@@ -13966,6 +14043,7 @@
   <nd ref="975701227"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="10号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="83805221" visible="true" version="3" changeset="35902106" timestamp="2015-12-12T04:49:56Z" user="gap496" uid="3450624">
   <nd ref="975701374"/>
@@ -13979,6 +14057,7 @@
   <nd ref="975701374"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="5号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="83805332" visible="true" version="3" changeset="16663493" timestamp="2013-06-23T01:36:11Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="975702234"/>
@@ -14025,6 +14104,7 @@
   <nd ref="975747673"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="机械工程楼"/>
+  <tag k="introduction" v="热能工程系系馆"/>
   <tag k="name:en" v="Mechanical Engineering Bldg"/>
   <tag k="operator" v="热能工程系"/>
  </way>
@@ -14036,6 +14116,7 @@
   <nd ref="975748361"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="善斋"/>
+  <tag k="introduction" v="马克思主义学院"/>
   <tag k="name:en" v="Shangzhai"/>
   <tag k="operator" v="马克思主义学院"/>
  </way>
@@ -14109,6 +14190,7 @@
   <nd ref="975773450"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="26号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="83811714" visible="true" version="2" changeset="11415600" timestamp="2012-04-25T14:45:29Z" user="eldereal" uid="668025">
   <nd ref="975773459"/>
@@ -14118,6 +14200,7 @@
   <nd ref="975773459"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="27号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="83812274" visible="true" version="1" changeset="6276060" timestamp="2010-11-03T13:36:28Z" user="thu-mapper" uid="352829">
   <nd ref="975793084"/>
@@ -14391,6 +14474,7 @@
   <nd ref="976494499"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="汽车研究所"/>
+  <tag k="introduction" v="汽车工程系系馆"/>
   <tag k="name:en" v="Automobile Research Institute"/>
   <tag k="operator" v="汽车工程系"/>
  </way>
@@ -14513,6 +14597,7 @@
   <nd ref="978511554"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="16号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="84100847" visible="true" version="2" changeset="16637899" timestamp="2013-06-21T01:18:46Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="975577633"/>
@@ -14554,6 +14639,7 @@
   <nd ref="978594166"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="生物学馆"/>
+  <tag k="introduction" v="生物学系馆"/>
   <tag k="name:en" v="Biology Bldg"/>
  </way>
  <way id="84110336" visible="true" version="1" changeset="6301098" timestamp="2010-11-06T10:22:44Z" user="thu-mapper" uid="352829">
@@ -14566,6 +14652,7 @@
   <nd ref="978608499"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="4号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="84110345" visible="true" version="1" changeset="6301098" timestamp="2010-11-06T10:22:45Z" user="thu-mapper" uid="352829">
   <nd ref="978608524"/>
@@ -14623,6 +14710,7 @@
   <nd ref="978612742"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="3号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="84112055" visible="true" version="4" changeset="35902106" timestamp="2015-12-12T04:49:57Z" user="gap496" uid="3450624">
   <nd ref="978612772"/>
@@ -14640,6 +14728,7 @@
   <nd ref="978612772"/>
   <tag k="building" v="apartments"/>
   <tag k="name" v="2号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="84112067" visible="true" version="4" changeset="35902106" timestamp="2015-12-12T04:49:57Z" user="gap496" uid="3450624">
   <nd ref="978612813"/>
@@ -14657,6 +14746,7 @@
   <nd ref="978612813"/>
   <tag k="building" v="apartments"/>
   <tag k="name" v="1号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="84112108" visible="true" version="2" changeset="16638606" timestamp="2013-06-21T04:11:49Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354379213"/>
@@ -14766,6 +14856,7 @@
   <nd ref="974489961"/>
   <tag k="leisure" v="park"/>
   <tag k="name" v="近春园"/>
+  <tag k="introduction" v="高逼格餐厅"/>
   <tag k="name:en" v="Jin Chun Yuan"/>
   <tag k="place" v="island"/>
  </way>
@@ -14799,6 +14890,7 @@
   <nd ref="980076561"/>
   <tag k="leisure" v="swimming_pool"/>
   <tag k="name" v="西湖游泳池"/>
+  <tag k="introduction" v="室外游泳池hhh"/>
  </way>
  <way id="84273935" visible="true" version="2" changeset="6334026" timestamp="2010-11-10T08:37:40Z" user="thu-mapper" uid="352829">
   <nd ref="980084677"/>
@@ -14922,6 +15014,7 @@
   <nd ref="980098263"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="荷园教工餐厅"/>
+  <tag k="introduction" v="好评哦！"/>
  </way>
  <way id="84274080" visible="true" version="3" changeset="43399977" timestamp="2016-11-04T12:22:06Z" user="jamjpan" uid="4814367">
   <nd ref="980105840"/>
@@ -14931,6 +15024,7 @@
   <nd ref="980105840"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="荷二楼"/>
+  <tag k="introduction" v="数学系老师办公楼"/>
   <tag k="name:en" v="He'er Bldg"/>
  </way>
  <way id="84274081" visible="true" version="1" changeset="6308647" timestamp="2010-11-07T07:45:46Z" user="thu-mapper" uid="352829">
@@ -15105,6 +15199,7 @@
   <nd ref="983304879"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓17号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Dormitory No. 17"/>
  </way>
  <way id="84644274" visible="true" version="2" changeset="16635637" timestamp="2013-06-20T20:33:57Z" user="Jonathan ZHAO" uid="837425">
@@ -15131,6 +15226,7 @@
   <nd ref="930107249"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓16号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Dormitory No. 16"/>
  </way>
  <way id="84644278" visible="true" version="6" changeset="16640191" timestamp="2013-06-21T08:09:45Z" user="Jonathan ZHAO" uid="837425">
@@ -15172,6 +15268,7 @@
   <nd ref="983304869"/>
   <tag k="building" v="dormitory"/>
   <tag k="name" v="紫荆学生公寓14号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
   <tag k="name:en" v="Zijing Student Dormitory No. 14"/>
  </way>
  <way id="84652037" visible="true" version="2" changeset="10051546" timestamp="2011-12-06T17:05:48Z" user="thu-mapper" uid="352829">
@@ -15191,6 +15288,7 @@
   <nd ref="983351328"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="17号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="84652146" visible="true" version="1" changeset="6327921" timestamp="2010-11-09T13:17:33Z" user="thu-mapper" uid="352829">
   <nd ref="945107458"/>
@@ -15280,6 +15378,7 @@
   <tag k="building" v="yes"/>
   <tag k="layer" v="1"/>
   <tag k="name" v="西主楼"/>
+  <tag k="introduction" v="西主楼"/>
  </way>
  <way id="84653292" visible="true" version="1" changeset="6328188" timestamp="2010-11-09T13:47:12Z" user="thu-mapper" uid="352829">
   <nd ref="937453446"/>
@@ -15299,6 +15398,7 @@
   <nd ref="937453446"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="东主楼"/>
+  <tag k="introduction" v="计算机软件学院在这里哦"/>
  </way>
  <way id="84653293" visible="true" version="4" changeset="43400390" timestamp="2016-11-04T12:43:53Z" user="jamjpan" uid="4814367">
   <nd ref="975702263"/>
@@ -15327,6 +15427,7 @@
   <tag k="building" v="yes"/>
   <tag k="building:levels" v="6"/>
   <tag k="name" v="经管学院"/>
+  <tag k="introduction" v="真的土豪～"/>
   <tag k="name:en" v="School of Economics and Management"/>
  </way>
  <way id="84653294" visible="true" version="2" changeset="43399977" timestamp="2016-11-04T12:22:05Z" user="jamjpan" uid="4814367">
@@ -15348,6 +15449,7 @@
   <nd ref="983373910"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="东主楼"/>
+  <tag k="introduction" v="计算机软件学院在这里哦"/>
   <tag k="name:en" v="East Main Bldg"/>
  </way>
  <way id="84720748" visible="true" version="1" changeset="6333259" timestamp="2010-11-10T04:50:58Z" user="thu-mapper" uid="352829">
@@ -15476,6 +15578,7 @@
   <tag k="building" v="yes"/>
   <tag k="leisure" v="track"/>
   <tag k="name" v="东区体育馆"/>
+  <tag k="introduction" v="体育课常在这里上"/>
   <tag k="name:en" v="East Gymnasium"/>
   <tag k="sport" v="multi"/>
  </way>
@@ -15515,6 +15618,7 @@
   <nd ref="989838601"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="文西楼"/>
+  <tag k="introduction" v="工新闻与传播学院系馆"/>
   <tag k="name:en" v="Wenxi Bldg"/>
   <tag k="operator" v="新闻与传播学院"/>
  </way>
@@ -15536,6 +15640,7 @@
   <nd ref="989838612"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="新水利馆"/>
+  <tag k="introduction" v="工程制图必备"/>
   <tag k="name:en" v="New Hydraulic Engineering Bldg"/>
  </way>
  <way id="85379558" visible="true" version="1" changeset="6374988" timestamp="2010-11-15T05:43:22Z" user="thu-mapper" uid="352829">
@@ -15568,6 +15673,7 @@
   <nd ref="991177382"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="化学馆新馆"/>
+  <tag k="introduction" v="化学系系馆"/>
   <tag k="name:en" v="New Chemistry Bldg"/>
   <tag k="operator" v="化学系"/>
  </way>
@@ -15693,6 +15799,7 @@
   <nd ref="993399385"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="19号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="85632229" visible="true" version="1" changeset="6397619" timestamp="2010-11-18T05:08:05Z" user="thu-mapper" uid="352829">
   <nd ref="993399357"/>
@@ -15709,6 +15816,7 @@
   <nd ref="993399371"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="29号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="85632231" visible="true" version="1" changeset="6397619" timestamp="2010-11-18T05:08:05Z" user="thu-mapper" uid="352829">
   <nd ref="993399354"/>
@@ -15724,6 +15832,7 @@
   <nd ref="993399354"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="20号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="85632232" visible="true" version="1" changeset="6397619" timestamp="2010-11-18T05:08:05Z" user="thu-mapper" uid="352829">
   <nd ref="993399379"/>
@@ -15740,6 +15849,7 @@
   <nd ref="993399379"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="22号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="85632233" visible="true" version="1" changeset="6397619" timestamp="2010-11-18T05:08:06Z" user="thu-mapper" uid="352829">
   <nd ref="993399351"/>
@@ -15756,6 +15866,7 @@
   <nd ref="993399351"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="21号楼"/>
+  <tag k="introduction" v="学生公寓啦～"/>
  </way>
  <way id="93850534" visible="true" version="11" changeset="28969381" timestamp="2015-02-20T01:34:18Z" user="Kartografiertier" uid="2461407">
   <nd ref="1090671342"/>
@@ -15858,6 +15969,7 @@
   <nd ref="1214419009"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="化工电大楼"/>
+  <tag k="introduction" v="化工系系馆"/>
  </way>
  <way id="105430049" visible="true" version="1" changeset="7643519" timestamp="2011-03-23T05:37:09Z" user="thu-mapper" uid="352829">
   <nd ref="1214419005"/>
@@ -17678,6 +17790,7 @@
   <nd ref="1676889805"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="罗姆楼电子工程馆"/>
+  <tag k="introduction" v="电子工程系系馆"/>
   <tag k="name:en" v="Tsinghua-Rom Electronic Engineering Bldg"/>
  </way>
  <way id="158112141" visible="true" version="2" changeset="43399977" timestamp="2016-11-04T12:22:09Z" user="jamjpan" uid="4814367">
@@ -17713,6 +17826,7 @@
   <nd ref="1703721211"/>
   <tag k="amenity" v="theatre"/>
   <tag k="name" v="新清华学堂"/>
+  <tag k="introduction" v="听说美女都爱在这里自拍"/>
   <tag k="name:en" v="New Tsinghua Auditorium"/>
  </way>
  <way id="158134857" visible="true" version="2" changeset="11294904" timestamp="2012-04-14T05:32:04Z" user="Justin Wong" uid="630725">
@@ -17733,6 +17847,7 @@
   <nd ref="1703822113"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="环境工程系"/>
+  <tag k="introduction" v="环境工程系系馆"/>
   <tag k="name:en" v="Sino-Italian Tsinghua Environment and Energy-Efficient Bldg"/>
  </way>
  <way id="158134860" visible="true" version="4" changeset="11947260" timestamp="2012-06-19T11:40:36Z" user="daviddengcn" uid="635960">
@@ -19170,6 +19285,7 @@
   <tag k="bridge" v="yes"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="至善路"/>
+  <tag k="introduction" v="沿路有很多食堂：听涛，清芬等等"/>
  </way>
  <way id="226623627" visible="true" version="3" changeset="35902106" timestamp="2015-12-12T04:49:59Z" user="gap496" uid="3450624">
   <nd ref="2353996303"/>
@@ -19321,6 +19437,7 @@
   <nd ref="2354027025"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="太平间"/>
+  <tag k="introduction" v="额"/>
  </way>
  <way id="226625358" visible="true" version="1" changeset="16635728" timestamp="2013-06-20T20:41:12Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354027037"/>
@@ -19330,6 +19447,7 @@
   <nd ref="2354027037"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="射击馆"/>
+  <tag k="introduction" v="射击打枪走起！"/>
  </way>
  <way id="226625386" visible="true" version="1" changeset="16635738" timestamp="2013-06-20T20:42:31Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354028231"/>
@@ -19345,6 +19463,7 @@
   <tag k="amenity" v="restaurant"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="寓园教工食堂"/>
+  <tag k="introduction" v="教工食堂没去吃过"/>
  </way>
  <way id="226625491" visible="true" version="1" changeset="16635755" timestamp="2013-06-20T20:43:54Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="371156465"/>
@@ -19423,6 +19542,7 @@
   <tag k="amenity" v="restaurant"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="南园教工食堂"/>
+  <tag k="introduction" v="没去吃过不知味道如何"/>
  </way>
  <way id="226629274" visible="true" version="1" changeset="16635884" timestamp="2013-06-20T20:53:55Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354049068"/>
@@ -19464,6 +19584,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
   <tag k="name:en" v="Tsinghua Road"/>
  </way>
  <way id="226632802" visible="true" version="1" changeset="16635985" timestamp="2013-06-20T21:00:51Z" user="Jonathan ZHAO" uid="837425">
@@ -19476,6 +19597,7 @@
   <nd ref="2354058494"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="熊知行楼"/>
+  <tag k="introduction" v="这是...一栋楼吧～"/>
  </way>
  <way id="226633273" visible="true" version="1" changeset="16636052" timestamp="2013-06-20T21:06:25Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354063848"/>
@@ -19522,6 +19644,7 @@
   <nd ref="2354070464"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="同方部"/>
+  <tag k="introduction" v="一个古老的建筑，记录了清华的历史变迁"/>
   <tag k="name:en" v="Tong Feng Bu"/>
  </way>
  <way id="226666774" visible="true" version="1" changeset="16637892" timestamp="2013-06-21T01:16:36Z" user="Jonathan ZHAO" uid="837425">
@@ -19538,6 +19661,7 @@
   <nd ref="2354335591"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="18号楼"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226666785" visible="true" version="1" changeset="16637897" timestamp="2013-06-21T01:18:28Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="991197580"/>
@@ -19585,6 +19709,7 @@
   <nd ref="2354336473"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="生命科学馆"/>
+  <tag k="introduction" v="生命科学院系馆"/>
   <tag k="name:en" v="Life Sciences Bldg"/>
  </way>
  <way id="226666861" visible="true" version="1" changeset="16637923" timestamp="2013-06-21T01:25:27Z" user="Jonathan ZHAO" uid="837425">
@@ -19681,6 +19806,7 @@
   <nd ref="2354337954"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="医学科学楼"/>
+  <tag k="introduction" v="医学院系馆"/>
   <tag k="name:en" v="Medical Science Bld"/>
  </way>
  <way id="226667036" visible="true" version="1" changeset="16637982" timestamp="2013-06-21T01:45:54Z" user="Jonathan ZHAO" uid="837425">
@@ -19776,6 +19902,7 @@
   <nd ref="2354348003"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="建筑设计中心"/>
+  <tag k="introduction" v="建筑设计院系馆"/>
   <tag k="name:en" v="Architectural Design Center"/>
  </way>
  <way id="226667976" visible="true" version="3" changeset="43400390" timestamp="2016-11-04T12:43:53Z" user="jamjpan" uid="4814367">
@@ -19790,6 +19917,7 @@
   <nd ref="2354348353"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="公共管理学院"/>
+  <tag k="introduction" v="公管学院系馆"/>
   <tag k="name:en" v="School of Public Policy and Management"/>
  </way>
  <way id="226667977" visible="true" version="1" changeset="16638126" timestamp="2013-06-21T02:17:11Z" user="Jonathan ZHAO" uid="837425">
@@ -20054,6 +20182,7 @@
   <nd ref="2354354499"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="8公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668696" visible="true" version="2" changeset="38463781" timestamp="2016-04-11T01:31:04Z" user="Plair" uid="2986987">
   <nd ref="2354354515"/>
@@ -20063,6 +20192,7 @@
   <nd ref="2354354515"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="4公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668697" visible="true" version="2" changeset="38463781" timestamp="2016-04-11T01:31:04Z" user="Plair" uid="2986987">
   <nd ref="2354354501"/>
@@ -20072,6 +20202,7 @@
   <nd ref="2354354501"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="7公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668698" visible="true" version="2" changeset="38463781" timestamp="2016-04-11T01:31:04Z" user="Plair" uid="2986987">
   <nd ref="2354354517"/>
@@ -20081,6 +20212,7 @@
   <nd ref="2354354517"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="3公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668699" visible="true" version="2" changeset="38463781" timestamp="2016-04-11T01:31:04Z" user="Plair" uid="2986987">
   <nd ref="2354354509"/>
@@ -20090,6 +20222,7 @@
   <nd ref="2354354509"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="5公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668700" visible="true" version="2" changeset="38463781" timestamp="2016-04-11T01:31:04Z" user="Plair" uid="2986987">
   <nd ref="2354354507"/>
@@ -20099,6 +20232,7 @@
   <nd ref="2354354507"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="6公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668703" visible="true" version="3" changeset="46672219" timestamp="2017-03-08T07:27:13Z" user="James Millar" uid="5317567">
   <nd ref="2354354585"/>
@@ -20112,6 +20246,7 @@
   <nd ref="2354354585"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南19"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668704" visible="true" version="2" changeset="38463591" timestamp="2016-04-11T01:06:44Z" user="Plair" uid="2986987">
   <nd ref="2354354571"/>
@@ -20121,6 +20256,7 @@
   <nd ref="2354354571"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="西南17"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668705" visible="true" version="2" changeset="38463591" timestamp="2016-04-11T01:06:43Z" user="Plair" uid="2986987">
   <nd ref="2354354580"/>
@@ -20130,6 +20266,7 @@
   <nd ref="2354354580"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南18"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668706" visible="true" version="2" changeset="38463738" timestamp="2016-04-11T01:24:26Z" user="Plair" uid="2986987">
   <nd ref="2354354570"/>
@@ -20139,6 +20276,7 @@
   <nd ref="2354354570"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="11公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668707" visible="true" version="2" changeset="38463591" timestamp="2016-04-11T01:06:44Z" user="Plair" uid="2986987">
   <nd ref="2354354561"/>
@@ -20148,6 +20286,7 @@
   <nd ref="2354354561"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南16"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668708" visible="true" version="2" changeset="38463738" timestamp="2016-04-11T01:24:26Z" user="Plair" uid="2986987">
   <nd ref="2354354563"/>
@@ -20157,6 +20296,7 @@
   <nd ref="2354354563"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="12公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668709" visible="true" version="2" changeset="38463738" timestamp="2016-04-11T01:24:26Z" user="Plair" uid="2986987">
   <nd ref="2354354577"/>
@@ -20166,6 +20306,7 @@
   <nd ref="2354354577"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="10公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="226668710" visible="true" version="2" changeset="38463591" timestamp="2016-04-11T01:06:44Z" user="Plair" uid="2986987">
   <nd ref="2354354557"/>
@@ -20175,6 +20316,7 @@
   <nd ref="2354354557"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南15"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226668711" visible="true" version="2" changeset="38463591" timestamp="2016-04-11T01:06:43Z" user="Plair" uid="2986987">
   <nd ref="2354354589"/>
@@ -20184,6 +20326,7 @@
   <nd ref="2354354589"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南20"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226668723" visible="true" version="1" changeset="16638294" timestamp="2013-06-21T02:54:38Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354354661"/>
@@ -20249,6 +20392,7 @@
   <nd ref="2354354716"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南2楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226668732" visible="true" version="2" changeset="38463372" timestamp="2016-04-11T00:39:51Z" user="Plair" uid="2986987">
   <nd ref="2354354720"/>
@@ -20258,6 +20402,7 @@
   <nd ref="2354354720"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南3楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226668733" visible="true" version="2" changeset="38463372" timestamp="2016-04-11T00:39:51Z" user="Plair" uid="2986987">
   <nd ref="2354354712"/>
@@ -20267,6 +20412,7 @@
   <nd ref="2354354712"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南1楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226668734" visible="true" version="2" changeset="38463372" timestamp="2016-04-11T00:39:51Z" user="Plair" uid="2986987">
   <nd ref="2354354708"/>
@@ -20276,6 +20422,7 @@
   <nd ref="2354354708"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南0楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226668735" visible="true" version="2" changeset="38463372" timestamp="2016-04-11T00:39:51Z" user="Plair" uid="2986987">
   <nd ref="2354354724"/>
@@ -20285,6 +20432,7 @@
   <nd ref="2354354724"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南4楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226668897" visible="true" version="2" changeset="38463372" timestamp="2016-04-11T00:39:51Z" user="Plair" uid="2986987">
   <nd ref="2354366094"/>
@@ -20294,6 +20442,7 @@
   <nd ref="2354366094"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南12楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226668898" visible="true" version="3" changeset="38463372" timestamp="2016-04-11T00:39:51Z" user="Plair" uid="2986987">
   <nd ref="2354366087"/>
@@ -20304,6 +20453,7 @@
   <nd ref="2354366087"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南11楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226668899" visible="true" version="2" changeset="38463372" timestamp="2016-04-11T00:39:51Z" user="Plair" uid="2986987">
   <nd ref="2354366101"/>
@@ -20313,6 +20463,7 @@
   <nd ref="2354366101"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南13楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669002" visible="true" version="1" changeset="16638350" timestamp="2013-06-21T03:05:37Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354368604"/>
@@ -20330,6 +20481,7 @@
   <nd ref="2354368593"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南6楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669004" visible="true" version="2" changeset="38463351" timestamp="2016-04-11T00:37:30Z" user="Plair" uid="2986987">
   <nd ref="2354368597"/>
@@ -20339,6 +20491,7 @@
   <nd ref="2354368597"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南7楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669005" visible="true" version="2" changeset="38402048" timestamp="2016-04-08T10:13:16Z" user="Plair" uid="2986987">
   <nd ref="2354368607"/>
@@ -20348,6 +20501,7 @@
   <nd ref="2354368607"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南10楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669006" visible="true" version="2" changeset="38463351" timestamp="2016-04-11T00:37:30Z" user="Plair" uid="2986987">
   <nd ref="2354368589"/>
@@ -20357,6 +20511,7 @@
   <nd ref="2354368589"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南5楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669007" visible="true" version="2" changeset="38463351" timestamp="2016-04-11T00:37:30Z" user="Plair" uid="2986987">
   <nd ref="2354368610"/>
@@ -20366,6 +20521,7 @@
   <nd ref="2354368610"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南9楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669008" visible="true" version="2" changeset="38463351" timestamp="2016-04-11T00:37:30Z" user="Plair" uid="2986987">
   <nd ref="2354368601"/>
@@ -20375,6 +20531,7 @@
   <nd ref="2354368601"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="南8楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669016" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:42Z" user="Plair" uid="2986987">
   <nd ref="2354368647"/>
@@ -20384,6 +20541,7 @@
   <nd ref="2354368647"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东6楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669017" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:43Z" user="Plair" uid="2986987">
   <nd ref="2354368639"/>
@@ -20393,6 +20551,7 @@
   <nd ref="2354368639"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东7楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669018" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:43Z" user="Plair" uid="2986987">
   <nd ref="2354368645"/>
@@ -20402,6 +20561,7 @@
   <nd ref="2354368645"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东11楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669019" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:43Z" user="Plair" uid="2986987">
   <nd ref="2354368634"/>
@@ -20411,6 +20571,7 @@
   <nd ref="2354368634"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东15楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669020" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:43Z" user="Plair" uid="2986987">
   <nd ref="2354368630"/>
@@ -20420,6 +20581,7 @@
   <nd ref="2354368630"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东16楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669021" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:43Z" user="Plair" uid="2986987">
   <nd ref="2354368637"/>
@@ -20429,6 +20591,7 @@
   <nd ref="2354368637"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东13楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669057" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:42Z" user="Plair" uid="2986987">
   <nd ref="2354369793"/>
@@ -20438,6 +20601,7 @@
   <nd ref="2354369793"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="东2楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669058" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:42Z" user="Plair" uid="2986987">
   <nd ref="2354369754"/>
@@ -20447,6 +20611,7 @@
   <nd ref="2354369754"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东5楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669059" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:43Z" user="Plair" uid="2986987">
   <nd ref="2354369779"/>
@@ -20456,6 +20621,7 @@
   <nd ref="2354369779"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东8楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669060" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:42Z" user="Plair" uid="2986987">
   <nd ref="2354369785"/>
@@ -20465,6 +20631,7 @@
   <nd ref="2354369785"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东3楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669061" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:43Z" user="Plair" uid="2986987">
   <nd ref="2354369762"/>
@@ -20474,6 +20641,7 @@
   <nd ref="2354369762"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东9楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669062" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:42Z" user="Plair" uid="2986987">
   <nd ref="2354369802"/>
@@ -20483,6 +20651,7 @@
   <nd ref="2354369802"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东1楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669063" visible="true" version="2" changeset="38400474" timestamp="2016-04-08T08:50:42Z" user="Plair" uid="2986987">
   <nd ref="2354369771"/>
@@ -20492,6 +20661,7 @@
   <nd ref="2354369771"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="东4楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669348" visible="true" version="3" changeset="38463600" timestamp="2016-04-11T01:07:24Z" user="Plair" uid="2986987">
   <nd ref="2354370795"/>
@@ -20501,6 +20671,7 @@
   <nd ref="2354370795"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南3"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669349" visible="true" version="3" changeset="38463600" timestamp="2016-04-11T01:07:24Z" user="Plair" uid="2986987">
   <nd ref="2354370803"/>
@@ -20510,6 +20681,7 @@
   <nd ref="2354370803"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南5"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669350" visible="true" version="3" changeset="38463607" timestamp="2016-04-11T01:08:13Z" user="Plair" uid="2986987">
   <nd ref="2354370807"/>
@@ -20519,6 +20691,7 @@
   <nd ref="2354370807"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南6"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669351" visible="true" version="3" changeset="38463600" timestamp="2016-04-11T01:07:24Z" user="Plair" uid="2986987">
   <nd ref="2354370799"/>
@@ -20528,6 +20701,7 @@
   <nd ref="2354370799"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南4"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669354" visible="true" version="2" changeset="38463678" timestamp="2016-04-11T01:15:56Z" user="Plair" uid="2986987">
   <nd ref="2354370855"/>
@@ -20537,6 +20711,7 @@
   <nd ref="2354370855"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="西南7"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669356" visible="true" version="2" changeset="38463591" timestamp="2016-04-11T01:06:44Z" user="Plair" uid="2986987">
   <nd ref="2354370870"/>
@@ -20546,6 +20721,7 @@
   <nd ref="2354370870"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南9"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669358" visible="true" version="2" changeset="38463678" timestamp="2016-04-11T01:15:56Z" user="Plair" uid="2986987">
   <nd ref="2354370856"/>
@@ -20555,6 +20731,7 @@
   <nd ref="2354370856"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南13"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669359" visible="true" version="2" changeset="38463591" timestamp="2016-04-11T01:06:44Z" user="Plair" uid="2986987">
   <nd ref="2354370874"/>
@@ -20564,6 +20741,7 @@
   <nd ref="2354370874"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南10"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669361" visible="true" version="2" changeset="38463591" timestamp="2016-04-11T01:06:44Z" user="Plair" uid="2986987">
   <nd ref="2354370879"/>
@@ -20573,6 +20751,7 @@
   <nd ref="2354370879"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南11"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669362" visible="true" version="2" changeset="38463678" timestamp="2016-04-11T01:15:56Z" user="Plair" uid="2986987">
   <nd ref="2354370864"/>
@@ -20582,6 +20761,7 @@
   <nd ref="2354370864"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南14"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669363" visible="true" version="2" changeset="38463678" timestamp="2016-04-11T01:15:56Z" user="Plair" uid="2986987">
   <nd ref="2354370863"/>
@@ -20591,6 +20771,7 @@
   <nd ref="2354370863"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南8"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669364" visible="true" version="2" changeset="38463678" timestamp="2016-04-11T01:15:56Z" user="Plair" uid="2986987">
   <nd ref="2354370887"/>
@@ -20600,6 +20781,7 @@
   <nd ref="2354370887"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="普吉1号楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669470" visible="true" version="2" changeset="38463351" timestamp="2016-04-11T00:37:30Z" user="Plair" uid="2986987">
   <nd ref="2354372288"/>
@@ -20618,6 +20800,7 @@
   <nd ref="2354372299"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="高1楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669472" visible="true" version="2" changeset="16638731" timestamp="2013-06-21T04:37:58Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354372295"/>
@@ -20627,6 +20810,7 @@
   <nd ref="2354372295"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="高2楼"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="226669473" visible="true" version="1" changeset="16638450" timestamp="2013-06-21T03:28:36Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354372303"/>
@@ -20700,6 +20884,7 @@
   <nd ref="2354388564"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="北区浴室"/>
+  <tag k="introduction" v="听说暑假得去这边洗澡？"/>
   <tag k="name:en" v="North Bathhouse"/>
  </way>
  <way id="226670876" visible="true" version="2" changeset="46672492" timestamp="2017-03-08T07:44:04Z" user="Kate Diaz" uid="4803527">
@@ -20749,6 +20934,7 @@
   <nd ref="2354393896"/>
   <tag k="building" v="apartments"/>
   <tag k="name" v="专家公寓"/>
+  <tag k="introduction" v="专家公寓啦～"/>
  </way>
  <way id="226671071" visible="true" version="1" changeset="16638779" timestamp="2013-06-21T04:48:48Z" user="Jonathan ZHAO" uid="837425">
   <nd ref="2354393900"/>
@@ -20795,6 +20981,7 @@
   <tag k="amenity" v="theatre"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="蒙民伟音乐厅"/>
+  <tag k="introduction" v="经常有世界级大师在此诠释艺术的魅力"/>
   <tag k="name:en" v="Mong Man-wai Concert Hall"/>
  </way>
  <way id="226671429" visible="true" version="3" changeset="43399977" timestamp="2016-11-04T12:22:06Z" user="jamjpan" uid="4814367">
@@ -20814,6 +21001,7 @@
   <tag k="amenity" v="library"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="人文社科图书馆"/>
+  <tag k="introduction" v="文图！高逼格图书馆！一楼咖啡厅好评！"/>
   <tag k="name:en" v="Humanities and Social Sciences Library"/>
  </way>
  <way id="226671435" visible="true" version="3" changeset="43399977" timestamp="2016-11-04T12:22:11Z" user="jamjpan" uid="4814367">
@@ -20832,6 +21020,7 @@
   <nd ref="2354397535"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="土木水科学院"/>
+  <tag k="introduction" v="土木工程系系馆"/>
   <tag k="name:en" v="School of Civil Engineering"/>
  </way>
  <way id="226671455" visible="true" version="2" changeset="43400390" timestamp="2016-11-04T12:43:52Z" user="jamjpan" uid="4814367">
@@ -23247,6 +23436,7 @@
   <nd ref="4107249041"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="清华大学电话局"/>
+  <tag k="introduction" v="啥？还有这种地方？"/>
  </way>
  <way id="409368388" visible="true" version="1" changeset="38463396" timestamp="2016-04-11T00:42:25Z" user="Plair" uid="2986987">
   <nd ref="4112961928"/>
@@ -23256,6 +23446,7 @@
   <nd ref="4112961928"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="普吉院"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="409376794" visible="true" version="1" changeset="38463591" timestamp="2016-04-11T01:06:41Z" user="Plair" uid="2986987">
   <nd ref="4113020821"/>
@@ -23265,6 +23456,7 @@
   <nd ref="4113020821"/>
   <tag k="building" v="commercial"/>
   <tag k="name" v="十四所"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="409376796" visible="true" version="2" changeset="38463600" timestamp="2016-04-11T01:07:24Z" user="Plair" uid="2986987">
   <nd ref="4113020825"/>
@@ -23274,6 +23466,7 @@
   <nd ref="4113020825"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南2"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="409376797" visible="true" version="2" changeset="38463600" timestamp="2016-04-11T01:07:24Z" user="Plair" uid="2986987">
   <nd ref="4113020829"/>
@@ -23283,6 +23476,7 @@
   <nd ref="4113020829"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="西南1"/>
+  <tag k="introduction" v="教师公寓啦～"/>
  </way>
  <way id="409380281" visible="true" version="3" changeset="46672219" timestamp="2017-03-08T07:27:13Z" user="James Millar" uid="5317567">
   <nd ref="2354058500"/>
@@ -23303,6 +23497,7 @@
   <nd ref="4113037856"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="9公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="409381512" visible="true" version="1" changeset="38463781" timestamp="2016-04-11T01:31:04Z" user="Plair" uid="2986987">
   <nd ref="4113044781"/>
@@ -23321,6 +23516,7 @@
   <nd ref="4113044785"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="2公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="409381514" visible="true" version="1" changeset="38463781" timestamp="2016-04-11T01:31:04Z" user="Plair" uid="2986987">
   <nd ref="4113050889"/>
@@ -23331,6 +23527,7 @@
   <nd ref="4113050889"/>
   <tag k="building" v="residential"/>
   <tag k="name" v="1公寓"/>
+  <tag k="introduction" v="公寓啦～"/>
  </way>
  <way id="412298166" visible="true" version="2" changeset="43693147" timestamp="2016-11-16T09:20:58Z" user="jamjpan" uid="4814367">
   <nd ref="3888630873"/>
@@ -23495,6 +23692,7 @@
   <nd ref="4424475652"/>
   <tag k="building" v="university"/>
   <tag k="name" v="逸夫贰楼"/>
+  <tag k="introduction" v="应该也算是逸夫楼吧？"/>
  </way>
  <way id="444991876" visible="true" version="1" changeset="42532549" timestamp="2016-09-30T03:19:12Z" user="Liberion" uid="2942361">
   <nd ref="4424475666"/>
@@ -23506,6 +23704,7 @@
   <nd ref="4424475666"/>
   <tag k="building" v="university"/>
   <tag k="name" v="生命科学学院大楼"/>
+  <tag k="introduction" v="生命科学系系馆"/>
  </way>
  <way id="448749849" visible="true" version="1" changeset="43048551" timestamp="2016-10-21T01:36:15Z" user="梦恬惜雨" uid="4723812">
   <nd ref="4457318140"/>
@@ -23563,6 +23762,7 @@
   <nd ref="4457321792"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="建筑材料研究所"/>
+  <tag k="introduction" v="顾名思义"/>
   <tag k="office" v="research"/>
  </way>
  <way id="451304710" visible="true" version="1" changeset="43397191" timestamp="2016-11-04T08:33:52Z" user="jamjpan" uid="4814367">
@@ -23775,6 +23975,7 @@
   <nd ref="4481615182"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="艺术博物馆"/>
+  <tag k="introduction" v="很多优美的作品在此展示，陶冶情操的圣地"/>
   <tag k="name:en" v="Art Museum"/>
  </way>
  <way id="451335314" visible="true" version="1" changeset="43399977" timestamp="2016-11-04T12:22:02Z" user="jamjpan" uid="4814367">
@@ -23804,6 +24005,7 @@
   <nd ref="4481615514"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="印刷厂"/>
+  <tag k="introduction" v="顾名思义"/>
   <tag k="name:en" v="Printing Center"/>
  </way>
  <way id="451335316" visible="true" version="1" changeset="43399977" timestamp="2016-11-04T12:22:02Z" user="jamjpan" uid="4814367">
@@ -23848,6 +24050,7 @@
   <nd ref="4481648165"/>
   <tag k="building" v="yes"/>
   <tag k="name" v="李兆基科技大楼"/>
+  <tag k="introduction" v="里面有好多好厉害的设备呢！"/>
   <tag k="name:en" v="Lee Shau-kee Science and Technology Bldg"/>
  </way>
  <way id="451338305" visible="true" version="1" changeset="43400390" timestamp="2016-11-04T12:43:51Z" user="jamjpan" uid="4814367">
@@ -23933,6 +24136,7 @@
   <nd ref="4503942683"/>
   <tag k="building" v="school"/>
   <tag k="name" v="实验楼"/>
+  <tag k="introduction" v="也许是用来做实验的？"/>
  </way>
  <way id="453690525" visible="true" version="1" changeset="43693147" timestamp="2016-11-16T09:20:57Z" user="jamjpan" uid="4814367">
   <nd ref="4503942608"/>
@@ -24232,6 +24436,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
   <tag k="name:en" v="Tsinghua Road"/>
  </way>
  <way id="479204229" visible="true" version="1" changeset="46669845" timestamp="2017-03-08T04:09:16Z" user="James Millar" uid="5317567">
@@ -24241,6 +24446,7 @@
   <tag k="covered" v="yes"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
   <tag k="name:en" v="Tsinghua Road"/>
  </way>
  <way id="479225052" visible="true" version="1" changeset="46673777" timestamp="2017-03-08T08:38:18Z" user="Jason Roy" uid="5147743">
@@ -24249,6 +24455,7 @@
   <tag k="access" v="permissive"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
  </way>
  <way id="479225053" visible="true" version="1" changeset="46673777" timestamp="2017-03-08T08:38:18Z" user="Jason Roy" uid="5147743">
   <nd ref="4723666305"/>
@@ -24257,6 +24464,7 @@
   <tag k="covered" v="yes"/>
   <tag k="highway" v="service"/>
   <tag k="name" v="清华路"/>
+  <tag k="introduction" v="清华大学风景最优美的一条路，二校门，蒙民伟音乐厅，主楼，都在这条路的路边"/>
  </way>
  <way id="479392036" visible="true" version="1" changeset="46696159" timestamp="2017-03-09T01:01:51Z" user="Jason Roy" uid="5147743">
   <nd ref="4725067432"/>
@@ -24365,6 +24573,7 @@
   <member type="way" ref="83892648" role=""/>
   <member type="way" ref="80342198" role=""/>
   <tag k="name" v="校园交通车"/>
+  <tag k="introduction" v="清华大学校园公交好评！，一块钱游遍全清华"/>
   <tag k="operator" v="清华大学"/>
   <tag k="route" v="bus"/>
   <tag k="type" v="route"/>
@@ -24920,6 +25129,7 @@
   <member type="way" ref="136728544" role="platform"/>
   <member type="node" ref="2426871785" role="stop"/>
   <tag k="name" v="清华附中"/>
+  <tag k="introduction" v="清华大学附属中学"/>
   <tag k="public_transport" v="stop_area"/>
   <tag k="type" v="public_transport"/>
  </relation>
