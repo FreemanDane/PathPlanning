@@ -1,6 +1,6 @@
 # coding=utf-8
 from bs4 import BeautifulSoup
-from src.CrossList import *
+from CrossList import *
 
 class way:
     '''
@@ -39,14 +39,10 @@ class map:
                     new_way.point.append(nd)
                 for tag in tags:
                     new_way.attr[tag['k']] = tag['v']
+                for points in new_way.point: #以下几行在每一条
+                    if new_way not in points.way: #way的节点中添加way的id
+                        points.way.append(new_way) #方便届时查询通行路段是否可以通行自行车
                 self.ways.append(new_way)
                 length = len(new_way.point)
                 for i in range(length - 1):
                     self.cross_list.add_edge(self.cross_list.get_node(new_way.point[i]['ref']),self.cross_list.get_node( new_way.point[i + 1]['ref']))
-
-    def way_rect(self, wy):
-        mix_x = min_y = 10000
-        max_x = max_y = 0
-        for nd in wy.point:
-            pt = self.cross_list.get_node(nd['ref'])
-
