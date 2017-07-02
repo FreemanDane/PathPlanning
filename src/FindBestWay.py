@@ -1,4 +1,4 @@
-import CrossList
+import src.CrossList
 
 #调用函数：find_best_way(node_data, start, end)
 #node data为创建的十字链表，start开始节点类型为node，end为结束节点类型为node

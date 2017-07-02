@@ -1,4 +1,4 @@
-from draw import *
+from src.draw import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
