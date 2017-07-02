@@ -2,10 +2,11 @@ from src import DataAnalysis
 from src.CrossList import node, lat_min, lat_max, lon_max, lon_min
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton
 from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon
-from PyQt5.QtCore import QPoint,QRect, Qt
+from PyQt5.QtCore import QPoint,QRect, Qt, pyqtSignal
 import sys
 
 class MapDisplay(QWidget):
+    zoom_signal = pyqtSignal()
     def __init__(self, filename, parent = None):
         super(MapDisplay, self).__init__(parent)
         print('Loading Data...')
@@ -227,6 +228,7 @@ class MapDisplay(QWidget):
         self.map.cross_list.farthest_node.cartesian_coordinate(self.map.cross_list.origin)
         self.map.cross_list.cartesian_coordinate()
         self.update()
+        self.zoom_signal.emit()
 
     # 鼠标拖拽事件
     def mousePressEvent(self, event):
@@ -308,6 +310,7 @@ class MapDisplay(QWidget):
             self.map.cross_list.farthest_node.cartesian_coordinate(self.map.cross_list.origin)
             self.map.cross_list.cartesian_coordinate()
             self.update()
+            self.zoom_signal.emit()
     # 缩小函数
     def zoomOut(self):
         self.is_zoom = 1
@@ -342,6 +345,7 @@ class MapDisplay(QWidget):
             self.map.cross_list.farthest_node.cartesian_coordinate(self.map.cross_list.origin)
             self.map.cross_list.cartesian_coordinate()
             self.update()
+            self.zoom_signal.emit()
     # 显示区域左上角在原图中坐标
     def displayTopLeft(self):
         x = -self.top_left.x

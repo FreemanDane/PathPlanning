@@ -1,0 +1,89 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BeautifulSoup	../../src/DataAnalysis.py	/^from bs4 import BeautifulSoup$/;"	kind:namespace	line:2
+CrossList	../../src/FindBestWay.py	/^import src.CrossList$/;"	kind:namespace	line:1
+CrossList.py	../../src/CrossList.py	1;"	kind:file	line:1
+DataAnalysis	../../src/draw.py	/^from src import DataAnalysis$/;"	kind:namespace	line:1
+DataAnalysis.py	../../src/DataAnalysis.py	1;"	kind:file	line:1
+FindBestWay.py	../../src/FindBestWay.py	1;"	kind:file	line:1
+MainWindow	../../src/main.py	/^    MainWindow = QMainWindow()$/;"	kind:variable	line:64
+MapDisplay	../../src/draw.py	/^class MapDisplay(QWidget):$/;"	kind:class	line:8
+QApplication	../../src/draw.py	/^from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton$/;"	kind:namespace	line:3
+QBrush	../../src/draw.py	/^from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon$/;"	kind:namespace	line:4
+QColor	../../src/draw.py	/^from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon$/;"	kind:namespace	line:4
+QFont	../../src/draw.py	/^from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon$/;"	kind:namespace	line:4
+QIcon	../../src/draw.py	/^from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon$/;"	kind:namespace	line:4
+QMainWindow	../../src/draw.py	/^from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton$/;"	kind:namespace	line:3
+QPainter	../../src/draw.py	/^from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon$/;"	kind:namespace	line:4
+QPen	../../src/draw.py	/^from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon$/;"	kind:namespace	line:4
+QPolygon	../../src/draw.py	/^from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon$/;"	kind:namespace	line:4
+QPushButton	../../src/draw.py	/^from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton$/;"	kind:namespace	line:3
+QWidget	../../src/draw.py	/^from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton$/;"	kind:namespace	line:3
+R	../../src/CrossList.py	/^R = 6371004$/;"	kind:variable	line:4
+UTM.py	../../src/UTM.py	1;"	kind:file	line:1
+Ui_MainWindow	../../src/main.py	/^class Ui_MainWindow(object):$/;"	kind:class	line:6
+__init__	../../src/CrossList.py	/^    def __init__(self):$/;"	kind:member	line:46
+__init__	../../src/CrossList.py	/^    def __init__(self, nid, lat, lon):$/;"	kind:member	line:10
+__init__	../../src/CrossList.py	/^    def __init__(self, node1, node2):$/;"	kind:member	line:35
+__init__	../../src/DataAnalysis.py	/^    def __init__(self, filename):$/;"	kind:member	line:18
+__init__	../../src/DataAnalysis.py	/^    def __init__(self, wid):$/;"	kind:member	line:9
+__init__	../../src/draw.py	/^    def __init__(self, filename, parent = None):$/;"	kind:member	line:10
+acos	../../src/CrossList.py	/^from math import pi,sin,cos,acos$/;"	kind:namespace	line:2
+add_edge	../../src/CrossList.py	/^    def add_edge(self, node1, node2):$/;"	kind:member	line:77
+add_node	../../src/CrossList.py	/^    def add_node(self, nid, lat, lon):$/;"	kind:member	line:56
+app	../../src/main.py	/^    app = QApplication(sys.argv)$/;"	kind:variable	line:63
+applyZoomBarValue	../../src/main.py	/^    def applyZoomBarValue(self):$/;"	kind:member	line:52
+cartesian_coordinate	../../src/CrossList.py	/^    def cartesian_coordinate(self):$/;"	kind:member	line:69
+cartesian_coordinate	../../src/CrossList.py	/^    def cartesian_coordinate(self, origin):$/;"	kind:member	line:25
+convertScreenToImage	../../src/draw.py	/^    def convertScreenToImage(self, point):$/;"	kind:member	line:269
+cos	../../src/CrossList.py	/^from math import pi,sin,cos,acos$/;"	kind:namespace	line:2
+crosslist	../../src/CrossList.py	/^class crosslist:$/;"	kind:class	line:45
+dijkstra	../../src/FindBestWay.py	/^def dijkstra(node_data, start, end, waiting, result):$/;"	kind:function	line:7
+displayBottomRight	../../src/draw.py	/^    def displayBottomRight(self):$/;"	kind:member	line:355
+displayTopLeft	../../src/draw.py	/^    def displayTopLeft(self):$/;"	kind:member	line:349
+distance	../../src/CrossList.py	/^    def distance(self, other):$/;"	kind:member	line:19
+draw.py	../../src/draw.py	1;"	kind:file	line:1
+edge	../../src/CrossList.py	/^class edge:$/;"	kind:class	line:31
+find_best_way	../../src/FindBestWay.py	/^def find_best_way(node_data, start, end):$/;"	kind:function	line:65
+get_edge	../../src/CrossList.py	/^    def get_edge(self, node1, node2 = None):$/;"	kind:member	line:88
+get_node	../../src/CrossList.py	/^    def get_node(self, id):$/;"	kind:member	line:84
+initUI	../../src/draw.py	/^    def initUI(self):$/;"	kind:member	line:29
+lat_max	../../src/CrossList.py	/^lat_max = 40.0131$/;"	kind:variable	line:42
+lat_max	../../src/draw.py	/^from src.CrossList import node, lat_min, lat_max, lon_max, lon_min$/;"	kind:namespace	line:2
+lat_min	../../src/CrossList.py	/^lat_min = 39.9905$/;"	kind:variable	line:40
+lat_min	../../src/draw.py	/^from src.CrossList import node, lat_min, lat_max, lon_max, lon_min$/;"	kind:namespace	line:2
+lon_max	../../src/CrossList.py	/^lon_max = 116.3321$/;"	kind:variable	line:43
+lon_max	../../src/draw.py	/^from src.CrossList import node, lat_min, lat_max, lon_max, lon_min$/;"	kind:namespace	line:2
+lon_min	../../src/CrossList.py	/^lon_min = 116.3086$/;"	kind:variable	line:41
+lon_min	../../src/draw.py	/^from src.CrossList import node, lat_min, lat_max, lon_max, lon_min$/;"	kind:namespace	line:2
+main.py	../../src/main.py	1;"	kind:file	line:1
+map	../../src/DataAnalysis.py	/^class map:$/;"	kind:class	line:14
+map_render	../../src/draw.py	/^    def map_render(self):$/;"	kind:member	line:36
+math	../../src/UTM.py	/^import math$/;"	kind:namespace	line:1
+mouseMoveEvent	../../src/draw.py	/^    def mouseMoveEvent(self, event):$/;"	kind:member	line:243
+mousePressEvent	../../src/draw.py	/^    def mousePressEvent(self, event):$/;"	kind:member	line:234
+mouseReleaseEvent	../../src/draw.py	/^    def mouseReleaseEvent(self, event):$/;"	kind:member	line:240
+node	../../src/CrossList.py	/^class node:$/;"	kind:class	line:6
+node	../../src/draw.py	/^from src.CrossList import node, lat_min, lat_max, lon_max, lon_min$/;"	kind:namespace	line:2
+paintEvent	../../src/draw.py	/^    def paintEvent(self, e):$/;"	kind:member	line:186
+pi	../../src/CrossList.py	/^from math import pi,sin,cos,acos$/;"	kind:namespace	line:2
+setZoomBarValue	../../src/main.py	/^    def setZoomBarValue(self):$/;"	kind:member	line:50
+setupUI	../../src/main.py	/^    def setupUI(self, MainWindow):$/;"	kind:member	line:7
+sin	../../src/CrossList.py	/^from math import pi,sin,cos,acos$/;"	kind:namespace	line:2
+src	../../src/FindBestWay.py	/^import src.CrossList$/;"	kind:namespace	line:1
+sys	../../src/draw.py	/^import sys$/;"	kind:namespace	line:6
+sys	../../src/main.py	/^    import sys$/;"	kind:namespace	line:62
+ui	../../src/main.py	/^    ui = Ui_MainWindow()$/;"	kind:variable	line:65
+utm_conversion	../../src/UTM.py	/^def utm_conversion(lat, lon):$/;"	kind:function	line:4
+way	../../src/DataAnalysis.py	/^class way:$/;"	kind:class	line:5
+wheelEvent	../../src/draw.py	/^    def wheelEvent(self, event):$/;"	kind:member	line:194
+zoomIn	../../src/draw.py	/^    def zoomIn(self):$/;"	kind:member	line:275
+zoomIn	../../src/main.py	/^    def zoomIn(self):$/;"	kind:member	line:46
+zoomOut	../../src/draw.py	/^    def zoomOut(self):$/;"	kind:member	line:314
+zoomOut	../../src/main.py	/^    def zoomOut(self):$/;"	kind:member	line:48
+zoomRatio	../../src/draw.py	/^    def zoomRatio(self):$/;"	kind:member	line:361
+zoom_signal	../../src/draw.py	/^    zoom_signal = pyqtSignal()$/;"	kind:variable	line:9

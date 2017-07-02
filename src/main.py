@@ -15,6 +15,7 @@ class Ui_MainWindow(object):
         self.map = MapDisplay("../data/map.osm", self.centralWidget)
         self.map.setGeometry(QRect(0, 0, 680, 830))
         self.map.show()
+        self.map.zoom_signal.connect(self.setZoomBarValue)
         #缩放按钮和指示条
         self.plus_button = QPushButton(self.centralWidget)
         self.plus_button.setGeometry(QRect(620, 600, 32, 32))
@@ -34,11 +35,29 @@ class Ui_MainWindow(object):
         self.minus_button.show()
         self.minus_button.clicked.connect(self.zoomOut)
 
+        self.zoom_bar = QSlider(self.centralWidget)
+        self.zoom_bar.setOrientation(Qt.Vertical)
+        self.zoom_bar.setGeometry(620, 641, 32, 100)
+        self.zoom_bar.setRange(0, 10)
+        self.zoom_bar.valueChanged.connect(self.applyZoomBarValue)
+        self.zoom_bar.show()
+
     def zoomIn(self):
         self.map.zoomIn()
+
     def zoomOut(self):
         self.map.zoomOut()
 
+    def setZoomBarValue(self):
+        self.zoom_bar.setValue(self.map.zoom[1])
+
+    def applyZoomBarValue(self):
+        if self.zoom_bar.value() > self.map.zoom[1]:
+            for i in range(self.map.zoom[1], self.zoom_bar.value()):
+                self.map.zoomIn()
+        elif self.zoom_bar.value() < self.map.zoom[1]:
+            for i in range(self.zoom_bar.value(), self.map.zoom[1]):
+                self.map.zoomOut()
 if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
