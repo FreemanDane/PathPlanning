@@ -26,7 +26,6 @@ class MainWindow(QMainWindow):
             "QPushButton{border: 0px;background-image:url(../data/icons/add/Add_Normal.png);}"\
             "QPushButton:hover{border: 0px;background-image:url(../data/icons/add/Add_Hover.png);}" \
             "QPushButton:pressed{border: 0px;background-image:url(../data/icons/add/Add_Pressed.png);}")
-        self.plus_button.show()
         self.plus_button.clicked.connect(self.zoomIn)
 
         self.minus_button = QPushButton(self.centralWidget)
@@ -35,7 +34,6 @@ class MainWindow(QMainWindow):
             "QPushButton{border: 0px;background-image:url(../data/icons/minus/Minus_Normal.png);}" \
             "QPushButton:hover{border: 0px;background-image:url(../data/icons/minus/Minus_Hover.png);}" \
             "QPushButton:pressed{border: 0px;background-image:url(../data/icons/minus/Minus_Pressed.png);}")
-        self.minus_button.show()
         self.minus_button.clicked.connect(self.zoomOut)
 
         self.zoom_bar = QSlider(self.centralWidget)
@@ -43,7 +41,6 @@ class MainWindow(QMainWindow):
         self.zoom_bar.setGeometry(620, 641, 32, 100)
         self.zoom_bar.setRange(0, 10)
         self.zoom_bar.valueChanged.connect(self.applyZoomBarValue)
-        self.zoom_bar.show()
 
         #地图上指示起点和终点的大头针
         self.start_pin = MapPin(self.centralWidget)

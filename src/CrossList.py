@@ -38,6 +38,10 @@ class edge:
         self.jvex = node2 #边的第二个节点
         self.length = node1.distance(node2) #边长
 
+lat_min = 39.9905
+lon_min = 116.3086
+lat_max = 40.0131
+lon_max = 116.3321
 
 class crosslist:
     def __init__(self):
@@ -47,6 +51,8 @@ class crosslist:
         self.nodes['1'] = self.farthest_node
         self.nodes['0'] = self.origin
         self.edges = []
+        self.max_x = None
+        self.max_y = None
 
     def add_node(self, nid, lat, lon):
         #添加一个节点，传入节点id，精度，维度
@@ -65,6 +71,9 @@ class crosslist:
         #计算当前图内所有点的直角坐标
         for n in self.nodes.values():
             n.cartesian_coordinate(self.origin)
+        if not self.max_x:
+            self.max_x = self.farthest_node.x
+            self.max_y = self.farthest_node.y
 
     def add_edge(self, node1, node2):
         #为节点node1和node2添加一条边
