@@ -1,0 +1,13 @@
+#VS Code:
+.vscode
+
+#Idea IDE:
+.idea
+
+#Python:
+*.pyc
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
