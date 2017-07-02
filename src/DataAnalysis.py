@@ -43,3 +43,10 @@ class map:
                 length = len(new_way.point)
                 for i in range(length - 1):
                     self.cross_list.add_edge(self.cross_list.get_node(new_way.point[i]['ref']),self.cross_list.get_node( new_way.point[i + 1]['ref']))
+
+    def way_rect(self, wy):
+        mix_x = min_y = 10000
+        max_x = max_y = 0
+        for nd in wy.point:
+            pt = self.cross_list.get_node(nd['ref'])
+

@@ -207,13 +207,13 @@ class MapDisplay(QWidget):
             self.zoom[1] = 0
 
         mouse_lon = x / self.size_x * (self.map.cross_list.farthest_node.lon - self.map.cross_list.origin.lon) + self.map.cross_list.origin.lon
-        mouse_lat = y / self.size_y * (self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat) + self.map.cross_list.origin.lat
-        new_origin_lon = mouse_lon - (lon_max - lon_min) / (2 * pow(1.2, 0.5 * self.zoom[1]))
+        mouse_lat = self.map.cross_list.farthest_node.lat - y / self.size_y * (self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat)
+        new_origin_lon = mouse_lon - (lon_max - lon_min) / (self.size_x / x * pow(1.2, 0.5 * self.zoom[1]))
         if new_origin_lon <= lon_min:
             new_origin_lon = lon_min
         elif new_origin_lon > lon_max - (lon_max - lon_min) * pow(1.2, -0.5 * self.zoom[1]):
             new_origin_lon = lon_max - (lon_max - lon_min) * pow(1.2, -0.5 * self.zoom[1])
-        new_origin_lat = mouse_lat - (lat_max - lat_min) / (2 * pow(1.2, 0.5 * self.zoom[1]))
+        new_origin_lat = mouse_lat - (lat_max - lat_min) / (self.size_y / (self.size_y - y) * pow(1.2, 0.5 * self.zoom[1]))
         if new_origin_lat <= lat_min:
             new_origin_lat = lat_min
         elif new_origin_lat > lat_max - (lat_max - lat_min) * pow(1.2, -0.5 * self.zoom[1]):
@@ -234,6 +234,10 @@ class MapDisplay(QWidget):
         x = event.pos().x()
         y = event.pos().y()
         self.before_drag = QPoint(x, y)
+        self.max_lon_fixed = self.map.cross_list.farthest_node.lon
+        self.min_lon_fixed = self.map.cross_list.origin.lon
+        self.max_lat_fixed = self.map.cross_list.farthest_node.lat
+        self.min_lat_fixed = self.map.cross_list.origin.lat
 
     def mouseReleaseEvent(self, event):
         self.is_press = 0
@@ -244,12 +248,12 @@ class MapDisplay(QWidget):
             y = event.pos().y()
             self.mouse = QPoint(x, y)
 
-            new_origin_lon = (self.before_drag.x() - self.mouse.x()) / (pow(1.2, 0.5 * self.zoom[1]) * self.size_x * 10) * (self.map.cross_list.farthest_node.lon - self.map.cross_list.origin.lon) + self.map.cross_list.origin.lon
+            new_origin_lon = (self.before_drag.x() - self.mouse.x()) * (self.max_lon_fixed - self.min_lon_fixed) / self.size_x + self.min_lon_fixed
             if new_origin_lon <= lon_min:
                 new_origin_lon = lon_min
             elif new_origin_lon > lon_max - (lon_max - lon_min) * pow(1.2, -0.5 * self.zoom[1]):
                 new_origin_lon = lon_max - (lon_max - lon_min) * pow(1.2, -0.5 * self.zoom[1])
-            new_origin_lat = (self.mouse.y() - self.before_drag.y()) / (pow(1.2,-0.5 * self.zoom[1]) * self.size_y * 10) * (self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat) + self.map.cross_list.origin.lat
+            new_origin_lat = (self.mouse.y() - self.before_drag.y()) * (self.max_lat_fixed - self.min_lat_fixed) / self.size_y + self.min_lat_fixed
             if new_origin_lat <= lat_min:
                 new_origin_lat = lat_min
             elif new_origin_lat > lat_max - (lat_max - lat_min) * pow(1.2, -0.5 * self.zoom[1]):
@@ -282,14 +286,15 @@ class MapDisplay(QWidget):
 
             mouse_lon = x / self.size_x * (
             self.map.cross_list.farthest_node.lon - self.map.cross_list.origin.lon) + self.map.cross_list.origin.lon
-            mouse_lat = y / self.size_y * (
-            self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat) + self.map.cross_list.origin.lat
-            new_origin_lon = mouse_lon - (lon_max - lon_min) / (2 * pow(1.2, 0.5 * self.zoom[1]))
+            mouse_lat = self.map.cross_list.farthest_node.lat - y / self.size_y * (
+            self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat)
+            new_origin_lon = mouse_lon - (lon_max - lon_min) / (self.size_x / x * pow(1.2, 0.5 * self.zoom[1]))
             if new_origin_lon <= lon_min:
                 new_origin_lon = lon_min
             elif new_origin_lon > lon_max - (lon_max - lon_min) * pow(1.2, -0.5 * self.zoom[1]):
                 new_origin_lon = lon_max - (lon_max - lon_min) * pow(1.2, -0.5 * self.zoom[1])
-            new_origin_lat = mouse_lat - (lat_max - lat_min) / (2 * pow(1.2, 0.5 * self.zoom[1]))
+            new_origin_lat = mouse_lat - (lat_max - lat_min) / (
+            self.size_y / (self.size_y - y) * pow(1.2, 0.5 * self.zoom[1]))
             if new_origin_lat <= lat_min:
                 new_origin_lat = lat_min
             elif new_origin_lat > lat_max - (lat_max - lat_min) * pow(1.2, -0.5 * self.zoom[1]):
@@ -315,14 +320,15 @@ class MapDisplay(QWidget):
             y = self.size_y / 2
             mouse_lon = x / self.size_x * (
             self.map.cross_list.farthest_node.lon - self.map.cross_list.origin.lon) + self.map.cross_list.origin.lon
-            mouse_lat = y / self.size_y * (
-            self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat) + self.map.cross_list.origin.lat
-            new_origin_lon = mouse_lon - (lon_max - lon_min) / (2 * pow(1.2, 0.5 * self.zoom[1]))
+            mouse_lat = self.map.cross_list.farthest_node.lat - y / self.size_y * (
+            self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat)
+            new_origin_lon = mouse_lon - (lon_max - lon_min) / (self.size_x / x * pow(1.2, 0.5 * self.zoom[1]))
             if new_origin_lon <= lon_min:
                 new_origin_lon = lon_min
             elif new_origin_lon > lon_max - (lon_max - lon_min) * pow(1.2, -0.5 * self.zoom[1]):
                 new_origin_lon = lon_max - (lon_max - lon_min) * pow(1.2, -0.5 * self.zoom[1])
-            new_origin_lat = mouse_lat - (lat_max - lat_min) / (2 * pow(1.2, 0.5 * self.zoom[1]))
+            new_origin_lat = mouse_lat - (lat_max - lat_min) / (
+            self.size_y / (self.size_y - y) * pow(1.2, 0.5 * self.zoom[1]))
             if new_origin_lat <= lat_min:
                 new_origin_lat = lat_min
             elif new_origin_lat > lat_max - (lat_max - lat_min) * pow(1.2, -0.5 * self.zoom[1]):
@@ -336,7 +342,6 @@ class MapDisplay(QWidget):
             self.map.cross_list.farthest_node.cartesian_coordinate(self.map.cross_list.origin)
             self.map.cross_list.cartesian_coordinate()
             self.update()
-
     # 显示区域左上角在原图中坐标
     def displayTopLeft(self):
         x = -self.top_left.x
@@ -352,4 +357,6 @@ class MapDisplay(QWidget):
     # 缩放比例
     def zoomRatio(self):
         return pow(1.2, 0.5 * self.zoom[1])
+
+    #def mark(self):
 
