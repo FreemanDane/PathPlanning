@@ -24,29 +24,6 @@ class MainWindow(QMainWindow):
         self.map.press_signal.connect(self.pinAdd)
         self.map.move_signal.connect(self.setPinChange)
 
-        #缩放按钮和指示条
-        self.plus_button = QPushButton(self.centralWidget)
-        self.plus_button.setGeometry(QRect(620, 600, 32, 32))
-        self.plus_button.setStyleSheet(\
-            "QPushButton{border: 0px;background-image:url(../data/icons/add/Add_Normal.png);}"\
-            "QPushButton:hover{border: 0px;background-image:url(../data/icons/add/Add_Hover.png);}" \
-            "QPushButton:pressed{border: 0px;background-image:url(../data/icons/add/Add_Pressed.png);}")
-        self.plus_button.clicked.connect(self.zoomIn)
-
-        self.minus_button = QPushButton(self.centralWidget)
-        self.minus_button.setGeometry(QRect(620, 750, 32, 32))
-        self.minus_button.setStyleSheet(\
-            "QPushButton{border: 0px;background-image:url(../data/icons/minus/Minus_Normal.png);}" \
-            "QPushButton:hover{border: 0px;background-image:url(../data/icons/minus/Minus_Hover.png);}" \
-            "QPushButton:pressed{border: 0px;background-image:url(../data/icons/minus/Minus_Pressed.png);}")
-        self.minus_button.clicked.connect(self.zoomOut)
-
-        self.zoom_bar = QSlider(self.centralWidget)
-        self.zoom_bar.setOrientation(Qt.Vertical)
-        self.zoom_bar.setGeometry(620, 641, 32, 100)
-        self.zoom_bar.setRange(0, 10)
-        self.zoom_bar.valueChanged.connect(self.applyZoomBarValue)
-
         #地图上指示起点和终点的大头针
         self.start_pin_pos = QPointF(0, 0)
         self.start_pin = MapPin(self.centralWidget)
@@ -165,6 +142,34 @@ class MainWindow(QMainWindow):
             self.h_layout_shortcuts.addWidget(button)
         self.shortcuts[0].clicked.connect(self.addCurrentLocation)
 
+        # 缩放按钮和指示条
+        self.shadow_effect = QGraphicsDropShadowEffect()
+        self.shadow_effect.setOffset(-5, 5)
+        self.shadow_effect.setColor(Qt.gray)
+        self.shadow_effect.setBlurRadius(8)
+
+        self.plus_button = QPushButton(self.centralWidget)
+        self.plus_button.setGeometry(QRect(620, 600, 32, 32))
+        self.plus_button.setStyleSheet( \
+            "QPushButton{border: 0px;background-image:url(../data/icons/add/Add_Normal.png);}" \
+            "QPushButton:hover{border: 0px;background-image:url(../data/icons/add/Add_Hover.png);}" \
+            "QPushButton:pressed{border: 0px;background-image:url(../data/icons/add/Add_Pressed.png);}")
+        self.plus_button.clicked.connect(self.zoomIn)
+
+        self.minus_button = QPushButton(self.centralWidget)
+        self.minus_button.setGeometry(QRect(620, 750, 32, 32))
+        self.minus_button.setStyleSheet( \
+            "QPushButton{border: 0px;background-image:url(../data/icons/minus/Minus_Normal.png);}" \
+            "QPushButton:hover{border: 0px;background-image:url(../data/icons/minus/Minus_Hover.png);}" \
+            "QPushButton:pressed{border: 0px;background-image:url(../data/icons/minus/Minus_Pressed.png);}")
+        self.minus_button.clicked.connect(self.zoomOut)
+
+        self.zoom_bar = QSlider(self.centralWidget)
+        self.zoom_bar.setOrientation(Qt.Vertical)
+        self.zoom_bar.setGeometry(620, 641, 32, 100)
+        self.zoom_bar.setRange(0, 50)
+        self.zoom_bar.setGraphicsEffect(self.shadow_effect)
+        self.zoom_bar.valueChanged.connect(self.applyZoomBarValue)
 
     def zoomIn(self):
         self.map.zoomIn()
