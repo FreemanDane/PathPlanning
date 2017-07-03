@@ -53,7 +53,7 @@ class map:
                     if name.find("银行") != -1 or name.find("同仁堂") != -1 or name.find("清华大学西门") != -1 \
                             or name.find("大石桥北") != -1 or name.find("圆明园") != -1:
                         continue
-                    if name == "北门":
+                    if name == "北门" or name == "五道口":
                         name = " "
                     for wy in self.ways:
                         try:
