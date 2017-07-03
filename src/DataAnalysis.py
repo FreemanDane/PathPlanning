@@ -50,7 +50,7 @@ class map:
             for knd in self.keynode:
                 try:
                     name = knd.attr['name']
-                    if name.find("银行") != -1:
+                    if name.find("银行") != -1 or name.find("同仁堂") != -1:
                         continue
                     for wy in self.ways:
                         try:
