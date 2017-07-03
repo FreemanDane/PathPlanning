@@ -1,5 +1,6 @@
 from src.draw import *
 from src.MapPin import *
+from src.GetCurrentLocation import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
@@ -68,13 +69,21 @@ class MainWindow(QMainWindow):
         #使用Layout进行布局
         self.bg = QLabel(self.centralWidget)
         self.bg.setPixmap(QPixmap("../data/icons/Background.png"))
-        self.bg.setGeometry(QRect(0, 0, 450, 100))
+        self.bg.setGeometry(QRect(0, 0, 450, 150))
 
-        self.h_layout_frame = QWidget(self.centralWidget)
-        self.h_layout_frame.setGeometry(QRect(0, 0, 450, 100))
+        self.search_frame = QWidget(self.centralWidget)
+        self.search_frame.setGeometry(QRect(0, 0, 450, 150))
 
-        self.h_layout = QHBoxLayout(self.h_layout_frame)
-        self.swap = QPushButton(self.h_layout_frame)
+        self.v_layout = QVBoxLayout(self.search_frame)
+        self.h_layout = QHBoxLayout(self.search_frame)
+        self.v_layout.addLayout(self.h_layout)
+        self.h_layout_shortcuts = QHBoxLayout(self.search_frame)
+        self.v_layout.addLayout(self.h_layout_shortcuts)
+        self.v_layout.setStretchFactor(self.h_layout, 2)
+        self.v_layout.setStretchFactor(self.h_layout_shortcuts, 1)
+
+        #上方输入栏
+        self.swap = QPushButton(self.search_frame)
         self.swap.setFixedSize(48, 48)
         self.swap.setStyleSheet( \
             "QPushButton{border: 0px;background-image:url(../data/icons/swap/Swap_Normal.png);}" \
@@ -82,9 +91,9 @@ class MainWindow(QMainWindow):
             "QPushButton:pressed{border: 0px;background-image:url(../data/icons/swap/Swap_Pressed.png);}")
         self.swap.clicked.connect(self.swapStartAndEnd)
         self.h_layout.addWidget(self.swap)
-        self.v_layout = QVBoxLayout(self.h_layout_frame)
-        self.h_layout.addLayout(self.v_layout)
-        self.search = QPushButton(self.h_layout_frame)
+        self.v_layout_input = QVBoxLayout(self.search_frame)
+        self.h_layout.addLayout(self.v_layout_input)
+        self.search = QPushButton(self.search_frame)
         self.search.setFixedSize(90, 42)
         self.search.setStyleSheet( \
             "QPushButton{border: 0px;background-image:url(../data/icons/search/Search_Normal.png);}" \
@@ -92,27 +101,30 @@ class MainWindow(QMainWindow):
             "QPushButton:pressed{border: 0px;background-image:url(../data/icons/search/Search_Pressed.png);}")
         self.h_layout.addWidget(self.search)
         self.h_layout.setStretchFactor(self.swap, 1)
-        self.h_layout.setStretchFactor(self.v_layout, 6)
+        self.h_layout.setStretchFactor(self.v_layout_input, 6)
         self.h_layout.setStretchFactor(self.search, 2)
 
-        self.h_layout_start = QHBoxLayout(self.h_layout_frame)
-        self.v_layout.addLayout(self.h_layout_start)
-        self.h_layout_end = QHBoxLayout(self.h_layout_frame)
-        self.v_layout.addLayout(self.h_layout_end)
+        self.h_layout_start = QHBoxLayout(self.search_frame)
+        self.v_layout_input.addLayout(self.h_layout_start)
+        self.h_layout_end = QHBoxLayout(self.search_frame)
+        self.v_layout_input.addLayout(self.h_layout_end)
 
+        #字体及颜色预设
         self.font = QFont("Microsoft YaHei", 14, 75)
+        self.font_small = QFont("Microsoft YaHei", 12, 75)
         self.palette = QPalette()
         self.palette.setColor(QPalette.WindowText, Qt.white)
+        self.palette.setColor(QPalette.ButtonText, Qt.white)
 
-        self.start_tag = QLabel(self.h_layout_frame)
+        self.start_tag = QLabel(self.search_frame)
         self.start_tag.setText("出发地：")
         self.start_tag.setFont(self.font)
         self.start_tag.setPalette(self.palette)
         self.h_layout_start.addWidget(self.start_tag)
-        self.start_input = QLineEdit(self.h_layout_frame)
-        self.start_input.setFont(self.font)
+        self.start_input = QLineEdit(self.search_frame)
+        self.start_input.setFont(self.font_small)
         self.h_layout_start.addWidget(self.start_input)
-        self.start_input_pin = MapPin(self.h_layout_frame)
+        self.start_input_pin = MapPin(self.search_frame)
         self.start_input_pin.isInInput = True
         self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
         self.start_input_pin.color = "Red"
@@ -120,21 +132,35 @@ class MainWindow(QMainWindow):
         self.start_input_pin.change_cursor.connect(self.changePinStatus)
         self.h_layout_start.addWidget(self.start_input_pin)
 
-        self.end_tag = QLabel(self.h_layout_frame)
+        self.end_tag = QLabel(self.search_frame)
         self.end_tag.setText("目的地：")
         self.end_tag.setFont(self.font)
         self.end_tag.setPalette(self.palette)
         self.h_layout_end.addWidget(self.end_tag)
-        self.end_input = QLineEdit(self.h_layout_frame)
-        self.end_input.setFont(self.font)
+        self.end_input = QLineEdit(self.search_frame)
+        self.end_input.setFont(self.font_small)
         self.h_layout_end.addWidget(self.end_input)
-        self.end_input_pin = MapPin(self.h_layout_frame)
+        self.end_input_pin = MapPin(self.search_frame)
         self.end_input_pin.isInInput = True
         self.end_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Green.png"))
         self.end_input_pin.color = "Green"
         self.end_input_pin.change_cursor.connect(self.changeCursorPin)
         self.end_input_pin.change_cursor.connect(self.changePinStatus)
         self.h_layout_end.addWidget(self.end_input_pin)
+
+        #下方快捷按钮栏
+        self.shortcuts = []
+        self.shortcuts_captions = ["我的位置", "我要吃饭", "我要自习", "我要回寝"]
+        for i in range(0, len(self.shortcuts_captions)):
+            button = QPushButton(self.search_frame)
+            button.setText(self.shortcuts_captions[i])
+            button.setFont(self.font)
+            button.setPalette(self.palette)
+            button.setFlat(True)
+            self.shortcuts.append(button)
+            self.h_layout_shortcuts.addWidget(button)
+        self.shortcuts[0].clicked.connect(self.addCurrentLocation)
+
 
     def zoomIn(self):
         self.map.zoomIn()
@@ -172,10 +198,12 @@ class MainWindow(QMainWindow):
             self.isPin = "None"
             self.start_input_pin.isDisplay = True
             self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
+            self.start_input.clear()
         elif color == "GreenBlank":
             self.isPin = "None"
             self.end_input_pin.isDisplay = True
             self.end_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Green.png"))
+            self.end_input.clear()
 
     def pinAdd(self, x, y):
         if self.isPin == "Red":
@@ -184,12 +212,18 @@ class MainWindow(QMainWindow):
             self.start_pin.show()
             self.setCursor(Qt.ArrowCursor)
             self.isPin = "None"
+            mouse_coordinate = self.map.convertScreenToCoordinates(x, y)
+            self.start_input.setText(
+                "("+ str(round(mouse_coordinate[1], 3))+ "N,"+ str(round(mouse_coordinate[0], 3)) + "E)")
         elif self.isPin == "Green":
             self.end_pin.setGeometry(QRect(x - 12, y - 12, 24, 24))
             self.end_pin.isDisplay = True
             self.end_pin.show()
             self.setCursor(Qt.ArrowCursor)
             self.isPin = "None"
+            mouse_coordinate = self.map.convertScreenToCoordinates(x, y)
+            self.end_input.setText(
+                "(" + str(round(mouse_coordinate[1], 3)) + "N," + str(round(mouse_coordinate[0], 3)) + "E)")
 
     def swapStartAndEnd(self):
         text = self.start_input.text()
@@ -199,22 +233,34 @@ class MainWindow(QMainWindow):
             self.start_pin.isDisplay == False
             self.start_pin.hide()
             self.changeCursorPin("RedBlank")
-            self.changePinStatus("RedBlank")
+            self.isPin = "None"
+            self.start_input_pin.isDisplay = True
+            self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
         if self.end_pin.isDisplay == True:
             self.end_pin.isDisplay == False
             self.end_pin.hide()
             self.changeCursorPin("GreenBlank")
-            self.changePinStatus("GreenBlank")
+            self.isPin = "None"
+            self.end_input_pin.isDisplay = True
+            self.end_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Green.png"))
 
+    def addCurrentLocation(self):
+        curLocation = getLocation()
+        self.start_input.setText(
+            "(" + str(round(curLocation[1], 3)) + "N," + str(round(curLocation[0], 3)) + "E)")
+        self.start_input_pin.isDisplay = True
+        self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
+        self.start_pin.isDisplay = False
+        self.start_pin.hide()
 
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_D and event.modifiers() == Qt.ControlModifier:
-            if self.h_layout_frame.isHidden() == True:
-                self.h_layout_frame.show()
+            if self.search_frame.isHidden() == True:
+                self.search_frame.show()
                 self.bg.show()
             else:
-                self.h_layout_frame.hide()
+                self.search_frame.hide()
                 self.bg.hide()
 
 
