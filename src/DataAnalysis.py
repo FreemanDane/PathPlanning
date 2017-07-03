@@ -46,10 +46,35 @@ class map:
                 length = len(new_way.point)
                 for i in range(length - 1):
                     self.cross_list.add_edge(self.cross_list.get_node(new_way.point[i]['ref']),self.cross_list.get_node( new_way.point[i + 1]['ref']))
+            self.cross_list.cartesian_coordinate()
             for knd in self.keynode:
                 try:
-                    #print(knd)
                     name = knd.attr['name']
+                    if name.find("银行") != -1:
+                        continue
+                    for wy in self.ways:
+                        try:
+                            x = wy.attr['highway']
+                            continue
+                        except KeyError:
+                            pass
+                        try:
+                            x = wy.attr['name']
+                            continue
+                        except KeyError:
+                            pass
+                        length = len(wy.point) - 1
+                        nCross = 0
+                        for i in range(length):
+                            pt1 = self.cross_list.get_node(wy.point[i]['ref'])
+                            pt2 = self.cross_list.get_node(wy.point[i + 1]['ref'])
+                            if pt1.y == pt2.y or knd.y < min([pt1.y, pt2.y]) or knd.y > max([pt1.y, pt2.y]):
+                                continue
+                            x = (knd.y - pt1.y) * (pt2.x - pt1.x) / (pt2.y - pt1.y) + pt1.x
+                            if x > knd.x:
+                                nCross += 1
+                        if nCross % 2 == 1:
+                            wy.attr['name'] = knd.attr['name']
                 except KeyError:
                     continue
 

@@ -12,7 +12,7 @@ class MapDisplay(QWidget):
         super(MapDisplay, self).__init__(parent)
         print('Loading Data...')
         self.map = DataAnalysis.map(filename)
-        self.map.cross_list.cartesian_coordinate()
+        #self.map.cross_list.cartesian_coordinate()
         print('Total {} nodes, {} ways.'.format(len(self.map.cross_list.nodes), len(self.map.ways)))
         self.size_x = 680
         self.size_y = 830
@@ -378,7 +378,7 @@ class MapDisplay(QWidget):
                 l = rect[2] * pow(1.2, 0.5 * self.zoom[1] + 1) / (len(name))
                 if l < 5 or rect[3] * pow(1.2, 0.5 * self.zoom[1]) < 2 * l:
                     continue
-                if l > 50:
+                if l > 25:
                     continue
                 self.painter.setPen(QColor(0,0,0))
                 self.painter.setFont(QFont('Microsoft Yahei', l))
