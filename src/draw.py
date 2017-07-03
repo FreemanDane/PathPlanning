@@ -2,7 +2,7 @@ from src import DataAnalysis
 from src.CrossList import node, lat_min, lat_max, lon_max, lon_min
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton
 from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon
-from PyQt5.QtCore import QPoint,QRect, Qt, pyqtSignal
+from PyQt5.QtCore import QPoint,QRect, Qt, pyqtSignal, QPointF
 import sys
 
 class MapDisplay(QWidget):
@@ -189,6 +189,7 @@ class MapDisplay(QWidget):
         rect = QRect(0,0,1000,1000)
         self.painter.fillRect(rect, QColor(244, 241, 219))
         self.map_render()
+        self.mark()
         self.painter.end()
 
     # 鼠标滚轮事件
@@ -364,5 +365,25 @@ class MapDisplay(QWidget):
     def zoomRatio(self):
         return pow(1.2, 0.5 * self.zoom[1])
 
-    #def mark(self):
-
+    def mark(self):
+        for wy in self.map.ways:
+            try:
+                name = wy.attr['name']
+                try:
+                    x = wy.attr['highway']
+                    continue
+                except KeyError:
+                    pass
+                rect = self.map.way_rect(wy)
+                l = rect[2] * pow(1.2, 0.5 * self.zoom[1] + 1) / (len(name))
+                if l < 5 or rect[3] * pow(1.2, 0.5 * self.zoom[1]) < 2 * l:
+                    continue
+                if l > 50:
+                    continue
+                self.painter.setPen(QColor(0,0,0))
+                self.painter.setFont(QFont('Microsoft Yahei', l))
+                height = self.map.cross_list.farthest_node.y
+                weight = self.map.cross_list.farthest_node.x
+                self.painter.drawText(rect[0] / weight * self.size_x,self.size_y - (rect[1] + rect[3]) / height * self.size_y,rect[2] / weight * self.size_x, rect[3] / height * self.size_y,Qt.AlignCenter, name)
+            except KeyError:
+                continue

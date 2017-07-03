@@ -48,7 +48,16 @@ class map:
                     self.cross_list.add_edge(self.cross_list.get_node(new_way.point[i]['ref']),self.cross_list.get_node( new_way.point[i + 1]['ref']))
 
     def way_rect(self, wy):
-        mix_x = min_y = 10000
+        min_x = min_y = 10000
         max_x = max_y = 0
         for nd in wy.point:
             pt = self.cross_list.get_node(nd['ref'])
+            if min_x > pt.x:
+                min_x = pt.x
+            if min_y > pt.y:
+                min_y = pt.y
+            if max_x < pt.x:
+                max_x = pt.x
+            if max_y < pt.y:
+                max_y = pt.y
+        return min_x, min_y, max_x - min_x, max_y - min_y
