@@ -1,5 +1,5 @@
-import CrossList
-import DataAnalysis
+from src.CrossList import *
+from src.DataAnalysis import *
 
 
 # 调用函数：find_best_way(node_data, start, end)
@@ -78,9 +78,9 @@ def find_best_way(node_data, start, end):
             p = the_best_path[p][1]
         way_list.append(start)
         way_list.reverse()
-        for final_node in way_list:
-            print(final_node.id)
-        print(the_best_path[end][0])
+        #for final_node in way_list:
+            #print(final_node.id)
+        #print(the_best_path[end][0])
         return way_list, the_best_path[end][0]
     else:
         print("No way from start to destination")
@@ -155,8 +155,11 @@ def find_the_closest_point(map, node):
     closest_node = None
     distance = 100000000
     for way in map.ways:
-        for clo_node in way.point:
-            temp_distance = node.distance(clo_node)
+        for ref_node in way.point:
+            nid = ref_node.attrs.get('ref')
+            clo_node = map.cross_list.nodes.get(nid)
+            if clo_node.is_highway is 1:
+                temp_distance = node.distance(clo_node)
             if temp_distance < distance:
                 closest_node = clo_node
                 distance = temp_distance
@@ -207,8 +210,8 @@ def search_by_name(map, start_name, end_name):＃待修改
 
 
 def search_by_node(map, start_lat, start_lon, end_lat, end_lon):
-    start_node = CrossList.node(-1, start_lat, start_lon)
-    end_node = CrossList.node(-1, end_lat, end_lon)
+    start_node = node(-1, start_lat, start_lon)
+    end_node = node(-1, end_lat, end_lon)
     clo_start_node, start_distance = find_the_closest_point(map, start_node)
     clo_end_node, end_distance = find_the_closest_point(map, end_node)
     best_way_list, best_way_distance = find_best_way(map.cross_list, clo_start_node, clo_end_node)

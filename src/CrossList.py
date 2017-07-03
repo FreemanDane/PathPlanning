@@ -7,7 +7,7 @@ class node:
     '''
     定义图中的节点
     '''
-    def __init__(self, nid, lat, lon):
+    def __init__(self, nid, lat, lon, is_highway=0):
         self.id = nid #节点的id
         self.lat = lat #节点的纬度
         self.lon = lon #节点的经度
@@ -16,6 +16,7 @@ class node:
         self.y = 0
         self.attr = {} #节点的额外属性
         self.way = [] #标定的是该节点属于哪一个way（考虑到节点可能属于多个way ，便使用列表）
+        self.is_highway = is_highway #确定是不是道路
 
     def distance(self, other):
         #计算两节点的距离
@@ -33,10 +34,12 @@ class edge:
     '''
     定义十字链表中的边
     '''
-    def __init__(self, node1, node2):
-        self.ivex = node1 #边的第一个节点
-        self.jvex = node2 #边的第二个节点
-        self.length = node1.distance(node2) #边长
+
+    def __init__(self, node1, node2, can_ride=0):
+        self.ivex = node1  # 边的第一个节点
+        self.jvex = node2  # 边的第二个节点
+        self.length = node1.distance(node2)  # 边长
+        self.can_ride = can_ride  # 表示这条边能不能骑自行车
 
 lat_min = 39.9905
 lon_min = 116.3086
@@ -75,9 +78,9 @@ class crosslist:
             self.max_x = self.farthest_node.x
             self.max_y = self.farthest_node.y
 
-    def add_edge(self, node1, node2):
-        #为节点node1和node2添加一条边
-        new_edge = edge(node1, node2)
+    def add_edge(self, node1, node2, ride=0):
+        # 为节点node1和node2添加一条边
+        new_edge = edge(node1, node2, ride)
         node1.edges.append(new_edge)
         node2.edges.append(new_edge)
         self.edges.append(new_edge)

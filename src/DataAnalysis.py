@@ -39,13 +39,16 @@ class map:
                     new_way.point.append(nd)
                 for tag in tags:
                     new_way.attr[tag['k']] = tag['v']
-                #for points in new_way.point: #以下几行在每一条
-                #    if new_way not in points.way: #way的节点中添加way的id
-                #        points.way.append(new_way) #方便届时查询通行路段是否可以通行自行车
                 self.ways.append(new_way)
                 length = len(new_way.point)
-                for i in range(length - 1):
-                    self.cross_list.add_edge(self.cross_list.get_node(new_way.point[i]['ref']),self.cross_list.get_node( new_way.point[i + 1]['ref']))
+                if new_way.attr.get('access') == 'permissive':
+                    for i in range(length - 1):
+                        self.cross_list.add_edge(self.cross_list.get_node(new_way.point[i]['ref']),
+                                                 self.cross_list.get_node(new_way.point[i + 1]['ref']), 1)
+                else:
+                    for i in range(length - 1):
+                        self.cross_list.add_edge(self.cross_list.get_node(new_way.point[i]['ref']),
+                                                 self.cross_list.get_node(new_way.point[i + 1]['ref']))
             self.cross_list.cartesian_coordinate()
             for knd in self.keynode:
                 try:
@@ -80,6 +83,13 @@ class map:
                             wy.attr['name'] = name
                 except KeyError:
                     continue
+        for wy in self.ways:
+            if 'highway' in wy.attr.keys():
+                for nd in wy.point:
+                    nid = nd.attrs.get('ref')
+                    clo_node = self.cross_list.nodes.get(nid)
+                    clo_node.is_highway = 1
+
 
     def way_rect(self, wy):
         min_x = min_y = 10000
