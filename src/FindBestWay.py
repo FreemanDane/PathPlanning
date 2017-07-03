@@ -1,9 +1,11 @@
 import CrossList
 import DataAnalysis
-#调用函数：find_best_way(node_data, start, end)
-#node data为创建的十字链表，start开始节点类型为node，end为结束节点类型为node
-#函数返回两个变量，第一个为一个从start到end的路径上所有节点的列表，第二个为整个路径的权值
-#若无通通路，返回：None，-1
+
+
+# 调用函数：find_best_way(node_data, start, end)
+# node data为创建的十字链表，start开始节点类型为node，end为结束节点类型为node
+# 函数返回两个变量，第一个为一个从start到end的路径上所有节点的列表，第二个为整个路径的权值
+# 若无通通路，返回：None，-1
 def dijkstra(node_data, start, end, waiting, result):
     if start is not None:
         if start.id == end.id:
@@ -32,12 +34,12 @@ def dijkstra(node_data, start, end, waiting, result):
             key_node = new_waiting_node[0]
             value_node = new_waiting_node[1]
             if key_node not in waiting.keys():
-                waiting[key_node] = [value_node, start]#权值＋前驱节点
+                waiting[key_node] = [value_node, start]  # 权值＋前驱节点
             else:
                 if waiting[key_node][0] > value_node:
                     waiting[key_node][0] = value_node
                     waiting[key_node][1] = start
-            # 以上：将这些点集加入到待定集合中
+                    # 以上：将这些点集加入到待定集合中
     add_node = None
     add_value = -1
     if waiting is None:
@@ -84,7 +86,8 @@ def find_best_way(node_data, start, end):
         print("No way from start to destination")
         return None, -1
 
-def dijkstra2 (node_data, start, end, waiting, result):
+
+'''def dijkstra2 (node_data, start, end, waiting, result):
     if start is not None:
         if start.id == end.id:
             result = {}
@@ -100,37 +103,13 @@ def dijkstra2 (node_data, start, end, waiting, result):
         for edge in temp_road_list:
             if edge.ivex.id == start.id and edge.jvex not in result.keys():
                 new_node = edge.jvex
-                father_way = None
-                is_in_the_same_way = 0;#用来判断两个节点是否在一个way里面
-                for new_nd_way in new_node.way:
-                    for start_nd_way in start.way:
-                        if new_nd_way.id == start_nd_way.id:
-                            is_in_the_same_way = 1
-                            father_way = new_nd_way
-                            break
-                is_the_road_for_bike = 0
-                if is_in_the_same_way == 1:
-                    if father_way.attr.get("access") == "permissive":
-                        is_the_road_for_bike = 1
-                if is_the_road_for_bike == 1:
+                if edge.can_ride is 1:
                     new_node_value = result[start][0]
                 else:
                     new_node_value = result[start][0] + edge.length
             elif edge.jvex.id == start.id and edge.ivex not in result.keys():
                 new_node = edge.ivex
-                father_way = None
-                is_in_the_same_way = 0;  # 用来判断两个节点是否在一个way里面
-                for new_nd_way in new_node.way:
-                    for start_nd_way in start.way:
-                        if new_nd_way.id == start_nd_way.id:
-                            is_in_the_same_way = 1
-                            father_way = new_nd_way
-                            break
-                is_the_road_for_bike = 0
-                if is_in_the_same_way == 1:
-                    if father_way.attr.get("access") == "permissive":
-                        is_the_road_for_bike = 1
-                if is_the_road_for_bike == 1:
+                if edge.can_ride is 1:
                     new_node_value = result[start][0]
                 else:
                     new_node_value = result[start][0] + edge.length
@@ -169,9 +148,10 @@ def find_best_walking_way(node_data, start, end):
         return way_list, the_best_path[end][0]
     else:
         print("No way from start to destination")
-        return None, -1
+        return None, -1'''
 
-def find_the_closest_point (map,node):
+
+def find_the_closest_point(map, node):
     closest_node = None
     distance = 100000000
     for way in map.ways:
@@ -180,9 +160,10 @@ def find_the_closest_point (map,node):
             if temp_distance < distance:
                 closest_node = clo_node
                 distance = temp_distance
-    return  closest_node, distance
+    return closest_node, distance
 
-def find_the_name_of_points (map, way_name):
+
+'''def find_the_name_of_points (map, way_name):#需要修改
     the_way = None
     for ways in map.ways:
         if ways.attr.get('name') == way_name:
@@ -204,7 +185,7 @@ def find_the_name_of_points (map, way_name):
     closest_node, distance = find_the_closest_point(map, ave_node)
     return closest_node,distance
 
-def search_by_name(map, start_name, end_name):
+def search_by_name(map, start_name, end_name):＃待修改
     start_node, start_distance = find_the_name_of_points(map, start_name)
     end_node, end_distance = find_the_name_of_points(map, end_name)
     if start_distance is -1:
@@ -222,14 +203,15 @@ def search_by_name(map, start_name, end_name):
         best_way_list.insert(0,start_node)
         best_way_distance += start_distance
         best_way_distance += end_distance
-        return best_way_list, best_way_distance
+        return best_way_list, best_way_distance'''
 
-def search_by_node(map,start_lat,start_lon,end_lat,end_lon):
-    start_node = CrossList.node(-1,start_lat,start_lon)
-    end_node = CrossList.node(-1,end_lat,end_lon)
-    clo_start_node ,start_distance= find_the_closest_point(map,start_node)
+
+def search_by_node(map, start_lat, start_lon, end_lat, end_lon):
+    start_node = CrossList.node(-1, start_lat, start_lon)
+    end_node = CrossList.node(-1, end_lat, end_lon)
+    clo_start_node, start_distance = find_the_closest_point(map, start_node)
     clo_end_node, end_distance = find_the_closest_point(map, end_node)
-    best_way_list, best_way_distance = find_best_way(map.cross_list,clo_start_node,clo_end_node)
+    best_way_list, best_way_distance = find_best_way(map.cross_list, clo_start_node, clo_end_node)
     if best_way_distance is -1:
         print("No Way!")
         return None, -1
