@@ -7,6 +7,7 @@ import sys
 
 class MapDisplay(QWidget):
     zoom_signal = pyqtSignal()
+    press_signal = pyqtSignal(int, int)
     def __init__(self, filename, parent = None):
         super(MapDisplay, self).__init__(parent)
         print('Loading Data...')
@@ -240,6 +241,7 @@ class MapDisplay(QWidget):
         self.min_lon_fixed = self.map.cross_list.origin.lon
         self.max_lat_fixed = self.map.cross_list.farthest_node.lat
         self.min_lat_fixed = self.map.cross_list.origin.lat
+        self.press_signal.emit(int(x), int(y))
 
     def mouseReleaseEvent(self, event):
         self.is_press = 0

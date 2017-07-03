@@ -18,3 +18,4 @@ class MapPin(QLabel):
                 self.change_cursor.emit(self.color)
             else:
                 self.hide()
+                self.change_cursor.emit(self.color + "Blank")
