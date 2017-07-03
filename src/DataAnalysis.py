@@ -1,6 +1,6 @@
 # coding=utf-8
 from bs4 import BeautifulSoup
-from CrossList import *
+from src.CrossList import *
 
 class way:
     '''
@@ -26,11 +26,11 @@ class map:
                 tags = n.find_all('tag')
                 for tag in tags:
                     try:
-                        n.attr[tag['k']] = tag['v']
+                        self.cross_list.get_node(n['id']).attr[tag['k']] = tag['v']
                     except:
                         continue
                 if len(tags) != 0:
-                    self.keynode.append(n)
+                    self.keynode.append(self.cross_list.get_node(n['id']))
             for e in soup.find_all('way'):
                 new_way = way(e['id'])
                 nds = e.find_all('nd')
@@ -46,6 +46,12 @@ class map:
                 length = len(new_way.point)
                 for i in range(length - 1):
                     self.cross_list.add_edge(self.cross_list.get_node(new_way.point[i]['ref']),self.cross_list.get_node( new_way.point[i + 1]['ref']))
+            for knd in self.keynode:
+                try:
+                    #print(knd)
+                    name = knd.attr['name']
+                except KeyError:
+                    continue
 
     def way_rect(self, wy):
         min_x = min_y = 10000
