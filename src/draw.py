@@ -272,10 +272,10 @@ class MapDisplay(QWidget):
             self.map.cross_list.cartesian_coordinate()
             self.update()
     # 坐标变换函数
-    def convertScreenToImage(self, point):
-        image_x = point.x() / pow(1.2, 0.5 * self.zoom[1]) - self.top_left.x
-        image_y = point.y() / pow(1.2, 0.5 * self.zoom[1]) - self.top_left.y
-        return QPoint(image_x, image_y)
+    def convertScreenToCoordinates(self, x, y):
+        mouse_lon = x / self.size_x * (self.map.cross_list.farthest_node.lon - self.map.cross_list.origin.lon) + self.map.cross_list.origin.lon
+        mouse_lat = self.map.cross_list.farthest_node.lat - y / self.size_y * (self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat)
+        return [mouse_lon, mouse_lat]
 
     # 放大函数
     def zoomIn(self):
