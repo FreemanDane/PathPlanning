@@ -375,11 +375,11 @@ class MapDisplay(QWidget):
                 except KeyError:
                     pass
                 rect = self.map.way_rect(wy)
-                l = rect[2] * pow(1.2, 0.5 * self.zoom[1] + 1) / (len(name))
+                #l = rect[2] * pow(1.2, 0.5 * self.zoom[1] + 1) / (len(name))
+                l = 6
                 if name == "篮球场":
-                    l /= 2
                     rect = (rect[0], rect[1],rect[2] / 2, rect[3])
-                if l < 5 or rect[3] * pow(1.2, 0.5 * self.zoom[1] + 1) < l:
+                if l > rect[2] * pow(1.2, 0.5 * self.zoom[1] + 1) / (len(name)) or rect[3] * pow(1.2, 0.5 * self.zoom[1] + 1) < l:
                     continue
                 if l > 25:
                     continue
