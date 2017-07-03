@@ -20,7 +20,9 @@ class MainWindow(QMainWindow):
         self.map.setGeometry(QRect(0, 0, 680, 830))
         self.map.show()
         self.map.zoom_signal.connect(self.setZoomBarValue)
+        self.map.zoom_signal.connect(self.setPinChange)
         self.map.press_signal.connect(self.pinAdd)
+        self.map.move_signal.connect(self.setPinChange)
 
         #缩放按钮和指示条
         self.plus_button = QPushButton(self.centralWidget)
@@ -46,6 +48,7 @@ class MainWindow(QMainWindow):
         self.zoom_bar.valueChanged.connect(self.applyZoomBarValue)
 
         #地图上指示起点和终点的大头针
+        self.start_pin_pos = QPointF(0, 0)
         self.start_pin = MapPin(self.centralWidget)
         self.start_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
         self.start_pin.setGeometry(QRect(0, 0, 24, 24))
@@ -54,6 +57,7 @@ class MainWindow(QMainWindow):
         self.start_pin.change_cursor.connect(self.changeCursorPin)
         self.start_pin.change_cursor.connect(self.changePinStatus)
 
+        self.end_pin_pos = QPointF(0, 0)
         self.end_pin = MapPin(self.centralWidget)
         self.end_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Green.png"))
         self.end_pin.setGeometry(QRect(0, 0, 24, 24))
@@ -150,7 +154,7 @@ class MainWindow(QMainWindow):
 
         #下方快捷按钮栏
         self.shortcuts = []
-        self.shortcuts_captions = ["我的位置", "我要吃饭", "我要自习", "我要回寝"]
+        self.shortcuts_captions = ["我的位置", "我要吃饭", "我要自习", "我要运动", "我要约会"]
         for i in range(0, len(self.shortcuts_captions)):
             button = QPushButton(self.search_frame)
             button.setText(self.shortcuts_captions[i])
@@ -178,6 +182,14 @@ class MainWindow(QMainWindow):
         elif self.zoom_bar.value() < self.map.zoom[1]:
             for i in range(self.zoom_bar.value(), int(self.map.zoom[1])):
                 self.map.zoomOut()
+
+    def setPinChange(self):
+        if self.start_pin.isDisplay == True:
+            screen_pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
+            self.start_pin.setGeometry(screen_pos[0] - 12, screen_pos[1] - 24, 24, 24)
+        if self.end_pin.isDisplay == True:
+            screen_pos = self.map.convertCoordinatesToScreen(self.end_pin_pos.x(), self.end_pin_pos.y())
+            self.end_pin.setGeometry(screen_pos[0] - 12, screen_pos[1] - 24, 24, 24)
 
     def changeCursorPin(self, color):
         if color == "Red":
@@ -212,7 +224,8 @@ class MainWindow(QMainWindow):
             self.start_pin.show()
             self.setCursor(Qt.ArrowCursor)
             self.isPin = "None"
-            mouse_coordinate = self.map.convertScreenToCoordinates(x, y)
+            mouse_coordinate = self.map.convertScreenToCoordinates(x, y + 12)
+            self.start_pin_pos = QPointF(mouse_coordinate[0], mouse_coordinate[1])
             self.start_input.setText(
                 "("+ str(round(mouse_coordinate[1], 3))+ "N,"+ str(round(mouse_coordinate[0], 3)) + "E)")
         elif self.isPin == "Green":
@@ -221,7 +234,8 @@ class MainWindow(QMainWindow):
             self.end_pin.show()
             self.setCursor(Qt.ArrowCursor)
             self.isPin = "None"
-            mouse_coordinate = self.map.convertScreenToCoordinates(x, y)
+            mouse_coordinate = self.map.convertScreenToCoordinates(x, y + 12)
+            self.end_pin_pos = QPointF(mouse_coordinate[0], mouse_coordinate[1])
             self.end_input.setText(
                 "(" + str(round(mouse_coordinate[1], 3)) + "N," + str(round(mouse_coordinate[0], 3)) + "E)")
 

@@ -8,6 +8,7 @@ import sys
 class MapDisplay(QWidget):
     zoom_signal = pyqtSignal()
     press_signal = pyqtSignal(int, int)
+    move_signal = pyqtSignal()
     def __init__(self, filename, parent = None):
         super(MapDisplay, self).__init__(parent)
         print('Loading Data...')
@@ -272,11 +273,16 @@ class MapDisplay(QWidget):
             self.map.cross_list.farthest_node.cartesian_coordinate(self.map.cross_list.origin)
             self.map.cross_list.cartesian_coordinate()
             self.update()
+            self.move_signal.emit()
     # 坐标变换函数
     def convertScreenToCoordinates(self, x, y):
         mouse_lon = x / self.size_x * (self.map.cross_list.farthest_node.lon - self.map.cross_list.origin.lon) + self.map.cross_list.origin.lon
         mouse_lat = self.map.cross_list.farthest_node.lat - y / self.size_y * (self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat)
         return [mouse_lon, mouse_lat]
+    def convertCoordinatesToScreen(self, lon, lat):
+        x = (lon - self.map.cross_list.origin.lon) / (self.map.cross_list.farthest_node.lon - self.map.cross_list.origin.lon) * self.size_x
+        y = (self.map.cross_list.farthest_node.lat - lat) / (self.map.cross_list.farthest_node.lat - self.map.cross_list.origin.lat) * self.size_y
+        return [x, y]
 
     # 放大函数
     def zoomIn(self):
