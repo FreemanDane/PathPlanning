@@ -51,8 +51,10 @@ class map:
                 try:
                     name = knd.attr['name']
                     if name.find("银行") != -1 or name.find("同仁堂") != -1 or name.find("清华大学西门") != -1 \
-                            or name.find("大石桥北") != -1 or name.find("圆明园") != -1 or name.find("北门") != -1:
+                            or name.find("大石桥北") != -1 or name.find("圆明园") != -1:
                         continue
+                    if name == "北门":
+                        name = " "
                     for wy in self.ways:
                         try:
                             x = wy.attr['highway']
@@ -75,7 +77,7 @@ class map:
                             if x > knd.x:
                                 nCross += 1
                         if nCross % 2 == 1:
-                            wy.attr['name'] = knd.attr['name']
+                            wy.attr['name'] = name
                 except KeyError:
                     continue
 
