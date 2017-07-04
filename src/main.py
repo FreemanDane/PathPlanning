@@ -206,17 +206,14 @@ class MainWindow(QMainWindow):
                 self.map.zoomOut()
 
     def setPinChange(self):
-        self.map.show_path = False
         if self.start_pin.isDisplay == True:
             screen_pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
             self.start_pin.setGeometry(screen_pos[0] - 12, screen_pos[1] - 24, 24, 24)
         if self.end_pin.isDisplay == True:
             screen_pos = self.map.convertCoordinatesToScreen(self.end_pin_pos.x(), self.end_pin_pos.y())
             self.end_pin.setGeometry(screen_pos[0] - 12, screen_pos[1] - 24, 24, 24)
-        self.map.update()
 
     def changeCursorPin(self, color):
-        self.map.show_path = False
         if color == "Red":
             cursor = QCursor(QPixmap("../data/icons/pin/Pin_Red.png"))
             self.setCursor(cursor)
@@ -225,7 +222,6 @@ class MainWindow(QMainWindow):
             self.setCursor(cursor)
         else :
             self.setCursor(Qt.ArrowCursor)
-        self.map.update()
 
     def changePinStatus(self, color):
         self.map.show_path = False
