@@ -181,7 +181,7 @@ def find_the_closest_point(map, node):
     return closest_node, distance
 
 
-def find_the_name_of_points(map, way_name):#需要修改
+def find_the_name_of_points(map, way_name):#找到离去的地方最近的点
     the_way = way(-1)
     for ways in map.ways:
         if 'name' in ways.attr.keys():
@@ -191,8 +191,7 @@ def find_the_name_of_points(map, way_name):#需要修改
     if the_way.id is -1:
         for keynd in map.keynode:
             if 'name' in keynd.attr.keys() and keynd.attr.get('name') is way_name:
-                closest_node, distance = find_the_closest_point(map, keynd)
-                return closest_node, distance
+                return keynd
         print("No place called this!")
         return None, -1
     lat = 0
@@ -207,12 +206,13 @@ def find_the_name_of_points(map, way_name):#需要修改
     ave_lon = lon / nd_num
     ave_nid = -1
     ave_node = node(ave_nid,ave_lat, ave_lon)
-    closest_node, distance = find_the_closest_point(map, ave_node)
-    return closest_node,distance
+    return ave_node
 
 def search_by_name(map, start_name, end_name):
-    start_node, start_distance = find_the_name_of_points(map, start_name)
-    end_node, end_distance = find_the_name_of_points(map, end_name)
+    true_start_node = find_the_name_of_points(map, start_name)
+    start_node, start_distance = find_the_closest_point(map, true_start_node)
+    true_end_node = find_the_name_of_points(map, end_name)
+    end_node, end_distance = find_the_closest_point(map, true_end_node)
     if start_distance is -1:
         print('No name called ' , start_name)
         return None, -1
@@ -225,7 +225,9 @@ def search_by_name(map, start_name, end_name):
             print("No Way!")
             return None, -1
         best_way_list.append(end_node)
+        best_way_list.append(true_end_node)
         best_way_list.insert(0, start_node)
+        best_way_list.insert(0,true_start_node)
         best_way_distance += start_distance
         best_way_distance += end_distance
         return best_way_list, best_way_distance
