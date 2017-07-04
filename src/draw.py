@@ -382,6 +382,11 @@ class MapDisplay(QWidget):
                     continue
                 except KeyError:
                     pass
+                try:
+                    x = wy.attr['waterway']
+                    continue
+                except KeyError:
+                    pass
                 rect = self.map.way_rect(wy)
                 #l = rect[2] * pow(self.zoom_ratio, 0.5 * self.zoom[1] + 1) / (len(name))
                 l = 10

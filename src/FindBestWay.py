@@ -166,47 +166,54 @@ def find_the_closest_point(map, node):
     return closest_node, distance
 
 
-'''def find_the_name_of_points (map, way_name):#需要修改
-    the_way = None
+def find_the_name_of_points(map, way_name):#需要修改
+    the_way = way(-1)
     for ways in map.ways:
-        if ways.attr.get('name') == way_name:
-            the_way = ways
-            break
-    if the_way is None:
+        if 'name' in ways.attr.keys():
+            if ways.attr.get('name') == way_name:
+                the_way = ways
+                break
+    if the_way.id is -1:
+        for keynd in map.keynode:
+            if 'name' in keynd.attr.keys() and keynd.attr.get('name') is way_name:
+                closest_node, distance = find_the_closest_point(map, keynd)
+                return closest_node, distance
         print("No place called this!")
         return None, -1
     lat = 0
     lon = 0
     for way_node in the_way.point:
-        lat += way_node.lat
-        lon += way_node.lon
+        nid = way_node.attrs.get('ref')
+        clo_node = map.cross_list.nodes.get(nid)
+        lat += clo_node.lat
+        lon += clo_node.lon
     nd_num = len(the_way.point)
     ave_lat = lat / nd_num
     ave_lon = lon / nd_num
     ave_nid = -1
-    ave_node = CrossList.node(ave_nid,ave_lat, ave_lon)
+    ave_node = node(ave_nid,ave_lat, ave_lon)
     closest_node, distance = find_the_closest_point(map, ave_node)
     return closest_node,distance
 
-def search_by_name(map, start_name, end_name):＃待修改
+def search_by_name(map, start_name, end_name):
     start_node, start_distance = find_the_name_of_points(map, start_name)
     end_node, end_distance = find_the_name_of_points(map, end_name)
     if start_distance is -1:
         print('No name called ' , start_name)
-        return None, 0
+        return None, -1
     elif end_distance is -1:
         print('No name called ', end_name)
-        return None, 0
+        return None, -1
     else:
-        best_way_list, best_way_distance = find_best_way(map.cross_list,start_node, end_node)
+        best_way_list, best_way_distance = find_best_way(map.cross_list, start_node, end_node)
         if best_way_distance is -1:
             print("No Way!")
             return None, -1
         best_way_list.append(end_node)
-        best_way_list.insert(0,start_node)
+        best_way_list.insert(0, start_node)
         best_way_distance += start_distance
         best_way_distance += end_distance
-        return best_way_list, best_way_distance'''
+        return best_way_list, best_way_distance
 
 
 def search_by_node(map, start_lat, start_lon, end_lat, end_lon):
