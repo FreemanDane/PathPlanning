@@ -286,9 +286,10 @@ class MapDisplay(QWidget):
         return [x, y]
 
     # 放大函数
-    def zoomIn(self):
-        x = self.size_x / 2
-        y = self.size_y / 2
+    def zoomIn(self, x = -1.0, y = -1.0):
+        if x < 0 or y < 0:
+            x = self.size_x / 2
+            y = self.size_y / 2
         self.mouse = QPoint(x, y)
         self.is_zoom = 1
         self.zoom[0] = self.zoom[1]
@@ -387,8 +388,6 @@ class MapDisplay(QWidget):
                 if name == "篮球场":
                     rect = (rect[0], rect[1],rect[2] / 2, rect[3])
                 if l > rect[2] * pow(self.zoom_ratio, 0.5 * self.zoom[1] + 1) / (len(name)) or rect[3] * pow(self.zoom_ratio, 0.5 * self.zoom[1] + 1) < l:
-                    continue
-                if l > 25:
                     continue
 
                 height = self.map.cross_list.farthest_node.y

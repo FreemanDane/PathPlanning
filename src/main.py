@@ -81,6 +81,8 @@ class MainWindow(QMainWindow):
             "QPushButton{border: 0px;background-image:url(../data/icons/search/Search_Normal.png);}" \
             "QPushButton:hover{border: 0px;background-image:url(../data/icons/search/Search_Hover.png);}" \
             "QPushButton:pressed{border: 0px;background-image:url(../data/icons/search/Search_Pressed.png);}")
+        self.search.clicked.connect(self.drawBestWay)
+        self.search.clicked.connect(self.adjustToBestWay)
         self.h_layout.addWidget(self.search)
         self.h_layout.setStretchFactor(self.swap, 1)
         self.h_layout.setStretchFactor(self.v_layout_input, 6)
@@ -93,7 +95,7 @@ class MainWindow(QMainWindow):
 
         #字体及颜色预设
         self.font = QFont("Microsoft YaHei", 14, 75)
-        self.font_small = QFont("Microsoft YaHei", 12, 75)
+        self.font_small = QFont("Microsoft YaHei", 10, 75)
         self.palette = QPalette()
         self.palette.setColor(QPalette.WindowText, Qt.white)
         self.palette.setColor(QPalette.ButtonText, Qt.white)
@@ -171,17 +173,10 @@ class MainWindow(QMainWindow):
         self.zoom_bar.setRange(0, 50)
         self.zoom_bar.setGraphicsEffect(self.shadow_effect)
         self.zoom_bar.valueChanged.connect(self.applyZoomBarValue)
-'''
-以下是调用寻找最优路径的方法以及测试样例
-'''
-        '''
-        print("start Testing_Finding_the_best_road")
-        road_list, min_distance = search_by_node(self.map.map,40.004, 116.32, 40.004, 116.329)
-        test_list_length = len(road_list)
-        for i in range(test_list_length):
-            print(road_list[i].lat,road_list[i].lon)
-        print(min_distance)
-        '''
+
+        #寻找最优路径的方法
+        self.painter = QPainter()
+        self.showPath = False
 
 
     def zoomIn(self):
@@ -245,7 +240,7 @@ class MainWindow(QMainWindow):
             mouse_coordinate = self.map.convertScreenToCoordinates(x, y + 12)
             self.start_pin_pos = QPointF(mouse_coordinate[0], mouse_coordinate[1])
             self.start_input.setText(
-                "("+ str(round(mouse_coordinate[1], 3))+ "N,"+ str(round(mouse_coordinate[0], 3)) + "E)")
+                "("+ str(round(mouse_coordinate[1], 5))+ "N,"+ str(round(mouse_coordinate[0], 5)) + "E)")
         elif self.isPin == "Green":
             self.end_pin.setGeometry(QRect(x - 12, y - 12, 24, 24))
             self.end_pin.isDisplay = True
@@ -255,7 +250,7 @@ class MainWindow(QMainWindow):
             mouse_coordinate = self.map.convertScreenToCoordinates(x, y + 12)
             self.end_pin_pos = QPointF(mouse_coordinate[0], mouse_coordinate[1])
             self.end_input.setText(
-                "(" + str(round(mouse_coordinate[1], 3)) + "N," + str(round(mouse_coordinate[0], 3)) + "E)")
+                "(" + str(round(mouse_coordinate[1], 5)) + "N," + str(round(mouse_coordinate[0], 5)) + "E)")
 
     def swapStartAndEnd(self):
         text = self.start_input.text()
@@ -284,6 +279,55 @@ class MainWindow(QMainWindow):
         self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
         self.start_pin.isDisplay = False
         self.start_pin.hide()
+
+    def drawBestWay(self):
+        if self.start_input.text() == "":
+            warning = QMessageBox.warning(self, "警告", "没有输入出发地！", QMessageBox.Yes)
+        if self.end_input.text() == "":
+            warning = QMessageBox.warning(self, "警告", "没有输入目的地！", QMessageBox.Yes)
+
+        import re
+        coordinate_pattern = re.compile(r'\([1-9]([0-9])*?\.([0-9])+?N,[1-9]([0-9])*?\.([0-9])+?E\)')
+        start_coordinate = [0.0, 0.0]
+        end_coordinate = [0.0, 0.0]
+        if coordinate_pattern.match(self.start_input.text()) != None:
+            result = self.start_input.text().split(',')
+            lat = float(result[0][1:-1])
+            lon = float(result[1][:-2])
+            start_coordinate[0] = lon
+            start_coordinate[1] = lat
+        else:
+            #Todo: search the name in building list and get coordinate
+            a = 0
+        if coordinate_pattern.match(self.end_input.text()) != None:
+            result = self.end_input.text().split(',')
+            lat = float(result[0][1:-1])
+            lon = float(result[1][:-2])
+            end_coordinate[0] = lon
+            end_coordinate[1] = lat
+        else:
+            # Todo: search the name in building list and get coordinate
+            a = 0
+
+        self.road_list, self.min_distance = search_by_node(self.map.map, start_coordinate[1], start_coordinate[0], end_coordinate[1], end_coordinate[0])
+        self.showPath = True
+        self.update()
+
+    def adjustToBestWay(self):
+        a = 0
+
+    def paintEvent(self, event):
+        if self.showPath == True:
+            pen = QPen()
+            pen.setColor(QColor(255, 0, 0))
+            pen.setWidth(5)
+            self.painter.setPen(pen)
+            test_list_length = len(self.road_list) - 1
+            for i in range(test_list_length):
+                start = self.map.convertCoordinatesToScreen(self.road_list[i].lon, self.road_list[i].lat)
+                end = self.map.convertCoordinatesToScreen(self.road_list[i + 1].lon, self.road_list[i + 1].lat)
+                print("(" + str(start[0]) + "," + str(start[1]) + ") (" + str(end[0]) + "," + str(end[1]) + ")")
+                self.painter.drawLine(start[0], start[1], end[0], end[1])
 
 
     def keyPressEvent(self, event):
