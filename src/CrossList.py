@@ -15,7 +15,6 @@ class node:
         self.x = 0
         self.y = 0
         self.attr = {} #节点的额外属性
-        self.way = [] #标定的是该节点属于哪一个way（考虑到节点可能属于多个way ，便使用列表）
         self.is_highway = is_highway #确定是不是道路
 
     def distance(self, other):

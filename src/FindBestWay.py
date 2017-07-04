@@ -1,17 +1,23 @@
 from src.CrossList import *
 from src.DataAnalysis import *
-
-
+i = 0
 # 调用函数：find_best_way(node_data, start, end)
 # node data为创建的十字链表，start开始节点类型为node，end为结束节点类型为node
 # 函数返回两个变量，第一个为一个从start到end的路径上所有节点的列表，第二个为整个路径的权值
 # 若无通通路，返回：None，-1
+
+
 def dijkstra(node_data, start, end, waiting, result):
+    global i
+    i = i + 1
+    if i > 900:
+        i = 0
+        return start, end, waiting, result
     if start is not None:
         if start.id == end.id:
             result = {}
             result[start] = [0, start]  # 权值＋前驱节点
-            return result
+            return start, end, None, result
         if result is None:
             result = {}
             result[start] = [0, start]
@@ -43,7 +49,7 @@ def dijkstra(node_data, start, end, waiting, result):
     add_node = None
     add_value = -1
     if waiting is None:
-        return result
+        return start, end, None, result
     for node_to_add in waiting.keys():
         if add_value == -1:
             add_node = node_to_add
@@ -55,17 +61,26 @@ def dijkstra(node_data, start, end, waiting, result):
                 add_value = waiting[node_to_add][0]
     # 以上：寻找集合中权值最小的点
     if add_node is None or add_value == -1:
-        return result
+        return start, end, None, result
     if add_node == end:
         result[add_node] = [add_value, waiting[add_node][1]]
-        return result
+        return start, end, None, result
     result[add_node] = [add_value, waiting[add_node][1]]
     waiting.pop(add_node)
     return dijkstra(node_data, add_node, end, waiting, result)
 
 
 def find_best_way(node_data, start, end):
-    the_best_path = dijkstra(node_data, start, end, None, None)
+    the_best_path = {}
+    the_best_path[start] = [0, start]
+    temp_waiting = {}
+    temp_start = start
+    temp_end = end
+    while True:
+        temp_start, temp_end, temp_waiting, the_best_path = dijkstra(node_data, temp_start, temp_end, temp_waiting
+                                                                     , the_best_path)
+        if temp_waiting is None:
+            break
     if_end_in_data = 0
     for data in the_best_path:
         if data is end:
