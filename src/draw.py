@@ -454,7 +454,6 @@ class MapDisplay(QWidget):
 
     def showPath(self):
         if self.show_path:
-            print("Show Path")
             pen = QPen()
             pen.setColor(QColor(255, 0, 0))
             pen.setWidth(5)
@@ -463,5 +462,4 @@ class MapDisplay(QWidget):
             for i in range(test_list_length):
                 start = self.convertCoordinatesToScreen(self.road_list[i].lon, self.road_list[i].lat)
                 end = self.convertCoordinatesToScreen(self.road_list[i + 1].lon, self.road_list[i + 1].lat)
-                print("(" + str(start[0]) + "," + str(start[1]) + ") (" + str(end[0]) + "," + str(end[1]) + ")")
                 self.painter.drawLine(start[0], start[1], end[0], end[1])
