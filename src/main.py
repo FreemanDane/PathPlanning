@@ -347,7 +347,6 @@ class MainWindow(QMainWindow):
 
         self.setPinChange()
         self.road_list, self.min_distance = search_by_node(self.map.map, start_coordinate[1], start_coordinate[0], end_coordinate[1], end_coordinate[0])
-        print(len(self.road_list))
         self.map.getPath(self.road_list, self.min_distance)
         self.map.show_path = True
         self.timer.start()
