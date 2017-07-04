@@ -176,7 +176,6 @@ class MainWindow(QMainWindow):
 
         #寻找最优路径的方法
         self.painter = QPainter()
-        self.showPath = False
 
         '''
         以下是调用！名字！寻找最优路径的方法以及测试样例
@@ -320,24 +319,16 @@ class MainWindow(QMainWindow):
             a = 0
 
         self.road_list, self.min_distance = search_by_node(self.map.map, start_coordinate[1], start_coordinate[0], end_coordinate[1], end_coordinate[0])
-        self.showPath = True
+        print(len(self.road_list))
+        self.map.getPath(self.road_list, self.min_distance)
+        self.map.show_path = True
         self.update()
 
     def adjustToBestWay(self):
         a = 0
 
-    def paintEvent(self, event):
-        if self.showPath == True:
-            pen = QPen()
-            pen.setColor(QColor(255, 0, 0))
-            pen.setWidth(5)
-            self.painter.setPen(pen)
-            test_list_length = len(self.road_list) - 1
-            for i in range(test_list_length):
-                start = self.map.convertCoordinatesToScreen(self.road_list[i].lon, self.road_list[i].lat)
-                end = self.map.convertCoordinatesToScreen(self.road_list[i + 1].lon, self.road_list[i + 1].lat)
-                print("(" + str(start[0]) + "," + str(start[1]) + ") (" + str(end[0]) + "," + str(end[1]) + ")")
-                self.painter.drawLine(start[0], start[1], end[0], end[1])
+    '''def paintEvent(self, event):
+        self.map.update()'''
 
 
     def keyPressEvent(self, event):

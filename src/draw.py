@@ -17,7 +17,7 @@ class MapDisplay(QWidget):
         print('Total {} nodes, {} ways.'.format(len(self.map.cross_list.nodes), len(self.map.ways)))
         self.size_x = 680
         self.size_y = 830
-
+        self.show_path = False
         self.zoom = [0, 0]  # 第一个代表鼠标滚动之前（过去状态），第二个代表鼠标滚动之后（当前状态）
         self.max_zoom = 50
         self.zoom_ratio = 1.1
@@ -27,6 +27,8 @@ class MapDisplay(QWidget):
         self.is_zoom = 0  # 缩放事件标记
         self.is_press = 0  # 鼠标按下事件标记
         self.before_drag = QPoint(0, 0)
+        self.road_list = None
+        self.min_distance = None
 
         self.initUI()
     def initUI(self):
@@ -159,7 +161,6 @@ class MapDisplay(QWidget):
             pen.setColor(QColor(146, 160, 209))
             pen.setWidth(2)
             self.painter.setPen(pen)
-            points = []
             length = len(wy.point) - 1
             for i in range(length):
                 start = self.map.cross_list.get_node(wy.point[i]['ref'])
@@ -178,7 +179,6 @@ class MapDisplay(QWidget):
             pen.setColor(QColor(202, 200, 153))
             pen.setWidth(2)
             self.painter.setPen(pen)
-            points = []
             length = len(wy.point) - 1
             for i in range(length):
                 start = self.map.cross_list.get_node(wy.point[i]['ref'])
@@ -192,6 +192,7 @@ class MapDisplay(QWidget):
         self.painter.fillRect(rect, QColor(244, 241, 219))
         self.map_render()
         self.mark()
+        self.showPath()
         self.painter.end()
 
     # 鼠标滚轮事件
@@ -418,3 +419,22 @@ class MapDisplay(QWidget):
                     name)
             except KeyError:
                 continue
+
+    def getPath(self, road_list, min_distance):
+        self.road_list = road_list
+        print(len(road_list))
+        self.min_distance = min_distance
+
+    def showPath(self):
+        if self.show_path:
+            print("Show Path")
+            pen = QPen()
+            pen.setColor(QColor(255, 0, 0))
+            pen.setWidth(5)
+            self.painter.setPen(pen)
+            test_list_length = len(self.road_list) - 1
+            for i in range(test_list_length):
+                start = self.convertCoordinatesToScreen(self.road_list[i].lon, self.road_list[i].lat)
+                end = self.convertCoordinatesToScreen(self.road_list[i + 1].lon, self.road_list[i + 1].lat)
+                print("(" + str(start[0]) + "," + str(start[1]) + ") (" + str(end[0]) + "," + str(end[1]) + ")")
+                self.painter.drawLine(start[0], start[1], end[0], end[1])
