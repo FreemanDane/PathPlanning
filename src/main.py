@@ -178,6 +178,7 @@ class MainWindow(QMainWindow):
         self.timer = QTimer()
         self.timer.setInterval(10)
         self.timer.timeout.connect(self.adjustToBestWay)
+        self.zoom_tag = "None"
 
         '''
         以下是调用！名字！寻找最优路径的方法以及测试样例
@@ -358,12 +359,43 @@ class MainWindow(QMainWindow):
         center_x = (start_pos[0] + end_pos[0]) / 2
         center_y = (start_pos[1] + end_pos[1]) / 2
 
+        import math
+
         delta_x = abs(start_pos[0] - end_pos[0])
         delta_y = abs(start_pos[1] - end_pos[1])
-        if delta_x > 680 / 2 or delta_y > 830 / 2 or self.map.zoom[1] == self.map.max_zoom:
-            self.timer.stop()
-        self.map.zoomIn(center_x, center_y)
-        self.map.Move(340 - center_x, 415 - center_y)
+        delta = pow((delta_x * delta_x + delta_y * delta_y), 0.5)
+        angle = math.atan(delta_y / delta_x)
+
+        if angle <= math.atan(830 / 680):
+            limit = 680 / cos(angle)
+        else:
+            limit = 830 / sin(angle)
+
+        if self.zoom_tag == "None":
+            if delta < limit / 2:
+                self.zoom_tag = "In"
+            elif delta > limit * 3 / 4:
+                self.zoom_tag = "Out"
+            else:
+                self.timer.stop()
+                self.map.Move(340 - center_x, 415 - center_y)
+        elif self.zoom_tag == "In":
+            if delta > limit * 2 / 3 or self.map.zoom[1] == self.map.max_zoom:
+                self.timer.stop()
+                self.zoom_tag = "None"
+            self.map.zoomIn(center_x, center_y)
+            self.map.Move(340 - center_x, 415 - center_y)
+
+        elif self.zoom_tag == "Out":
+            if delta < limit * 2 / 3 or self.map.zoom[1] == 0:
+                self.timer.stop()
+                self.zoom_tag = "None"
+            self.map.zoomOut(center_x, center_y)
+            self.map.Move(340 - center_x, 415 - center_y)
+
+
+
+
 
         """
         while self.map.zoom[1] < self.map.max_zoom:

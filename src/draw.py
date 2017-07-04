@@ -324,15 +324,16 @@ class MapDisplay(QWidget):
             self.update()
             self.zoom_signal.emit()
     # 缩小函数
-    def zoomOut(self):
+    def zoomOut(self, x = -1.0, y = -1.0):
+        if x < 0 or y < 0:
+            x = self.size_x / 2
+            y = self.size_y / 2
         self.is_zoom = 1
         self.zoom[0] = self.zoom[1]
         if self.zoom[1] > 0:
             self.zoom[1] = self.zoom[1] - 1
             factor = pow(self.zoom_ratio, -0.5)
 
-            x = self.size_x / 2
-            y = self.size_y / 2
             mouse_lon = x / self.size_x * (
             self.map.cross_list.farthest_node.lon - self.map.cross_list.origin.lon) + self.map.cross_list.origin.lon
             mouse_lat = self.map.cross_list.farthest_node.lat - y / self.size_y * (
