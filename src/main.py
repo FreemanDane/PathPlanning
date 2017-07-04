@@ -171,10 +171,9 @@ class MainWindow(QMainWindow):
         self.zoom_bar.setRange(0, 50)
         self.zoom_bar.setGraphicsEffect(self.shadow_effect)
         self.zoom_bar.valueChanged.connect(self.applyZoomBarValue)
-'''
-以下是调用寻找最优路径的方法以及测试样例
-'''
         '''
+        以下是调用寻找最优路径的方法以及测试样例
+
         print("start Testing_Finding_the_best_road")
         road_list, min_distance = search_by_node(self.map.map,40.004, 116.32, 40.004, 116.329)
         test_list_length = len(road_list)
