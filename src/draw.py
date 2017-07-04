@@ -159,7 +159,7 @@ class MapDisplay(QWidget):
                 continue
             pen = QPen()
             pen.setColor(QColor(146, 160, 209))
-            pen.setWidth(2)
+            pen.setWidth(8 * pow(self.zoom_ratio, 0.5 * self.zoom[1]))
             self.painter.setPen(pen)
             length = len(wy.point) - 1
             for i in range(length):
@@ -177,7 +177,7 @@ class MapDisplay(QWidget):
                 continue
             pen = QPen()
             pen.setColor(QColor(202, 200, 153))
-            pen.setWidth(2)
+            pen.setWidth(2 * pow(self.zoom_ratio, 0.5 * self.zoom[1]))
             self.painter.setPen(pen)
             length = len(wy.point) - 1
             for i in range(length):
@@ -358,6 +358,32 @@ class MapDisplay(QWidget):
             self.map.cross_list.cartesian_coordinate()
             self.update()
             self.zoom_signal.emit()
+    # 移动函数
+    def Move(self, delta_x, delta_y):
+        self.max_lon_fixed = self.map.cross_list.farthest_node.lon
+        self.min_lon_fixed = self.map.cross_list.origin.lon
+        self.max_lat_fixed = self.map.cross_list.farthest_node.lat
+        self.min_lat_fixed = self.map.cross_list.origin.lat
+        new_origin_lon = (-delta_x) * (self.max_lon_fixed - self.min_lon_fixed) / self.size_x + self.min_lon_fixed
+        if new_origin_lon <= lon_min:
+            new_origin_lon = lon_min
+        elif new_origin_lon > lon_max - (lon_max - lon_min) * pow(self.zoom_ratio, -0.5 * self.zoom[1]):
+            new_origin_lon = lon_max - (lon_max - lon_min) * pow(self.zoom_ratio, -0.5 * self.zoom[1])
+        new_origin_lat = (delta_y) * (self.max_lat_fixed - self.min_lat_fixed) / self.size_y + self.min_lat_fixed
+        if new_origin_lat <= lat_min:
+            new_origin_lat = lat_min
+        elif new_origin_lat > lat_max - (lat_max - lat_min) * pow(self.zoom_ratio, -0.5 * self.zoom[1]):
+            new_origin_lat = lat_max - (lat_max - lat_min) * pow(self.zoom_ratio, -0.5 * self.zoom[1])
+        self.map.cross_list.origin.lon = new_origin_lon
+        self.map.cross_list.origin.lat = new_origin_lat
+        new_farthest_lon = new_origin_lon + (lon_max - lon_min) / pow(self.zoom_ratio, 0.5 * self.zoom[1])
+        new_farthest_lat = new_origin_lat + (lat_max - lat_min) / pow(self.zoom_ratio, 0.5 * self.zoom[1])
+        self.map.cross_list.farthest_node.lon = new_farthest_lon
+        self.map.cross_list.farthest_node.lat = new_farthest_lat
+        self.map.cross_list.farthest_node.cartesian_coordinate(self.map.cross_list.origin)
+        self.map.cross_list.cartesian_coordinate()
+        self.update()
+        self.move_signal.emit()
     # 显示区域左上角在原图中坐标
     def displayTopLeft(self):
         x = -self.top_left.x

@@ -82,7 +82,6 @@ class MainWindow(QMainWindow):
             "QPushButton:hover{border: 0px;background-image:url(../data/icons/search/Search_Hover.png);}" \
             "QPushButton:pressed{border: 0px;background-image:url(../data/icons/search/Search_Pressed.png);}")
         self.search.clicked.connect(self.drawBestWay)
-        self.search.clicked.connect(self.adjustToBestWay)
         self.h_layout.addWidget(self.search)
         self.h_layout.setStretchFactor(self.swap, 1)
         self.h_layout.setStretchFactor(self.v_layout_input, 6)
@@ -176,6 +175,9 @@ class MainWindow(QMainWindow):
 
         #寻找最优路径的方法
         self.painter = QPainter()
+        self.timer = QTimer()
+        self.timer.setInterval(10)
+        self.timer.timeout.connect(self.adjustToBestWay)
 
         '''
         以下是调用！名字！寻找最优路径的方法以及测试样例
@@ -268,19 +270,21 @@ class MainWindow(QMainWindow):
         self.start_input.setText(self.end_input.text())
         self.end_input.setText(text)
         if self.start_pin.isDisplay == True:
-            self.start_pin.isDisplay == False
+            self.start_pin.isDisplay = False
             self.start_pin.hide()
             self.changeCursorPin("RedBlank")
             self.isPin = "None"
             self.start_input_pin.isDisplay = True
             self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
         if self.end_pin.isDisplay == True:
-            self.end_pin.isDisplay == False
+            self.end_pin.isDisplay = False
             self.end_pin.hide()
             self.changeCursorPin("GreenBlank")
             self.isPin = "None"
             self.end_input_pin.isDisplay = True
             self.end_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Green.png"))
+        self.map.show_path = False
+        self.update()
 
     def addCurrentLocation(self):
         curLocation = getLocation()
@@ -290,6 +294,8 @@ class MainWindow(QMainWindow):
         self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
         self.start_pin.isDisplay = False
         self.start_pin.hide()
+        self.map.show_path = False
+        self.update()
 
     def drawBestWay(self):
         if self.start_input.text() == "":
@@ -310,6 +316,15 @@ class MainWindow(QMainWindow):
         else:
             #Todo: search the name in building list and get coordinate
             a = 0
+        if self.start_input_pin.isDisplay == True:
+            self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Blank.png"))
+            self.start_input_pin.isDisplay = False
+        if self.start_pin.isDisplay == False:
+            self.start_pin_pos = QPointF(start_coordinate[0], start_coordinate[1])
+            pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
+            self.start_pin.setGeometry(pos[0] - 12, pos[1] - 24, 24, 24)
+            self.start_pin.show()
+            self.start_pin.isDisplay = True
         if coordinate_pattern.match(self.end_input.text()) != None:
             result = self.end_input.text().split(',')
             lat = float(result[0][1:-1])
@@ -319,18 +334,50 @@ class MainWindow(QMainWindow):
         else:
             # Todo: search the name in building list and get coordinate
             a = 0
+        if self.end_input_pin.isDisplay == True:
+            self.end_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Blank.png"))
+            self.end_input_pin.isDisplay = False
+        if self.end_pin.isDisplay == False:
+            self.end_pin_pos = QPointF(end_coordinate[0], end_coordinate[1])
+            pos = self.map.convertCoordinatesToScreen(self.end_pin_pos.x(), self.end_pin_pos.y())
+            self.end_pin.setGeometry(pos[0] - 12, pos[1] - 24, 24, 24)
+            self.end_pin.show()
+            self.end_pin.isDisplay = True
 
+        self.setPinChange()
         self.road_list, self.min_distance = search_by_node(self.map.map, start_coordinate[1], start_coordinate[0], end_coordinate[1], end_coordinate[0])
         print(len(self.road_list))
         self.map.getPath(self.road_list, self.min_distance)
         self.map.show_path = True
+        self.timer.start()
         self.update()
 
     def adjustToBestWay(self):
-        a = 0
+        start_pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
+        end_pos = self.map.convertCoordinatesToScreen(self.end_pin_pos.x(), self.end_pin_pos.y())
+        center_x = (start_pos[0] + end_pos[0]) / 2
+        center_y = (start_pos[1] + end_pos[1]) / 2
 
-    '''def paintEvent(self, event):
-        self.map.update()'''
+        delta_x = abs(start_pos[0] - end_pos[0])
+        delta_y = abs(start_pos[1] - end_pos[1])
+        if delta_x > 680 / 2 or delta_y > 830 / 2 or self.map.zoom[1] == self.map.max_zoom:
+            self.timer.stop()
+        self.map.zoomIn(center_x, center_y)
+        self.map.Move(340 - center_x, 415 - center_y)
+
+        """
+        while self.map.zoom[1] < self.map.max_zoom:
+            self.map.zoomIn(center_x, center_y)
+            start_pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
+            end_pos = self.map.convertCoordinatesToScreen(self.end_pin_pos.x(), self.end_pin_pos.y())
+            delta_x = abs(start_pos[0] - end_pos[0])
+            delta_y = abs(start_pos[1] - end_pos[1])
+            if delta_x > 680 * 2/3 or delta_y > 830 * 2/3:
+                break
+
+        self.map.Move(340 - center_x, 415 - center_y)
+        """
+
 
 
     def keyPressEvent(self, event):
@@ -341,7 +388,6 @@ class MainWindow(QMainWindow):
             else:
                 self.search_frame.hide()
                 self.bg.hide()
-
 
 if __name__ == '__main__':
     import sys
