@@ -194,6 +194,13 @@ class MainWindow(QMainWindow):
         self.timer.setInterval(10)
         self.timer.timeout.connect(self.adjustToBestWay)
         self.zoom_tag = "None"
+        '''
+        以下是调用search_by_node_best_walking_way的方法
+        list, distance = search_by_node_best_walking_way(self.map.map, 40.00509, 116.31655,  40.00373, 116.31732)
+        for node in list:
+            print(node.id)
+        print("distance:", distance)
+        '''
 
 
     def zoomIn(self):
