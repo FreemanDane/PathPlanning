@@ -32,6 +32,7 @@ class MainWindow(QMainWindow):
         self.start_pin.setGeometry(QRect(0, 0, 24, 24))
         self.start_pin.color = "Red"
         self.start_pin.hide()
+        self.start_pin.isDisplay = False
         self.start_pin.change_cursor.connect(self.changeCursorPin)
         self.start_pin.change_cursor.connect(self.changePinStatus)
 
@@ -41,6 +42,7 @@ class MainWindow(QMainWindow):
         self.end_pin.setGeometry(QRect(0, 0, 24, 24))
         self.end_pin.color = "Green"
         self.end_pin.hide()
+        self.end_pin.isDisplay = False
         self.end_pin.change_cursor.connect(self.changeCursorPin)
         self.end_pin.change_cursor.connect(self.changePinStatus)
 
@@ -316,17 +318,14 @@ class MainWindow(QMainWindow):
             start_coordinate[0] = lon
             start_coordinate[1] = lat
         else:
-            # Todo: search the name in building list and get coordinate
-            a = 0
-        if self.start_input_pin.isDisplay == True:
-            self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Blank.png"))
-            self.start_input_pin.isDisplay = False
-        if self.start_pin.isDisplay == False:
-            self.start_pin_pos = QPointF(start_coordinate[0], start_coordinate[1])
-            pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
-            self.start_pin.setGeometry(pos[0] - 12, pos[1] - 24, 24, 24)
-            self.start_pin.show()
-            self.start_pin.isDisplay = True
+            node = find_the_name_of_points(self.map.map, self.start_input.text())
+            if node.id == -2:
+                start_coordinate[0] = node.lon
+                start_coordinate[1] = node.lat
+                warning = QMessageBox.warning(self, "警告", "没有找到出发地！", QMessageBox.Yes)
+            else:
+                start_coordinate[0] = node.lon
+                start_coordinate[1] = node.lat
         if coordinate_pattern.match(self.end_input.text()) != None:
             result = self.end_input.text().split(',')
             lat = float(result[0][1:-1])
@@ -334,26 +333,45 @@ class MainWindow(QMainWindow):
             end_coordinate[0] = lon
             end_coordinate[1] = lat
         else:
-            # Todo: search the name in building list and get coordinate
-            a = 0
-        if self.end_input_pin.isDisplay == True:
-            self.end_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Blank.png"))
-            self.end_input_pin.isDisplay = False
-        if self.end_pin.isDisplay == False:
+            node = find_the_name_of_points(self.map.map, self.end_input.text())
+            if node.id == -2:
+                end_coordinate[0] = node.lon
+                end_coordinate[1] = node.lat
+                warning = QMessageBox.warning(self, "警告", "没有找到目的地！", QMessageBox.Yes)
+            else:
+                end_coordinate[0] = node.lon
+                end_coordinate[1] = node.lat
+
+        if start_coordinate[0] != -1 and end_coordinate[0] != -1:
+            if self.start_input_pin.isDisplay == True:
+                self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Blank.png"))
+                self.start_input_pin.isDisplay = False
+            if self.start_pin.isDisplay == False:
+                self.start_pin.isDisplay = True
+            self.start_pin_pos = QPointF(start_coordinate[0], start_coordinate[1])
+            pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
+            self.start_pin.setGeometry(pos[0] - 12, pos[1] - 24, 24, 24)
+            self.start_pin.show()
+
+            if self.end_input_pin.isDisplay == True:
+                self.end_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Blank.png"))
+                self.end_input_pin.isDisplay = False
+            if self.end_pin.isDisplay == False:
+                self.end_pin.isDisplay = True
             self.end_pin_pos = QPointF(end_coordinate[0], end_coordinate[1])
             pos = self.map.convertCoordinatesToScreen(self.end_pin_pos.x(), self.end_pin_pos.y())
             self.end_pin.setGeometry(pos[0] - 12, pos[1] - 24, 24, 24)
             self.end_pin.show()
-            self.end_pin.isDisplay = True
-        self.setPinChange()
-        self.road_list, self.min_distance = search_by_node(self.map.map, start_coordinate[1], start_coordinate[0], end_coordinate[1], end_coordinate[0])
-        if self.min_distance == -1:
-            warning = QMessageBox.warning(self, "警告", "没有合适的道路！", QMessageBox.Yes)
-        else:
-            self.map.getPath(self.road_list, self.min_distance)
-            self.map.show_path = True
-            self.timer.start()
-            self.update()
+
+            self.setPinChange()
+            self.road_list, self.min_distance = search_by_node(self.map.map, start_coordinate[1], start_coordinate[0], end_coordinate[1], end_coordinate[0])
+            if self.min_distance == -1:
+                warning = QMessageBox.warning(self, "警告", "没有合适的道路！", QMessageBox.Yes)
+            else:
+                self.map.getPath(self.road_list, self.min_distance)
+                self.map.show_path = True
+                self.timer.start()
+                self.update()
 
     def adjustToBestWay(self):
         start_pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
@@ -366,7 +384,10 @@ class MainWindow(QMainWindow):
         delta_x = abs(start_pos[0] - end_pos[0])
         delta_y = abs(start_pos[1] - end_pos[1])
         delta = pow((delta_x * delta_x + delta_y * delta_y), 0.5)
-        angle = math.atan(delta_y / delta_x)
+        if delta_x == 0:
+            angle = math.pi / 2
+        else:
+            angle = math.atan(delta_y / delta_x)
 
         if angle <= math.atan(830 / 680):
             limit = 680 / cos(angle)
@@ -404,6 +425,9 @@ class MainWindow(QMainWindow):
             else:
                 self.search_frame.hide()
                 self.bg.hide()
+        elif event.key() == Qt.Key_Return:
+            self.drawBestWay()
+
 
 if __name__ == '__main__':
     import sys

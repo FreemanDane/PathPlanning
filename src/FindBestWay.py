@@ -185,7 +185,7 @@ def find_the_name_of_points(map, way_name):#找到离去的地方最近的点
     the_way = way(-1)
     for ways in map.ways:
         if 'name' in ways.attr.keys():
-            if ways.attr.get('name') == way_name:
+            if way_name in ways.attr.get('name'):
                 the_way = ways
                 break
     if the_way.id is -1:
@@ -193,7 +193,7 @@ def find_the_name_of_points(map, way_name):#找到离去的地方最近的点
             if 'name' in keynd.attr.keys() and keynd.attr.get('name') is way_name:
                 return keynd
         print("No place called this!")
-        return None, -1
+        return node(-2, -1, -1)
     lat = 0
     lon = 0
     for way_node in the_way.point:
