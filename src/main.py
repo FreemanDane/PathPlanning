@@ -78,16 +78,24 @@ class MainWindow(QMainWindow):
         self.v_layout_input = QVBoxLayout(self.search_frame)
         self.h_layout.addLayout(self.v_layout_input)
         self.search = QPushButton(self.search_frame)
-        self.search.setFixedSize(90, 42)
+        self.search.setFixedSize(45, 41)
         self.search.setStyleSheet( \
-            "QPushButton{border: 0px;background-image:url(../data/icons/search/Search_Normal.png);}" \
-            "QPushButton:hover{border: 0px;background-image:url(../data/icons/search/Search_Hover.png);}" \
-            "QPushButton:pressed{border: 0px;background-image:url(../data/icons/search/Search_Pressed.png);}")
-        self.search.clicked.connect(self.drawBestWay)
+            "QPushButton{border: 0px;background-image:url(../data/icons/walk/Walk_Normal.png);}" \
+            "QPushButton:hover{border: 0px;background-image:url(../data/icons/walk/Walk_Hover.png);}" \
+            "QPushButton:pressed{border: 0px;background-image:url(../data/icons/walk/Walk_Pressed.png);}")
         self.h_layout.addWidget(self.search)
+        self.search.clicked.connect(self.drawBestWay)
+        self.search_bike = QPushButton(self.search_frame)
+        self.search_bike.setFixedSize(45, 41)
+        self.search_bike.setStyleSheet( \
+            "QPushButton{border: 0px;background-image:url(../data/icons/bike/Bike_Normal.png);}" \
+            "QPushButton:hover{border: 0px;background-image:url(../data/icons/bike/Bike_Hover.png);}" \
+            "QPushButton:pressed{border: 0px;background-image:url(../data/icons/bike/Bike_Pressed.png);}")
+        self.h_layout.addWidget(self.search_bike)
         self.h_layout.setStretchFactor(self.swap, 1)
         self.h_layout.setStretchFactor(self.v_layout_input, 6)
-        self.h_layout.setStretchFactor(self.search, 2)
+        self.h_layout.setStretchFactor(self.search, 1)
+        self.h_layout.setStretchFactor(self.search_bike, 1)
 
         self.h_layout_start = QHBoxLayout(self.search_frame)
         self.v_layout_input.addLayout(self.h_layout_start)
