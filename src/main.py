@@ -347,10 +347,13 @@ class MainWindow(QMainWindow):
 
         self.setPinChange()
         self.road_list, self.min_distance = search_by_node(self.map.map, start_coordinate[1], start_coordinate[0], end_coordinate[1], end_coordinate[0])
-        self.map.getPath(self.road_list, self.min_distance)
-        self.map.show_path = True
-        self.timer.start()
-        self.update()
+        if self.min_distance == -1:
+            warning = QMessageBox.warning(self, "警告", "没有合适的道路！", QMessageBox.Yes)
+        else:
+            self.map.getPath(self.road_list, self.min_distance)
+            self.map.show_path = True
+            self.timer.start()
+            self.update()
 
     def adjustToBestWay(self):
         start_pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
@@ -391,24 +394,6 @@ class MainWindow(QMainWindow):
                 self.zoom_tag = "None"
             self.map.zoomOut(center_x, center_y)
             self.map.Move(340 - center_x, 415 - center_y)
-
-
-
-
-
-        """
-        while self.map.zoom[1] < self.map.max_zoom:
-            self.map.zoomIn(center_x, center_y)
-            start_pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
-            end_pos = self.map.convertCoordinatesToScreen(self.end_pin_pos.x(), self.end_pin_pos.y())
-            delta_x = abs(start_pos[0] - end_pos[0])
-            delta_y = abs(start_pos[1] - end_pos[1])
-            if delta_x > 680 * 2/3 or delta_y > 830 * 2/3:
-                break
-
-        self.map.Move(340 - center_x, 415 - center_y)
-        """
-
 
 
     def keyPressEvent(self, event):
