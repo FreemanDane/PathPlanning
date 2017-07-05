@@ -449,7 +449,6 @@ class MapDisplay(QWidget):
 
     def getPath(self, road_list, min_distance):
         self.road_list = road_list
-        print(len(road_list))
         self.min_distance = min_distance
 
     def showPath(self):

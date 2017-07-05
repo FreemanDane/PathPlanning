@@ -320,5 +320,5 @@ def search_by_need(map, my_lat, my_lon, need):
             return best_way, best_way_distance, place_name
     else:
         print("Illegal Visit of search_by_need: need is illegal")
-        return None , -2, ""
+        return None, -2, ""
 
