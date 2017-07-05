@@ -179,7 +179,8 @@ class MainWindow(QMainWindow):
         self.timer.setInterval(10)
         self.timer.timeout.connect(self.adjustToBestWay)
         self.zoom_tag = "None"
-
+        self.start_name = "" # Start by input name
+        self.end_name = "" # destination by input name
         '''
         以下是调用！名字！寻找最优路径的方法以及测试样例
         print("start Testing_Finding_the_best_road_in_name")
@@ -315,7 +316,7 @@ class MainWindow(QMainWindow):
             start_coordinate[0] = lon
             start_coordinate[1] = lat
         else:
-            #Todo: search the name in building list and get coordinate
+            # Todo: search the name in building list and get coordinate
             a = 0
         if self.start_input_pin.isDisplay == True:
             self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Blank.png"))
@@ -344,7 +345,6 @@ class MainWindow(QMainWindow):
             self.end_pin.setGeometry(pos[0] - 12, pos[1] - 24, 24, 24)
             self.end_pin.show()
             self.end_pin.isDisplay = True
-
         self.setPinChange()
         self.road_list, self.min_distance = search_by_node(self.map.map, start_coordinate[1], start_coordinate[0], end_coordinate[1], end_coordinate[0])
         if self.min_distance == -1:
