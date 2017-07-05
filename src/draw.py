@@ -29,6 +29,7 @@ class MapDisplay(QWidget):
         self.before_drag = QPoint(0, 0)
         self.road_list = None
         self.min_distance = None
+        self.intro = ""
 
         self.initUI()
     def initUI(self):
@@ -246,9 +247,14 @@ class MapDisplay(QWidget):
         self.max_lat_fixed = self.map.cross_list.farthest_node.lat
         self.min_lat_fixed = self.map.cross_list.origin.lat
         self.press_signal.emit(int(x), int(y))
+        self.showIntro(x,y)
 
     def mouseReleaseEvent(self, event):
         self.is_press = 0
+
+    def mouseDoubleClickEvent(self, event):
+        self.intro = ""
+        self.update()
 
     def mouseMoveEvent(self, event):
         if self.is_press == 1:
@@ -446,6 +452,9 @@ class MapDisplay(QWidget):
                     name)
             except KeyError:
                 continue
+        self.painter.setFont(QFont('Microsoft Yahei', l, 75))
+        self.painter.setPen(QColor(0, 0, 0))
+        self.painter.drawText(0,800,680,30,Qt.AlignLeft,self.intro)
 
     def getPath(self, road_list, min_distance):
         self.road_list = road_list
@@ -462,3 +471,34 @@ class MapDisplay(QWidget):
                 start = self.convertCoordinatesToScreen(self.road_list[i].lon, self.road_list[i].lat)
                 end = self.convertCoordinatesToScreen(self.road_list[i + 1].lon, self.road_list[i + 1].lat)
                 self.painter.drawLine(start[0], start[1], end[0], end[1])
+
+    def showIntro(self, x, y):
+        if x == 0 and y == 0:
+            return None
+        width = self.map.cross_list.farthest_node.x - self.map.cross_list.origin.x
+        height = self.map.cross_list.farthest_node.y - self.map.cross_list.origin.y
+        x = x / self.size_x * width
+        y = (self.size_y - y) / self.size_y * height
+        for wy in self.map.ways:
+            try:
+                a = wy.attr['introduction']
+            except KeyError:
+                continue
+            try:
+                a = wy.attr['highway']
+                continue
+            except KeyError:
+                pass
+            nCross = 0
+            length = len(wy.point) - 1
+            for i in range(length):
+                pt1 = self.map.cross_list.get_node(wy.point[i]['ref'])
+                pt2 = self.map.cross_list.get_node(wy.point[i + 1]['ref'])
+                if pt1.y == pt2.y or y < min([pt1.y, pt2.y]) or y > max([pt1.y, pt2.y]):
+                    continue
+                nx = (y - pt1.y) * (pt2.x - pt1.x) / (pt2.y - pt1.y) + pt1.x
+                if nx > x:
+                    nCross += 1
+            if nCross % 2 == 1:
+                self.intro = wy.attr['introduction']
+                self.update()
