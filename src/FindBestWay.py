@@ -358,7 +358,7 @@ def search_by_need(map, my_lat, my_lon, need):
         print("Illegal Visit of search_by_need: need is illegal")
         return None, -2, ""
 
-def search_by_node_best_walking_way(map, start_lat, start_lon, end_lat, end_lon):
+def search_by_node_best_riding_way(map, start_lat, start_lon, end_lat, end_lon):
     start_node = node(-1, start_lat, start_lon)
     end_node = node(-1, end_lat, end_lon)
     clo_start_node, start_distance = find_the_closest_point(map, start_node)

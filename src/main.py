@@ -92,6 +92,7 @@ class MainWindow(QMainWindow):
             "QPushButton:hover{border: 0px;background-image:url(../data/icons/bike/Bike_Hover.png);}" \
             "QPushButton:pressed{border: 0px;background-image:url(../data/icons/bike/Bike_Pressed.png);}")
         self.h_layout.addWidget(self.search_bike)
+        self.search_bike.clicked.connect(self.drawBestRideWay)
         self.h_layout.setStretchFactor(self.swap, 1)
         self.h_layout.setStretchFactor(self.v_layout_input, 6)
         self.h_layout.setStretchFactor(self.search, 1)
@@ -194,13 +195,6 @@ class MainWindow(QMainWindow):
         self.timer.setInterval(10)
         self.timer.timeout.connect(self.adjustToBestWay)
         self.zoom_tag = "None"
-        '''
-        以下是调用search_by_node_best_walking_way的方法
-        list, distance = search_by_node_best_walking_way(self.map.map, 40.00509, 116.31655,  40.00373, 116.31732)
-        for node in list:
-            print(node.id)
-        print("distance:", distance)
-        '''
 
 
     def zoomIn(self):
@@ -489,6 +483,83 @@ class MainWindow(QMainWindow):
 
                 self.setPinChange()
 
+                self.map.getPath(self.road_list, self.min_distance)
+                self.map.show_path = True
+                self.timer.start()
+                self.update()
+
+    def drawBestRideWay(self):
+        if self.start_input.text() == "":
+            warning = QMessageBox.warning(self, "警告", "没有输入出发地！", QMessageBox.Yes)
+            return
+        if self.end_input.text() == "":
+            warning = QMessageBox.warning(self, "警告", "没有输入目的地！", QMessageBox.Yes)
+            return
+
+        import re
+        coordinate_pattern = re.compile(r'\([1-9]([0-9])*?\.([0-9])+?N,[1-9]([0-9])*?\.([0-9])+?E\)')
+        start_coordinate = [-1, -1]
+        end_coordinate = [-1, -1]
+        if coordinate_pattern.match(self.start_input.text()) != None:
+            result = self.start_input.text().split(',')
+            lat = float(result[0][1:-1])
+            lon = float(result[1][:-2])
+            start_coordinate[0] = lon
+            start_coordinate[1] = lat
+        else:
+            node = find_the_name_of_points(self.map.map, self.start_input.text())
+            if node.id == -2:
+                start_coordinate[0] = node.lon
+                start_coordinate[1] = node.lat
+                warning = QMessageBox.warning(self, "警告", "没有找到出发地！", QMessageBox.Yes)
+                return
+            else:
+                start_coordinate[0] = node.lon
+                start_coordinate[1] = node.lat
+        if coordinate_pattern.match(self.end_input.text()) != None:
+            result = self.end_input.text().split(',')
+            lat = float(result[0][1:-1])
+            lon = float(result[1][:-2])
+            end_coordinate[0] = lon
+            end_coordinate[1] = lat
+        else:
+            node = find_the_name_of_points(self.map.map, self.end_input.text())
+            if node.id == -2:
+                end_coordinate[0] = node.lon
+                end_coordinate[1] = node.lat
+                warning = QMessageBox.warning(self, "警告", "没有找到目的地！", QMessageBox.Yes)
+                return
+            else:
+                end_coordinate[0] = node.lon
+                end_coordinate[1] = node.lat
+
+        if start_coordinate[0] != -1 and end_coordinate[0] != -1:
+            if self.start_input_pin.isDisplay == True:
+                self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Blank.png"))
+                self.start_input_pin.isDisplay = False
+            if self.start_pin.isDisplay == False:
+                self.start_pin.isDisplay = True
+            self.start_pin_pos = QPointF(start_coordinate[0], start_coordinate[1])
+            pos = self.map.convertCoordinatesToScreen(self.start_pin_pos.x(), self.start_pin_pos.y())
+            self.start_pin.setGeometry(pos[0] - 12, pos[1] - 24, 24, 24)
+            self.start_pin.show()
+
+            if self.end_input_pin.isDisplay == True:
+                self.end_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Blank.png"))
+                self.end_input_pin.isDisplay = False
+            if self.end_pin.isDisplay == False:
+                self.end_pin.isDisplay = True
+            self.end_pin_pos = QPointF(end_coordinate[0], end_coordinate[1])
+            pos = self.map.convertCoordinatesToScreen(self.end_pin_pos.x(), self.end_pin_pos.y())
+            self.end_pin.setGeometry(pos[0] - 12, pos[1] - 24, 24, 24)
+            self.end_pin.show()
+
+            self.setPinChange()
+            self.road_list, self.min_distance = search_by_node_best_riding_way(self.map.map, start_coordinate[1], start_coordinate[0], end_coordinate[1], end_coordinate[0])
+            if self.min_distance == -1:
+                warning = QMessageBox.warning(self, "警告", "没有合适的道路！", QMessageBox.Yes)
+                return
+            else:
                 self.map.getPath(self.road_list, self.min_distance)
                 self.map.show_path = True
                 self.timer.start()
