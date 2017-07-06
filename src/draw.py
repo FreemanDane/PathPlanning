@@ -2,18 +2,20 @@ from src import DataAnalysis
 from src.CrossList import node, lat_min, lat_max, lon_max, lon_min
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton
 from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon, QPixmap
-from PyQt5.QtCore import QPoint,QRect, Qt, pyqtSignal, QPointF
+from PyQt5.QtCore import QPoint,QRect, Qt, pyqtSignal, QPointF, QThread
+import math
 import sys
 
 class MapDisplay(QWidget):
     zoom_signal = pyqtSignal()
     press_signal = pyqtSignal(int, int)
     move_signal = pyqtSignal()
+
+
     def __init__(self, filename, parent = None):
         super(MapDisplay, self).__init__(parent)
         print('Loading Data...')
         self.map = DataAnalysis.map(filename)
-        #self.map.cross_list.cartesian_coordinate()
         print('Total {} nodes, {} ways.'.format(len(self.map.cross_list.nodes), len(self.map.ways)))
         self.size_x = 680
         self.size_y = 830
@@ -186,7 +188,6 @@ class MapDisplay(QWidget):
                 end = self.map.cross_list.get_node(wy.point[i + 1]['ref'])
                 self.painter.drawLine(start.x * self.size_x / max_x, self.size_y - start.y * self.size_y / max_y,
                                       end.x * self.size_x / max_x, self.size_y - end.y * self.size_y / max_y)
-
 
     def paintEvent(self, e):
         self.painter.begin(self)
@@ -453,6 +454,7 @@ class MapDisplay(QWidget):
                     name)
             except KeyError:
                 continue
+
         self.painter.setFont(QFont('Microsoft Yahei', 14, 75))
         self.painter.setPen(QColor(255, 255, 255))
         self.painter.drawPixmap(QRect(0, 800, 680, 30), QPixmap("../data/icons/Caption_Background.png"), QRect(0, 0, 680, 30))

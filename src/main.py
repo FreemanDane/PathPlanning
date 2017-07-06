@@ -17,6 +17,22 @@ class MainWindow(QMainWindow):
         self.centralWidget.setObjectName("centralwidget")
         self.setCentralWidget(self.centralWidget)
 
+        self.loading = QLabel(self.centralWidget)
+        self.loading.setPixmap(QPixmap("../data/icons/Loading.png"))
+        self.loading.setGeometry(QRect(0, 0, 680, 830))
+        self.loading.show()
+
+        self.temp_timer = QTimer()
+        self.temp_timer.singleShot(100, self.setupUI)
+
+    def setupUI(self):
+        self.loading.hide()
+
+        self.centralWidget = QWidget(self)
+        self.centralWidget.setObjectName("centralwidget")
+        self.setCentralWidget(self.centralWidget)
+
+        #地图信息设置
         self.map = MapDisplay("../data/map.osm", self.centralWidget)
         self.map.setGeometry(QRect(0, 0, 680, 830))
         self.map.show()
@@ -25,7 +41,7 @@ class MainWindow(QMainWindow):
         self.map.press_signal.connect(self.pinAdd)
         self.map.move_signal.connect(self.setPinChange)
 
-        #地图上指示起点和终点的大头针
+        # 地图上指示起点和终点的大头针
         self.start_pin_pos = QPointF(0, 0)
         self.start_pin = MapPin(self.centralWidget)
         self.start_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
@@ -46,11 +62,11 @@ class MainWindow(QMainWindow):
         self.end_pin.change_cursor.connect(self.changeCursorPin)
         self.end_pin.change_cursor.connect(self.changePinStatus)
 
-        #Pin标志位
+        # Pin标志位
         self.isPin = "None"
 
-        #带有复杂功能的搜索框
-        #使用Layout进行布局
+        # 带有复杂功能的搜索框
+        # 使用Layout进行布局
         self.bg = QLabel(self.centralWidget)
         self.bg.setPixmap(QPixmap("../data/icons/Background.png"))
         self.bg.setGeometry(QRect(0, 0, 450, 150))
@@ -66,7 +82,7 @@ class MainWindow(QMainWindow):
         self.v_layout.setStretchFactor(self.h_layout, 2)
         self.v_layout.setStretchFactor(self.h_layout_shortcuts, 1)
 
-        #上方输入栏
+        # 上方输入栏
         self.swap = QPushButton(self.search_frame)
         self.swap.setFixedSize(48, 48)
         self.swap.setStyleSheet( \
@@ -103,7 +119,7 @@ class MainWindow(QMainWindow):
         self.h_layout_end = QHBoxLayout(self.search_frame)
         self.v_layout_input.addLayout(self.h_layout_end)
 
-        #字体及颜色预设
+        # 字体及颜色预设
         self.font = QFont("Microsoft YaHei", 14, 75)
         self.font_small = QFont("Microsoft YaHei", 10, 75)
         self.palette = QPalette()
@@ -142,7 +158,7 @@ class MainWindow(QMainWindow):
         self.end_input_pin.change_cursor.connect(self.changePinStatus)
         self.h_layout_end.addWidget(self.end_input_pin)
 
-        #下方快捷按钮栏
+        # 下方快捷按钮栏
         self.shortcuts = []
         self.shortcuts_captions = ["我的位置", "我要吃饭", "我要运动", "我要自习", "我要约会"]
         self.signal_mapper = QSignalMapper()
@@ -158,7 +174,6 @@ class MainWindow(QMainWindow):
             self.signal_mapper.setMapping(button, i)
         self.shortcuts[0].clicked.connect(self.addCurrentLocation)
         self.signal_mapper.mapped[int].connect(self.needRequest)
-
 
         # 缩放按钮和指示条
         self.shadow_effect = QGraphicsDropShadowEffect()
@@ -189,13 +204,14 @@ class MainWindow(QMainWindow):
         self.zoom_bar.setGraphicsEffect(self.shadow_effect)
         self.zoom_bar.valueChanged.connect(self.applyZoomBarValue)
 
-        #寻找最优路径
+        # 寻找最优路径
         self.painter = QPainter()
         self.timer = QTimer()
         self.timer.setInterval(10)
         self.timer.timeout.connect(self.adjustToBestWay)
         self.zoom_tag = "None"
 
+        self.update()
 
     def zoomIn(self):
         self.map.zoomIn()
