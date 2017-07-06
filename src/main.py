@@ -1,7 +1,7 @@
-from src.draw import *
-from src.MapPin import *
-from src.GetCurrentLocation import *
-from src.FindBestWay import *
+from draw import *
+from MapPin import *
+#from GetCurrentLocation import *
+from FindBestWay import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
@@ -310,14 +310,14 @@ class MainWindow(QMainWindow):
         self.update()
 
     def addCurrentLocation(self):
-        curLocation = getLocation()
+        '''curLocation = getLocation()
         self.start_input.setText(
             "(" + str(round(curLocation[1], 3)) + "N," + str(round(curLocation[0], 3)) + "E)")
         self.start_input_pin.isDisplay = True
         self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
         self.start_pin.isDisplay = False
         self.start_pin.hide()
-        self.map.show_path = False
+        self.map.show_path = False'''
         self.update()
 
     def drawBestWay(self):

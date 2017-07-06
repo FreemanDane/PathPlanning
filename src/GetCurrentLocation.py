@@ -1,7 +1,4 @@
-import platform
 import requests
-import json
-import re
 
 def getLocationByIpAddress():
     send_url = 'http://freegeoip.net/json'

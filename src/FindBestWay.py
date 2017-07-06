@@ -1,5 +1,5 @@
-from src.CrossList import *
-from src.DataAnalysis import *
+from CrossList import *
+from DataAnalysis import *
 i = 0
 j = 0
 # 调用函数：find_best_way(node_data, start, end)

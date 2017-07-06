@@ -1,5 +1,5 @@
-from src import DataAnalysis
-from src.CrossList import node, lat_min, lat_max, lon_max, lon_min
+import DataAnalysis
+from CrossList import node, lat_min, lat_max, lon_max, lon_min
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton
 from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon, QPixmap
 from PyQt5.QtCore import QPoint,QRect, Qt, pyqtSignal, QPointF, QThread
