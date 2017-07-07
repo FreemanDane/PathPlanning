@@ -1,8 +1,8 @@
-from src.draw import *
-from src.MapPin import *
+from draw import *
+from MapPin import *
 #from GetCurrentLocation import *
-from src.FindBestWay import *
-from src.Dialog import *
+from FindBestWay import *
+from Dialog import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
