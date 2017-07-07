@@ -2,6 +2,7 @@ from src.draw import *
 from src.MapPin import *
 #from GetCurrentLocation import *
 from src.FindBestWay import *
+from src.Dialog import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
@@ -172,7 +173,7 @@ class MainWindow(QMainWindow):
             self.h_layout_shortcuts.addWidget(button)
             button.clicked.connect(self.signal_mapper.map)
             self.signal_mapper.setMapping(button, i)
-        self.shortcuts[0].clicked.connect(self.addCurrentLocation)
+        #self.shortcuts[0].clicked.connect(self.addCurrentLocation)
         self.signal_mapper.mapped[int].connect(self.needRequest)
 
         # 缩放按钮和指示条
@@ -210,9 +211,8 @@ class MainWindow(QMainWindow):
         self.timer.setInterval(10)
         self.timer.timeout.connect(self.adjustToBestWay)
         self.zoom_tag = "None"
+
         '''
-        ！！！
-        ！！！
         以下是正则匹配的调用方式：
         name_list = Regular_match_name(self.map.map, "东门")
         print(name_list)'''
@@ -314,17 +314,6 @@ class MainWindow(QMainWindow):
         self.map.show_path = False
         self.update()
 
-    def addCurrentLocation(self):
-        '''curLocation = getLocation()
-        self.start_input.setText(
-            "(" + str(round(curLocation[1], 3)) + "N," + str(round(curLocation[0], 3)) + "E)")
-        self.start_input_pin.isDisplay = True
-        self.start_input_pin.setPixmap(QPixmap("../data/icons/pin/Pin_Red.png"))
-        self.start_pin.isDisplay = False
-        self.start_pin.hide()
-        self.map.show_path = False'''
-        self.update()
-
     def drawBestWay(self):
         if self.start_input.text() == "":
             warning = QMessageBox.warning(self, "警告", "没有输入出发地！", QMessageBox.Yes)
@@ -337,6 +326,8 @@ class MainWindow(QMainWindow):
         coordinate_pattern = re.compile(r'\([1-9]([0-9])*?\.([0-9])+?N,[1-9]([0-9])*?\.([0-9])+?E\)')
         start_coordinate = [-1, -1]
         end_coordinate = [-1, -1]
+
+        #出发地坐标
         if coordinate_pattern.match(self.start_input.text()) != None:
             result = self.start_input.text().split(',')
             lat = float(result[0][1:-1])
@@ -344,15 +335,31 @@ class MainWindow(QMainWindow):
             start_coordinate[0] = lon
             start_coordinate[1] = lat
         else:
-            node = find_the_name_of_points(self.map.map, self.start_input.text())
+            if len(self.start_input.text()) <= 5 or self.start_input.text()[-5:] != "(已选中)":
+                name_list = Regular_match_name(self.map.map, self.start_input.text())
+                if len(name_list) <= 0:
+                    warning = QMessageBox.warning(self, "警告", "没有找到出发地！", QMessageBox.Yes)
+                    return
+                elif len(name_list) >= 2:
+                    start_dialog = SelectDialog(name_list, self)
+                    start_dialog.setWindowTitle("您想选择哪一个出发地")
+                    start_dialog.show()
+                    start_dialog.result_signal[str].connect(self.startInputComplete)
+                    return
+                else:
+                    name = name_list[0]
+            else:
+                name = self.start_input.text()[0:-5]
+            node = find_the_name_of_points(self.map.map, name)
             if node.id == -2:
                 start_coordinate[0] = node.lon
                 start_coordinate[1] = node.lat
                 warning = QMessageBox.warning(self, "警告", "没有找到出发地！", QMessageBox.Yes)
                 return
-            else:
-                start_coordinate[0] = node.lon
-                start_coordinate[1] = node.lat
+            start_coordinate[0] = node.lon
+            start_coordinate[1] = node.lat
+
+        #目的地坐标
         if coordinate_pattern.match(self.end_input.text()) != None:
             result = self.end_input.text().split(',')
             lat = float(result[0][1:-1])
@@ -360,15 +367,29 @@ class MainWindow(QMainWindow):
             end_coordinate[0] = lon
             end_coordinate[1] = lat
         else:
-            node = find_the_name_of_points(self.map.map, self.end_input.text())
+            if len(self.end_input.text()) <= 5 or self.end_input.text()[-5:] != "(已选中)":
+                name_list = Regular_match_name(self.map.map, self.end_input.text())
+                if len(name_list) <= 0:
+                    warning = QMessageBox.warning(self, "警告", "没有找到目的地！", QMessageBox.Yes)
+                    return
+                elif len(name_list) >= 2:
+                    end_dialog = SelectDialog(name_list, self)
+                    end_dialog.setWindowTitle("您想选择哪一个目的地")
+                    end_dialog.show()
+                    end_dialog.result_signal[str].connect(self.endInputComplete)
+                    return
+                else:
+                    name = name_list[0]
+            else:
+                name = self.end_input.text()[0:-5]
+            node = find_the_name_of_points(self.map.map, name)
             if node.id == -2:
                 end_coordinate[0] = node.lon
                 end_coordinate[1] = node.lat
                 warning = QMessageBox.warning(self, "警告", "没有找到目的地！", QMessageBox.Yes)
                 return
-            else:
-                end_coordinate[0] = node.lon
-                end_coordinate[1] = node.lat
+            end_coordinate[0] = node.lon
+            end_coordinate[1] = node.lat
 
         if start_coordinate[0] != -1 and end_coordinate[0] != -1:
             if self.start_input_pin.isDisplay == True:
@@ -450,6 +471,9 @@ class MainWindow(QMainWindow):
             warning = QMessageBox.warning(self, "警告", "没有输入出发地！", QMessageBox.Yes)
             return
 
+        if need == 0:
+            return
+
         import re
         coordinate_pattern = re.compile(r'\([1-9]([0-9])*?\.([0-9])+?N,[1-9]([0-9])*?\.([0-9])+?E\)')
         start_coordinate = [-1, -1]
@@ -521,6 +545,8 @@ class MainWindow(QMainWindow):
         coordinate_pattern = re.compile(r'\([1-9]([0-9])*?\.([0-9])+?N,[1-9]([0-9])*?\.([0-9])+?E\)')
         start_coordinate = [-1, -1]
         end_coordinate = [-1, -1]
+
+        # 出发地坐标
         if coordinate_pattern.match(self.start_input.text()) != None:
             result = self.start_input.text().split(',')
             lat = float(result[0][1:-1])
@@ -528,15 +554,31 @@ class MainWindow(QMainWindow):
             start_coordinate[0] = lon
             start_coordinate[1] = lat
         else:
-            node = find_the_name_of_points(self.map.map, self.start_input.text())
+            if len(self.start_input.text()) <= 5 or self.start_input.text()[-5:] != "(已选中)":
+                name_list = Regular_match_name(self.map.map, self.start_input.text())
+                if len(name_list) <= 0:
+                    warning = QMessageBox.warning(self, "警告", "没有找到出发地！", QMessageBox.Yes)
+                    return
+                elif len(name_list) >= 2:
+                    start_dialog = SelectDialog(name_list, self)
+                    start_dialog.setWindowTitle("您想选择哪一个出发地")
+                    start_dialog.show()
+                    start_dialog.result_signal[str].connect(self.startInputComplete)
+                    return
+                else:
+                    name = name_list[0]
+            else:
+                name = self.start_input.text()[0:-5]
+            node = find_the_name_of_points(self.map.map, name)
             if node.id == -2:
                 start_coordinate[0] = node.lon
                 start_coordinate[1] = node.lat
                 warning = QMessageBox.warning(self, "警告", "没有找到出发地！", QMessageBox.Yes)
                 return
-            else:
-                start_coordinate[0] = node.lon
-                start_coordinate[1] = node.lat
+            start_coordinate[0] = node.lon
+            start_coordinate[1] = node.lat
+
+        # 目的地坐标
         if coordinate_pattern.match(self.end_input.text()) != None:
             result = self.end_input.text().split(',')
             lat = float(result[0][1:-1])
@@ -544,15 +586,29 @@ class MainWindow(QMainWindow):
             end_coordinate[0] = lon
             end_coordinate[1] = lat
         else:
-            node = find_the_name_of_points(self.map.map, self.end_input.text())
+            if len(self.end_input.text()) <= 5 or self.end_input.text()[-5:] != "(已选中)":
+                name_list = Regular_match_name(self.map.map, self.end_input.text())
+                if len(name_list) <= 0:
+                    warning = QMessageBox.warning(self, "警告", "没有找到目的地！", QMessageBox.Yes)
+                    return
+                elif len(name_list) >= 2:
+                    end_dialog = SelectDialog(name_list, self)
+                    end_dialog.setWindowTitle("您想选择哪一个目的地")
+                    end_dialog.show()
+                    end_dialog.result_signal[str].connect(self.endInputComplete)
+                    return
+                else:
+                    name = name_list[0]
+            else:
+                name = self.end_input.text()[0:-5]
+            node = find_the_name_of_points(self.map.map, name)
             if node.id == -2:
                 end_coordinate[0] = node.lon
                 end_coordinate[1] = node.lat
                 warning = QMessageBox.warning(self, "警告", "没有找到目的地！", QMessageBox.Yes)
                 return
-            else:
-                end_coordinate[0] = node.lon
-                end_coordinate[1] = node.lat
+            end_coordinate[0] = node.lon
+            end_coordinate[1] = node.lat
 
         if start_coordinate[0] != -1 and end_coordinate[0] != -1:
             if self.start_input_pin.isDisplay == True:
@@ -596,6 +652,14 @@ class MainWindow(QMainWindow):
                 self.bg.hide()
         elif event.key() == Qt.Key_Return:
             self.drawBestWay()
+
+    def startInputComplete(self, str):
+        self.start_input.setText(str + "(已选中)")
+
+    def endInputComplete(self, str):
+        self.end_input.setText(str + "(已选中)")
+
+
 
 
 if __name__ == '__main__':
