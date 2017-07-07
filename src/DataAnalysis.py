@@ -1,6 +1,6 @@
 # coding=utf-8
 from bs4 import BeautifulSoup
-from CrossList import *
+from src.CrossList import *
 
 class way:
     '''

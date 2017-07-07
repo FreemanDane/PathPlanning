@@ -1,7 +1,7 @@
-from draw import *
-from MapPin import *
+from src.draw import *
+from src.MapPin import *
 #from GetCurrentLocation import *
-from FindBestWay import *
+from src.FindBestWay import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
@@ -210,7 +210,12 @@ class MainWindow(QMainWindow):
         self.timer.setInterval(10)
         self.timer.timeout.connect(self.adjustToBestWay)
         self.zoom_tag = "None"
-
+        '''
+        ！！！
+        ！！！
+        以下是正则匹配的调用方式：
+        name_list = Regular_match_name(self.map.map, "东门")
+        print(name_list)'''
         self.update()
 
     def zoomIn(self):

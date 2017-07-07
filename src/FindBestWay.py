@@ -1,5 +1,5 @@
-from CrossList import *
-from DataAnalysis import *
+from src.CrossList import *
+from src.DataAnalysis import *
 i = 0
 j = 0
 # 调用函数：find_best_way(node_data, start, end)
@@ -215,6 +215,54 @@ def find_the_closest_point(map, node):
                 closest_node = clo_node
                 distance = temp_distance
     return closest_node, distance
+
+#名字匹配：输入map和输入框中的名字，输出为与之匹配的所有name，返回一个name的list（str的list）
+def Regular_match_name(map, way_name):
+    input_name_length = len(way_name)
+    name_list = []
+    for ways in map.ways:
+        if 'name' in ways.attr.keys():
+            try_name = ways.attr.get('name')
+            try_name_length = len(try_name)
+            get_name = 1
+            for i in range(input_name_length):
+                is_match = 0
+                j = 0
+                while j < try_name_length:
+                    if try_name[j] == way_name[i]:
+                        is_match = 1
+                        j = j + 1
+                        break
+                    j = j + 1
+                if is_match == 1:
+                    continue
+                else:
+                    get_name = 0
+                    break
+            if get_name is 1 and try_name not in name_list:
+                name_list.append(try_name)
+    for keynd in map.keynode:
+        if 'name' in keynd.attr.keys():
+            try_name = keynd.attr.get('name')
+            try_name_length = len(try_name)
+            get_name = 1
+            for i in range(input_name_length):
+                is_match = 0
+                j = 0
+                while j < try_name_length:
+                    if try_name[j] == way_name[i]:
+                        is_match = 1
+                        j = j + 1
+                        break
+                    j = j + 1
+                if is_match == 1:
+                    continue
+                else:
+                    get_name = 0
+                    break
+            if get_name is 1 and try_name not in name_list:
+                name_list.append(try_name)
+    return name_list
 
 #输入名字，输出点，若没有，输出None
 def find_the_name_of_points(map, way_name):#找到离去的地方最近的点
