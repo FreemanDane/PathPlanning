@@ -1,5 +1,6 @@
 import DataAnalysis
 from CrossList import node, lat_min, lat_max, lon_max, lon_min
+from GetScreenDpi import *
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton
 from PyQt5.QtGui import QPainter, QPen, QBrush, QFont, QColor, QPolygon, QIcon, QPixmap
 from PyQt5.QtCore import QPoint,QRect, Qt, pyqtSignal, QPointF, QThread
@@ -425,10 +426,10 @@ class MapDisplay(QWidget):
                     pass
                 rect = self.map.way_rect(wy)
                 #l = rect[2] * pow(self.zoom_ratio, 0.5 * self.zoom[1] + 1) / (len(name))
-                l = 10
+                l = 10 * get_dpi_rate()
                 if name == "篮球场":
                     rect = (rect[0], rect[1],rect[2] / 2, rect[3])
-                if l > rect[2] * pow(self.zoom_ratio, 0.5 * self.zoom[1] + 1) / (len(name)) or rect[3] * pow(self.zoom_ratio, 0.5 * self.zoom[1] + 1) < l:
+                if (l / get_dpi_rate()) > rect[2] * pow(self.zoom_ratio, 0.5 * self.zoom[1] + 1) / (len(name)) or rect[3] * pow(self.zoom_ratio, 0.5 * self.zoom[1] + 1) < l:
                     continue
 
                 height = self.map.cross_list.farthest_node.y
@@ -455,7 +456,7 @@ class MapDisplay(QWidget):
             except KeyError:
                 continue
 
-        self.painter.setFont(QFont('Microsoft Yahei', 14, 75))
+        self.painter.setFont(QFont('Microsoft Yahei', 14 * get_dpi_rate(), 75))
         self.painter.setPen(QColor(255, 255, 255))
         self.painter.drawPixmap(QRect(0, 800, 680, 30), QPixmap("../data/icons/Caption_Background.png"), QRect(0, 0, 680, 30))
         self.painter.drawText(10, 800, 660, 30, Qt.AlignLeft, self.intro)

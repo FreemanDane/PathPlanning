@@ -1,6 +1,7 @@
 from draw import *
 from MapPin import *
 #from GetCurrentLocation import *
+from GetScreenDpi import *
 from FindBestWay import *
 from Dialog import *
 from PyQt5.QtGui import *
@@ -121,8 +122,8 @@ class MainWindow(QMainWindow):
         self.v_layout_input.addLayout(self.h_layout_end)
 
         # 字体及颜色预设
-        self.font = QFont("Microsoft YaHei", 14, 75)
-        self.font_small = QFont("Microsoft YaHei", 10, 75)
+        self.font = QFont("Microsoft YaHei", 14 * get_dpi_rate(), 75)
+        self.font_small = QFont("Microsoft YaHei", 10 * get_dpi_rate(), 75)
         self.palette = QPalette()
         self.palette.setColor(QPalette.WindowText, Qt.white)
         self.palette.setColor(QPalette.ButtonText, Qt.white)
