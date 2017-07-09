@@ -126,13 +126,13 @@ def dijkstra2(node_data, start, end, waiting, result):
                 if edge.can_ride is 0:
                     new_node_value = result[start][0] + edge.length
                 else:
-                    new_node_value = result[start][0]
+                    new_node_value = result[start][0] + edge.length * 0.001
             elif edge.jvex.id == start.id and edge.ivex not in result.keys():
                 new_node = edge.ivex
                 if edge.can_ride is 0:
                     new_node_value = result[start][0] + edge.length
                 else:
-                    new_node_value = result[start][0]
+                    new_node_value = result[start][0] + edge.length * 0.001
             else:
                 continue
             new_node_list.append([new_node, new_node_value])
